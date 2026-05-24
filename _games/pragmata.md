@@ -42,6 +42,8 @@ sources:
     note: "트로피 로드맵 (영문)"
 ---
 
+<!-- tab:개요 -->
+
 > **이 페이지는 직접 플레이 전 사전 자료 정리본**입니다. 한국 위키/커뮤니티와 영문 공략을 교차로 정리했으며, 스포일러는 사이드바 토글 또는 가려진 부분 클릭으로 공개됩니다.
 
 ## 게임 개요
@@ -115,6 +117,8 @@ sources:
 ### 오버드라이브 프로토콜
 
 일시적 파워업. **보스전이나 전력 수치 60~80% 사이의 최종 방어 시퀀스를 위해 아껴두는 것이 정석**. 일반 잡몹전에 낭비하면 보스 직전에 곤란해진다.
+
+<!-- tab:챕터 -->
 
 ## 챕터별 공략
 
@@ -197,45 +201,7 @@ sources:
 - 셸터 대화 누적 시 **"스몰토킹, 항상 고마워"** 트로피 자연 획득
 </div>
 
-## 업적/트로피 100% 가이드
-
-**총 36 트로피 / 35 업적**, 플래티넘 명칭은 그대로 **'Pragmata'**. 평균 35~50시간 소요. **2회차(스탠다드 → Lunatic) + 100% 수집** 필수.
-
-### 미씨블(놓치면 회차) 트로피
-
-<div class="warn" markdown="1">
-**⚠️ 단 하나의 진짜 놓치기 쉬운 트로피**
-**"You're Not Getting Away That Easy"** — Sweeper 봇은 스폰 위치가 제한적이고 일관성이 없다. **만나는 즉시 처치 권장**. 다른 모든 업적은 본편 클리어 후 Unknown Signal Mode에서 회수 가능.
-</div>
-
-### 카테고리별 분류 (PowerPyx 기준)
-
-| 분류 | 개수 | 비고 |
-|---|---|---|
-| 스토리 진행(자동) | 9 | 무조건 획득 |
-| 난이도 클리어 | 3 | 스탠다드/Lunatic 등 |
-| 셸터 · 다이애나 활동 | 6 | 셸터 미니게임, 대화, 선물 |
-| 전투 챌린지 | 5 | 환경 처치, 특정 데미지, 콤보 등 |
-| 수집 | 8 | 미니 캐빈, 메모리 조각, 모드 등 |
-| 엔딩 관련 | 3 | 진 엔딩 + Black Box 엔딩 |
-| 기타 | 2 | |
-
-### 핵심 트로피 일부 (공개된 명칭)
-
-- **Pragmata** (플래티넘) — 모든 트로피 획득
-- **Rendezvous** / **Power Trip** / **Awakening** — 스토리 진행
-- **Sentinel Breach** — 챕터 1 보스
-- **Our Promise** — 최종 보스
-- **Another Pragmata** — 진 엔딩 도달
-- **Mini-Hunter Supreme** — 미니 캐빈 15개 전부
-- **Entrusted Memory** — 메모리 조각 전부
-- **Mission Unveiled** — 사이드 미션 전부
-- **The Purr-fect Guide** — 다이애나 관련(추정)
-- **Round 'Em Up** / **Clean Up on Aisle Three** — 환경 처치
-- **IT'S OVER 6000!** — 특정 데미지 임계
-- **For Me?** — 셸터에 선물 전달
-- **Well Spotted!** — 첫 미니 캐빈 발견
-- **Blackout!** — Black Box 엔딩 관련
+<!-- tab:히든 -->
 
 ## 히든 컨텐츠 — Unknown Signal Mode
 
@@ -285,6 +251,50 @@ sources:
 | **유기 엔딩** | <span class="spoiler">매우 낮은 시너지 + 에스코트 시퀀스 실패</span> | 의도적으로 나쁘게 해야 트리거 |
 | **기본 엔딩** | 1회차 무난한 진행 | 대부분 첫 플레이 결과 |
 | **진 엔딩 (Another Pragmata)** | <span class="spoiler">동기화율 100% + Unknown Signal 완료 + Black Box Mod 장착 + 최종 보스 재처치</span> | "Another Pragmata" 트로피 |
+
+<!-- tab:업적 -->
+
+## 업적/트로피 100% 가이드
+
+**총 36 트로피 / 35 업적**, 플래티넘 명칭은 그대로 **'Pragmata'**. 평균 35~50시간 소요. **2회차(스탠다드 → Lunatic) + 100% 수집** 필수.
+
+### 미씨블(놓치면 회차) 트로피
+
+<div class="warn" markdown="1">
+**⚠️ 단 하나의 진짜 놓치기 쉬운 트로피**
+**"You're Not Getting Away That Easy"** — Sweeper 봇은 스폰 위치가 제한적이고 일관성이 없다. **만나는 즉시 처치 권장**. 다른 모든 업적은 본편 클리어 후 Unknown Signal Mode에서 회수 가능.
+</div>
+
+### 카테고리별 분류 (PowerPyx 기준)
+
+| 분류 | 개수 | 비고 |
+|---|---|---|
+| 스토리 진행(자동) | 9 | 무조건 획득 |
+| 난이도 클리어 | 3 | 스탠다드/Lunatic 등 |
+| 셸터 · 다이애나 활동 | 6 | 셸터 미니게임, 대화, 선물 |
+| 전투 챌린지 | 5 | 환경 처치, 특정 데미지, 콤보 등 |
+| 수집 | 8 | 미니 캐빈, 메모리 조각, 모드 등 |
+| 엔딩 관련 | 3 | 진 엔딩 + Black Box 엔딩 |
+| 기타 | 2 | |
+
+### 핵심 트로피 일부 (공개된 명칭)
+
+- **Pragmata** (플래티넘) — 모든 트로피 획득
+- **Rendezvous** / **Power Trip** / **Awakening** — 스토리 진행
+- **Sentinel Breach** — 챕터 1 보스
+- **Our Promise** — 최종 보스
+- **Another Pragmata** — 진 엔딩 도달
+- **Mini-Hunter Supreme** — 미니 캐빈 15개 전부
+- **Entrusted Memory** — 메모리 조각 전부
+- **Mission Unveiled** — 사이드 미션 전부
+- **The Purr-fect Guide** — 다이애나 관련(추정)
+- **Round 'Em Up** / **Clean Up on Aisle Three** — 환경 처치
+- **IT'S OVER 6000!** — 특정 데미지 임계
+- **For Me?** — 셸터에 선물 전달
+- **Well Spotted!** — 첫 미니 캐빈 발견
+- **Blackout!** — Black Box 엔딩 관련
+
+<!-- tab:팁 -->
 
 ## 난이도 가이드
 

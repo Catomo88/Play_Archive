@@ -1,5 +1,5 @@
 
-// 게임 카드 검색
+// ===== 게임 카드 검색 =====
 const search = document.getElementById('game-search');
 const grid = document.getElementById('games-grid');
 if (search && grid) {
@@ -12,43 +12,125 @@ if (search && grid) {
   });
 }
 
-// 게임 페이지 목차 자동 생성
-function buildTOC() {
-  const tocNav = document.getElementById('toc-nav');
-  const content = document.querySelector('.game-content');
-  if (!tocNav || !content) return;
-  const headings = content.querySelectorAll('h2, h3');
-  if (headings.length === 0) {
-    const aside = document.getElementById('game-toc');
-    if (aside) aside.style.display = 'none';
-    return;
-  }
-  headings.forEach(h => {
-    if (!h.id) {
-      h.id = h.textContent.trim().toLowerCase()
-        .replace(/\s+/g, '-')
-        .replace(/[^\w가-힣-]/g, '');
-    }
-    const link = document.createElement('a');
-    link.href = '#' + h.id;
-    link.textContent = h.textContent;
-    link.className = h.tagName === 'H3' ? 'toc-h3' : 'toc-h2';
-    tocNav.appendChild(link);
+// ===== 탭 전환 =====
+function showTab(slug, pushState = true) {
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.tab-panel');
+  let found = false;
+  tabs.forEach(t => {
+    const active = t.dataset.tab === slug;
+    t.classList.toggle('active', active);
+    if (active) found = true;
   });
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      const link = tocNav.querySelector('a[href="#' + e.target.id + '"]');
-      if (link && e.isIntersecting) {
-        tocNav.querySelectorAll('a').forEach(a => a.classList.remove('active'));
-        link.classList.add('active');
-      }
-    });
-  }, { rootMargin: '-80px 0px -70% 0px' });
-  headings.forEach(h => obs.observe(h));
+  panels.forEach(p => {
+    p.classList.toggle('active', p.dataset.tab === slug);
+  });
+  if (found && pushState) {
+    const newHash = '#tab=' + slug;
+    if (location.hash !== newHash) history.replaceState(null, '', newHash);
+  }
+  window.scrollTo({ top: 0, behavior: 'instant' });
 }
-window.addEventListener('load', buildTOC);
 
-// 스포일러 토글
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => showTab(t.dataset.tab));
+});
+
+// 초기 탭 (URL 해시 기반)
+(function () {
+  const hash = location.hash;
+  const m = hash.match(/^#tab=([\w가-힣-]+)/);
+  if (m) {
+    const slug = decodeURIComponent(m[1]);
+    showTab(slug, false);
+  } else {
+    // 첫 번째 탭 활성화
+    const first = document.querySelector('.tab');
+    if (first) showTab(first.dataset.tab, false);
+  }
+  window.scrollTo({ top: 0, behavior: 'instant' });
+})();
+
+// ===== 챕터 점프 네비 =====
+document.querySelectorAll('.chapter-jump').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const id = btn.dataset.target;
+    const target = document.getElementById(id);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// ===== 책갈피 =====
+const PAGE_KEY = 'bookmarks:' + location.pathname;
+
+function loadBookmarks() {
+  try { return JSON.parse(localStorage.getItem(PAGE_KEY) || '[]'); }
+  catch { return []; }
+}
+function saveBookmarks(arr) {
+  localStorage.setItem(PAGE_KEY, JSON.stringify(arr));
+}
+function getChapterTitle(id) {
+  const el = document.getElementById(id);
+  if (!el) return id;
+  // h3 안의 텍스트만 (책갈피 버튼 제외)
+  return el.textContent.replace(/^★\s*/, '').trim();
+}
+
+function refreshBookmarkUI() {
+  const bookmarks = loadBookmarks();
+  // 별 버튼
+  document.querySelectorAll('.bookmark-btn').forEach(btn => {
+    const id = btn.dataset.chapterId;
+    btn.classList.toggle('active', bookmarks.includes(id));
+  });
+  // 점프 버튼
+  document.querySelectorAll('.chapter-jump').forEach(btn => {
+    btn.classList.toggle('bookmarked', bookmarks.includes(btn.dataset.target));
+  });
+  // 책갈피 패널
+  const panel = document.getElementById('bookmarks-panel');
+  if (panel) {
+    if (bookmarks.length === 0) {
+      panel.classList.add('empty');
+    } else {
+      panel.classList.remove('empty');
+      const list = panel.querySelector('.bookmarks-list');
+      list.innerHTML = '';
+      bookmarks.forEach(id => {
+        const a = document.createElement('a');
+        a.href = '#' + id;
+        a.textContent = '★ ' + getChapterTitle(id);
+        a.addEventListener('click', e => {
+          e.preventDefault();
+          const target = document.getElementById(id);
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        list.appendChild(a);
+      });
+    }
+  }
+}
+
+document.querySelectorAll('.bookmark-btn').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    e.preventDefault();
+    const id = btn.dataset.chapterId;
+    let bookmarks = loadBookmarks();
+    if (bookmarks.includes(id)) {
+      bookmarks = bookmarks.filter(x => x !== id);
+    } else {
+      bookmarks.push(id);
+    }
+    saveBookmarks(bookmarks);
+    refreshBookmarkUI();
+  });
+});
+
+refreshBookmarkUI();
+
+// ===== 스포일러 토글 =====
 const sw = document.getElementById('spoiler-switch');
 if (sw) {
   const saved = localStorage.getItem('show-spoilers') === '1';
@@ -62,21 +144,23 @@ if (sw) {
 
 // 인라인 스포일러 클릭 표시
 document.addEventListener('click', e => {
-  if (e.target?.classList?.contains('spoiler')) {
+  if (e.target && e.target.classList && e.target.classList.contains('spoiler')) {
     e.target.style.background = 'transparent';
     e.target.style.color = 'inherit';
   }
 });
 
-// 체크리스트 상태 저장
-const content = document.querySelector('.game-content');
-if (content) {
+// ===== 체크리스트 상태 저장 =====
+const tabContents = document.querySelectorAll('.tab-content');
+if (tabContents.length) {
   const slug = window.location.pathname;
-  content.querySelectorAll('input[type="checkbox"]').forEach((cb, idx) => {
-    const key = 'check:' + slug + ':' + idx;
-    if (localStorage.getItem(key) === '1') cb.checked = true;
-    cb.addEventListener('change', () => {
-      localStorage.setItem(key, cb.checked ? '1' : '0');
+  tabContents.forEach(c => {
+    c.querySelectorAll('input[type="checkbox"]').forEach((cb, idx) => {
+      const key = 'check:' + slug + ':' + idx;
+      if (localStorage.getItem(key) === '1') cb.checked = true;
+      cb.addEventListener('change', () => {
+        localStorage.setItem(key, cb.checked ? '1' : '0');
+      });
     });
   });
 }
