@@ -1,0 +1,38 @@
+---
+layout: default
+---
+<section class="hero">
+  <div class="hero-inner">
+    <h1 class="hero-title">PLAY <span class="accent">ARCHIVE</span></h1>
+    <p class="hero-tagline">{{ site.description }}</p>
+    <div class="hero-meta">
+      <span class="chip">총 {{ site.games | size }} 작품</span>
+      <span class="chip">100% 공략 추구</span>
+      <span class="chip">한글 가이드</span>
+    </div>
+  </div>
+  <div class="hero-glow" aria-hidden="true"></div>
+</section>
+
+<section class="games-section">
+  <div class="games-section-header">
+    <h2 class="section-title">게임 라이브러리</h2>
+    <input type="search" id="game-search" class="game-search" placeholder="게임 검색..." aria-label="게임 검색" />
+  </div>
+
+  <div class="games-grid" id="games-grid">
+    {% assign games_sorted = site.games | sort: "title" %}
+    {% for game in games_sorted %}
+      {% include game-card.html game=game %}
+    {% endfor %}
+  </div>
+
+  {% if site.games.size == 0 %}
+    <div class="empty-state">
+      <p>아직 등록된 게임이 없습니다.</p>
+      <p class="hint"><code>_games/</code> 폴더에 마크다운 파일을 추가하면 자동으로 표시됩니다.</p>
+    </div>
+  {% endif %}
+</section>
+
+{{ content }}

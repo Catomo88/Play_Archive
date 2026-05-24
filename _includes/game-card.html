@@ -1,0 +1,18 @@
+<a href="{{ include.game.url | relative_url }}" class="game-card" data-game-title="{{ include.game.title | downcase }}" data-game-genre="{{ include.game.genre | downcase }}">
+  <div class="game-card-cover" {% if include.game.cover %}style="background-image: url('{{ include.game.cover | relative_url }}');"{% endif %}>
+    {% unless include.game.cover %}
+      <div class="cover-placeholder">
+        <span>{{ include.game.title | slice: 0 }}</span>
+      </div>
+    {% endunless %}
+    <div class="game-card-overlay"></div>
+    {% if include.game.status %}
+      <span class="game-card-badge badge-{{ include.game.status | downcase | replace: ' ', '-' }}">{{ include.game.status }}</span>
+    {% endif %}
+  </div>
+  <div class="game-card-info">
+    <h3 class="game-card-title">{{ include.game.title }}</h3>
+    {% if include.game.genre %}<p class="game-card-meta">{{ include.game.genre }}{% if include.game.developer %} · {{ include.game.developer }}{% endif %}</p>{% endif %}
+    {% if include.game.summary %}<p class="game-card-summary">{{ include.game.summary }}</p>{% endif %}
+  </div>
+</a>

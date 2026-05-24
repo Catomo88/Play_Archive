@@ -1,0 +1,69 @@
+---
+layout: default
+---
+<article class="game-page">
+  <!-- 게임 헤더 (키 비주얼) -->
+  <header class="game-hero" {% if page.cover %}style="background-image: linear-gradient(180deg, rgba(14,14,18,0.3) 0%, rgba(14,14,18,0.95) 80%), url('{{ page.cover | relative_url }}');"{% endif %}>
+    <div class="game-hero-inner">
+      <a href="{{ '/' | relative_url }}" class="back-link">← 라이브러리</a>
+      <h1 class="game-title">{{ page.title }}</h1>
+      {% if page.subtitle %}<p class="game-subtitle">{{ page.subtitle }}</p>{% endif %}
+
+      <div class="game-meta">
+        {% if page.genre %}<div class="meta-item"><span class="meta-label">장르</span><span class="meta-value">{{ page.genre }}</span></div>{% endif %}
+        {% if page.developer %}<div class="meta-item"><span class="meta-label">개발사</span><span class="meta-value">{{ page.developer }}</span></div>{% endif %}
+        {% if page.release %}<div class="meta-item"><span class="meta-label">발매</span><span class="meta-value">{{ page.release }}</span></div>{% endif %}
+        {% if page.platform %}<div class="meta-item"><span class="meta-label">플랫폼</span><span class="meta-value">{{ page.platform }}</span></div>{% endif %}
+        {% if page.difficulty %}<div class="meta-item"><span class="meta-label">난이도</span><span class="meta-value">{{ page.difficulty }}</span></div>{% endif %}
+        {% if page.playtime %}<div class="meta-item"><span class="meta-label">플레이타임</span><span class="meta-value">{{ page.playtime }}</span></div>{% endif %}
+      </div>
+
+      {% if page.status %}
+        <div class="game-status status-{{ page.status | downcase | replace: ' ', '-' }}">
+          {{ page.status }}
+        </div>
+      {% endif %}
+    </div>
+  </header>
+
+  <!-- 본문 + 사이드바 레이아웃 -->
+  <div class="game-body">
+    <!-- 사이드 네비 (목차) -->
+    <aside class="game-toc" id="game-toc">
+      <div class="toc-sticky">
+        <h3 class="toc-title">목차</h3>
+        <nav id="toc-nav" class="toc-nav">
+          <!-- JS가 자동 생성 -->
+        </nav>
+
+        {% if page.spoiler %}
+        <div class="spoiler-toggle">
+          <label class="switch">
+            <input type="checkbox" id="spoiler-switch" />
+            <span class="slider"></span>
+          </label>
+          <span>스포일러 표시</span>
+        </div>
+        {% endif %}
+      </div>
+    </aside>
+
+    <!-- 본문 -->
+    <div class="game-content">
+      {% if page.spoiler %}<div class="spoiler-banner">⚠️ 이 페이지에는 스토리 스포일러가 포함되어 있습니다.</div>{% endif %}
+
+      {{ content }}
+
+      {% if page.sources %}
+      <section class="sources" id="sources">
+        <h2>출처</h2>
+        <ul class="sources-list">
+          {% for src in page.sources %}
+            <li><a href="{{ src.url }}" target="_blank" rel="noopener noreferrer">{{ src.title }}</a>{% if src.note %} — <span class="src-note">{{ src.note }}</span>{% endif %}</li>
+          {% endfor %}
+        </ul>
+      </section>
+      {% endif %}
+    </div>
+  </div>
+</article>

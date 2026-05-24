@@ -1,0 +1,743 @@
+---
+# Jekyll이 SCSS로 처리하도록 front matter 필요
+---
+
+// =============================================================
+// Play Archive — Dark Gaming Theme
+// =============================================================
+
+// 컬러 팔레트
+$bg-base: #0a0a0f;
+$bg-elevated: #14141c;
+$bg-card: #1a1a25;
+$bg-overlay: rgba(10, 10, 15, 0.92);
+
+$text-primary: #e6e6f0;
+$text-secondary: #a0a0b8;
+$text-muted: #6a6a82;
+
+$accent-cyan: #00f0ff;
+$accent-magenta: #ff00aa;
+$accent-amber: #ffb800;
+$accent-success: #00ff88;
+$accent-danger: #ff3355;
+
+$border-subtle: rgba(255, 255, 255, 0.08);
+$border-strong: rgba(255, 255, 255, 0.16);
+
+// 폰트
+$font-display: 'Orbitron', 'Bebas Neue', system-ui, sans-serif;
+$font-body: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+$font-mono: 'JetBrains Mono', 'D2Coding', 'Consolas', monospace;
+
+// 레이아웃
+$max-width: 1280px;
+$content-max: 880px;
+$radius-sm: 6px;
+$radius-md: 12px;
+$radius-lg: 20px;
+
+// =============================================================
+// 리셋 & 기본
+// =============================================================
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: $font-body;
+  background: $bg-base;
+  background-image:
+    radial-gradient(ellipse at top, rgba(0, 240, 255, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom, rgba(255, 0, 170, 0.03) 0%, transparent 50%);
+  background-attachment: fixed;
+  color: $text-primary;
+  font-size: 16px;
+  line-height: 1.7;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+// 노이즈 텍스처 오버레이
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
+}
+
+a {
+  color: $accent-cyan;
+  text-decoration: none;
+  transition: color 0.15s ease;
+  &:hover { color: lighten($accent-cyan, 10%); }
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+code {
+  font-family: $font-mono;
+  font-size: 0.92em;
+  background: rgba(0, 240, 255, 0.08);
+  color: $accent-cyan;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+
+pre {
+  background: $bg-elevated;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  padding: 1.2em;
+  overflow-x: auto;
+  code {
+    background: none;
+    color: $text-primary;
+    padding: 0;
+  }
+}
+
+// =============================================================
+// 사이트 헤더
+// =============================================================
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid $border-subtle;
+}
+
+.site-header-inner {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.site-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: $text-primary;
+  font-family: $font-display;
+  font-weight: 900;
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+  &:hover { color: $accent-cyan; }
+}
+
+.logo-mark {
+  color: $accent-cyan;
+  text-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
+}
+
+.site-nav {
+  display: flex;
+  gap: 1.5rem;
+  .nav-link {
+    color: $text-secondary;
+    font-size: 0.9rem;
+    font-weight: 500;
+    &:hover { color: $text-primary; }
+  }
+}
+
+// =============================================================
+// 메인
+// =============================================================
+.site-main {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  position: relative;
+  z-index: 2;
+}
+
+// =============================================================
+// 홈 — Hero
+// =============================================================
+.hero {
+  position: relative;
+  padding: 4rem 0 3rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.12) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-inner { position: relative; z-index: 1; }
+
+.hero-title {
+  font-family: $font-display;
+  font-weight: 900;
+  font-size: clamp(3rem, 8vw, 6rem);
+  letter-spacing: 0.05em;
+  margin: 0 0 0.5rem;
+  line-height: 1;
+  text-shadow: 0 0 40px rgba(0, 240, 255, 0.25);
+  .accent {
+    background: linear-gradient(135deg, $accent-cyan 0%, $accent-magenta 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.hero-tagline {
+  font-size: 1.1rem;
+  color: $text-secondary;
+  margin: 0 0 1.5rem;
+}
+
+.hero-meta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.chip {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid $border-strong;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  color: $text-secondary;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+// =============================================================
+// 게임 라이브러리
+// =============================================================
+.games-section { margin-top: 2rem; }
+
+.games-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.section-title {
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  margin: 0;
+  &::before {
+    content: '◆ ';
+    color: $accent-cyan;
+  }
+}
+
+.game-search {
+  background: $bg-elevated;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-sm;
+  padding: 0.55rem 0.9rem;
+  color: $text-primary;
+  font-family: inherit;
+  font-size: 0.9rem;
+  min-width: 240px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  &:focus {
+    outline: none;
+    border-color: $accent-cyan;
+    box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.15);
+  }
+  &::placeholder { color: $text-muted; }
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.game-card {
+  background: $bg-card;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  overflow: hidden;
+  color: $text-primary;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  &:hover {
+    transform: translateY(-4px);
+    border-color: $accent-cyan;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 24px rgba(0, 240, 255, 0.2);
+    .game-card-title { color: $accent-cyan; }
+  }
+}
+
+.game-card-cover {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background-color: $bg-elevated;
+  background-size: cover;
+  background-position: center;
+}
+
+.cover-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-display;
+  font-size: 4rem;
+  font-weight: 900;
+  color: rgba(0, 240, 255, 0.3);
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(255, 0, 170, 0.05));
+}
+
+.game-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(10, 10, 15, 0.7) 100%);
+}
+
+.game-card-badge {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: rgba(10, 10, 15, 0.85);
+  border: 1px solid $border-subtle;
+  &.badge-완료 { color: $accent-success; border-color: rgba(0, 255, 136, 0.4); }
+  &.badge-진행중 { color: $accent-amber; border-color: rgba(255, 184, 0, 0.4); }
+  &.badge-계획 { color: $text-muted; }
+}
+
+.game-card-info { padding: 1rem 1.1rem 1.2rem; }
+
+.game-card-title {
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 0 0 0.3rem;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+
+.game-card-meta {
+  font-size: 0.8rem;
+  color: $text-muted;
+  margin: 0 0 0.5rem;
+}
+
+.game-card-summary {
+  font-size: 0.88rem;
+  color: $text-secondary;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: $text-muted;
+  border: 1px dashed $border-subtle;
+  border-radius: $radius-md;
+  .hint { font-size: 0.9rem; margin-top: 0.5rem; }
+}
+
+// =============================================================
+// 게임 공략 페이지
+// =============================================================
+.game-page { position: relative; }
+
+.game-hero {
+  position: relative;
+  padding: 4rem 1.5rem 3rem;
+  margin: -2rem -1.5rem 0;
+  background-color: $bg-elevated;
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid $border-subtle;
+}
+
+.game-hero-inner {
+  max-width: $content-max;
+  margin: 0 auto;
+}
+
+.back-link {
+  display: inline-block;
+  color: $text-secondary;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  &:hover { color: $accent-cyan; }
+}
+
+.game-title {
+  font-family: $font-display;
+  font-weight: 900;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: 0.04em;
+  margin: 0 0 0.4rem;
+  line-height: 1.1;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.8);
+}
+
+.game-subtitle {
+  font-size: 1.05rem;
+  color: $text-secondary;
+  margin: 0 0 1.5rem;
+}
+
+.game-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem 2rem;
+  margin-top: 1.5rem;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.meta-label {
+  font-size: 0.72rem;
+  color: $text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.meta-value {
+  font-size: 0.95rem;
+  color: $text-primary;
+  font-weight: 500;
+}
+
+.game-status {
+  display: inline-block;
+  margin-top: 1.2rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(10, 10, 15, 0.6);
+  border: 1px solid $border-strong;
+}
+
+// 본문 + TOC 레이아웃
+.game-body {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 2.5rem 0;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 3rem;
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.game-toc {
+  @media (max-width: 900px) { display: none; }
+}
+
+.toc-sticky {
+  position: sticky;
+  top: 5rem;
+  max-height: calc(100vh - 6rem);
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.toc-title {
+  font-family: $font-display;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: $accent-cyan;
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+}
+
+.toc-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  a {
+    color: $text-secondary;
+    padding: 0.25rem 0.6rem;
+    border-left: 2px solid transparent;
+    transition: all 0.15s;
+    &:hover, &.active {
+      color: $text-primary;
+      border-left-color: $accent-cyan;
+      background: rgba(0, 240, 255, 0.05);
+    }
+    &.toc-h3 { padding-left: 1.4rem; font-size: 0.83rem; color: $text-muted; }
+  }
+}
+
+.spoiler-toggle {
+  margin-top: 2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid $border-subtle;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: $text-secondary;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+  input { opacity: 0; width: 0; height: 0; }
+  .slider {
+    position: absolute;
+    inset: 0;
+    background: $bg-elevated;
+    border: 1px solid $border-strong;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s;
+    &::before {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      left: 2px;
+      top: 2px;
+      background: $text-secondary;
+      border-radius: 50%;
+      transition: transform 0.2s;
+    }
+  }
+  input:checked + .slider {
+    background: $accent-cyan;
+    border-color: $accent-cyan;
+    &::before { transform: translateX(16px); background: $bg-base; }
+  }
+}
+
+// 본문 콘텐츠
+.game-content {
+  max-width: $content-max;
+  font-size: 1rem;
+  line-height: 1.8;
+
+  h2 {
+    font-family: $font-display;
+    font-weight: 700;
+    font-size: 1.7rem;
+    letter-spacing: 0.03em;
+    margin: 3rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid $border-subtle;
+    scroll-margin-top: 5rem;
+    &::before {
+      content: '▸ ';
+      color: $accent-cyan;
+    }
+    &:first-child { margin-top: 0; }
+  }
+
+  h3 {
+    font-family: $font-display;
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin: 2rem 0 0.8rem;
+    color: $accent-cyan;
+    scroll-margin-top: 5rem;
+  }
+
+  h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 1.5rem 0 0.5rem;
+    color: $text-primary;
+  }
+
+  p { margin: 0 0 1rem; }
+
+  ul, ol {
+    margin: 0 0 1rem;
+    padding-left: 1.5rem;
+    li { margin-bottom: 0.4rem; }
+  }
+
+  // 체크리스트
+  input[type="checkbox"] {
+    margin-right: 0.5rem;
+    accent-color: $accent-cyan;
+  }
+
+  blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.2rem;
+    background: rgba(0, 240, 255, 0.05);
+    border-left: 3px solid $accent-cyan;
+    border-radius: 0 $radius-sm $radius-sm 0;
+    color: $text-secondary;
+    p:last-child { margin-bottom: 0; }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.92rem;
+    th, td {
+      padding: 0.7rem 0.9rem;
+      text-align: left;
+      border-bottom: 1px solid $border-subtle;
+    }
+    th {
+      background: $bg-elevated;
+      color: $accent-cyan;
+      font-weight: 700;
+      font-family: $font-display;
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    tr:hover td { background: rgba(255, 255, 255, 0.02); }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid $border-subtle;
+    margin: 2.5rem 0;
+  }
+
+  // 박스 (사용자 정의: <div class="tip">, .warn, .boss 등)
+  .tip, .warn, .boss, .secret {
+    margin: 1.5rem 0;
+    padding: 1rem 1.2rem;
+    border-radius: $radius-md;
+    border-left: 4px solid;
+    p:last-child { margin-bottom: 0; }
+  }
+  .tip { background: rgba(0, 255, 136, 0.06); border-left-color: $accent-success; }
+  .warn { background: rgba(255, 184, 0, 0.06); border-left-color: $accent-amber; }
+  .boss { background: rgba(255, 51, 85, 0.06); border-left-color: $accent-danger; }
+  .secret { background: rgba(255, 0, 170, 0.06); border-left-color: $accent-magenta; }
+
+  // 스포일러
+  .spoiler {
+    background: $text-primary;
+    color: $text-primary;
+    border-radius: 3px;
+    padding: 0 0.2em;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  body.show-spoilers & .spoiler {
+    background: transparent;
+    color: inherit;
+  }
+}
+
+.spoiler-banner {
+  padding: 0.8rem 1.2rem;
+  margin-bottom: 2rem;
+  background: rgba(255, 51, 85, 0.08);
+  border: 1px solid rgba(255, 51, 85, 0.3);
+  border-radius: $radius-md;
+  color: $accent-danger;
+  font-size: 0.92rem;
+}
+
+// 출처
+.sources {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid $border-subtle;
+  h2 {
+    font-family: $font-display;
+    font-size: 1.1rem;
+    color: $text-muted;
+    border: none;
+    padding: 0;
+    margin: 0 0 0.8rem;
+    &::before { content: ''; }
+  }
+}
+
+.sources-list {
+  list-style: none;
+  padding: 0;
+  font-size: 0.88rem;
+  color: $text-muted;
+  li { margin-bottom: 0.4rem; }
+  .src-note { color: $text-muted; }
+}
+
+// =============================================================
+// 푸터
+// =============================================================
+.site-footer {
+  border-top: 1px solid $border-subtle;
+  padding: 2rem 1.5rem;
+  margin-top: 4rem;
+  position: relative;
+  z-index: 2;
+}
+
+.site-footer-inner {
+  max-width: $max-width;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-text {
+  color: $text-muted;
+  font-size: 0.85rem;
+  margin: 0.3rem 0;
+  &.small { font-size: 0.78rem; }
+}
+
+// =============================================================
+// 반응형
+// =============================================================
+@media (max-width: 600px) {
+  .games-grid { grid-template-columns: 1fr; }
+  .game-search { min-width: 0; width: 100%; }
+  .games-section-header { flex-direction: column; align-items: stretch; }
+  .game-meta { gap: 1rem; }
+}
