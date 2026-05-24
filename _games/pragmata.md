@@ -116,7 +116,35 @@ sources:
 
 <!-- tab:챕터 -->
 
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">📺 이클리피아 100% 공략 영상 시리즈</h3>
+  <div class="info-card-tags">
+    <span class="tag tag-explore">영상 가이드</span>
+  </div>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+각 챕터 헤더 아래에 **이클리피아의 100% 공략 풀영상**을 임베드해 두었습니다. 썸네일을 클릭하면 페이지 안에서 바로 재생됩니다. 페이지 처음 로드 시에는 썸네일만 받아오므로 **모바일에서도 가볍습니다** (lite-youtube facade).
+
+- 🎬 **큰 카드** = 해당 챕터의 풀 워크스루
+- ▶ **작은 빨간 칩** = 특정 타임스탬프(보스/수집품)로 새 탭 점프
+- 챕터 1~6 영상 ID는 사용자가 풀 재생목록 URL을 확보하면 일괄 입력 예정
+
+</div>
+
+</div>
+
+### 🎬 시리즈 시작 — Chapter 0. Opening
+
+@yt[O9-M1YSZvxE](이클리피아 Pragmata 100% Walkthrough — Chapter 0. Opening)
+
+
 ## 챕터 1 ─ 태양광 발전소 (Solar Power Plant)
+
+> 📺 **1챕터 풀영상**: 이클리피아 채널에서 챕터 1 영상이 확인되면 여기에 임베드. 현재는 [이클리피아 풀영상 채널 (2호점)](https://www.youtube.com/channel/UC4jSyOT7XWg_pREjkiFqswQ)에서 "Pragmata Chapter 1" 검색.
 
 🎮 **튜토리얼 + 첫 보스** · ⚠️ **100%는 챕터 2 다이애나 파워 해금 후 백트래킹 필수**
 
@@ -165,11 +193,15 @@ sources:
 | 패턴 2 | 돌진 공격. 회피 후 측후방 노출 유도 |
 
 **공략 루틴**: 다이애나 EMP → 파란 보호막 해제 → 영거리 차지 샷건 → 자세 붕괴 → 키네틱 무기 풀딜. **오버드라이브는 보스 체력 30% 이하 마무리 페이즈**에서 발동.
+
+📺 **영상 점프 예시**: @ytm[O9-M1YSZvxE@0](Chapter 0 오프닝 시청) — 실제 챕터 1 영상이 확보되면 `@ytm[VIDEO_ID@485](보스전 시작)` `@ytm[VIDEO_ID@612](실드 페이즈)` 등 보스 타임스탬프 추가 예정.
 </div>
 
 ---
 
 ## 챕터 2 ─ 대규모 출력 실험장 (Mass Production Array)
+
+> 📺 **2챕터 풀영상**: 이클리피아 채널에서 챕터 2 영상이 확인되면 여기에 임베드. 현재는 [이클리피아 풀영상 채널 (2호점)](https://www.youtube.com/channel/UC4jSyOT7XWg_pREjkiFqswQ)에서 "Pragmata Chapter 2" 검색.
 
 🎮 **다이애나 정화 파워 / 림 이레이저 해금** + **거대한 로봇 보스** · ⚠️ **100%는 챕터 5 데드 필라멘트 정화 후 백트래킹**
 
@@ -247,6 +279,8 @@ sources:
 
 ## 챕터 3 ─ 테라돔 (Terra Dome)
 
+> 📺 **3챕터 풀영상**: 이클리피아 채널에서 챕터 3 영상이 확인되면 여기에 임베드. 현재는 [이클리피아 풀영상 채널 (2호점)](https://www.youtube.com/channel/UC4jSyOT7XWg_pREjkiFqswQ)에서 "Pragmata Chapter 3" 검색.
+
 🎮 **중반 핵심, 환경 퍼즐 강도 증가** · ⚠️ **100%는 챕터 5 데드 필라멘트 정화 + 식물 길 이중 백트래킹**
 
 ### 진행 흐름
@@ -309,6 +343,8 @@ sources:
 
 ## 챕터 4 ─ 루넘 채굴장 (Lunum Mining Facility)
 
+> 📺 **4챕터 풀영상**: 이클리피아 채널에서 챕터 4 영상이 확인되면 여기에 임베드. 현재는 [이클리피아 풀영상 채널 (2호점)](https://www.youtube.com/channel/UC4jSyOT7XWg_pREjkiFqswQ)에서 "Pragmata Chapter 4" 검색.
+
 🎮 **큐브 퍼즐 + 우주 공간 진출** · ⚠️ **100%는 챕터 5 데드 필라멘트 정화 후 회수**
 
 ### 진행 흐름
@@ -368,6 +404,8 @@ sources:
 
 ## 챕터 5 ─ 센트럴 포트 (Central Port)
 
+> 📺 **5챕터 풀영상**: 이클리피아 채널에서 챕터 5 영상이 확인되면 여기에 임베드. 현재는 [이클리피아 풀영상 채널 (2호점)](https://www.youtube.com/channel/UC4jSyOT7XWg_pREjkiFqswQ)에서 "Pragmata Chapter 5" 검색.
+
 🎮 **데드 필라멘트 정화 파워 + 키네틱 그래플 획득** · 진엔딩 직전, **모든 사이드 미션 마감 마지막 기회**
 
 ### 핵심 흐름
@@ -397,6 +435,8 @@ sources:
 ---
 
 ## 챕터 6 ─ 섹터 9 궤도 엘리베이터 ⚠️ Point of No Return
+
+> 📺 **6챕터 풀영상**: 이클리피아 채널에서 챕터 6 영상이 확인되면 여기에 임베드. 현재는 [이클리피아 풀영상 채널 (2호점)](https://www.youtube.com/channel/UC4jSyOT7XWg_pREjkiFqswQ)에서 "Pragmata Chapter 6" 검색.
 
 <div class="warn" markdown="1">
 **⚠️ 진입 전 최종 체크리스트**

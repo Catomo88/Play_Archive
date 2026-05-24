@@ -267,3 +267,52 @@ if (tabContents.length) {
   }
 })();
 
+
+// ===== YouTube facade (lite embed) =====
+(function () {
+  function setupFacade() {
+    document.querySelectorAll('.yt-facade').forEach(el => {
+      if (el.dataset.initialized) return;
+      el.dataset.initialized = '1';
+      const id = el.dataset.id;
+      if (!id) return;
+      // 썸네일 배경 (이미 inline style 있으면 skip)
+      if (!el.style.backgroundImage) {
+        const thumb = `url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)`;
+        el.style.backgroundImage = thumb;
+      }
+      // 재생 아이콘 (CSS ::before 위에 별도 span으로)
+      if (!el.querySelector('.yt-play-icon')) {
+        const icon = document.createElement('span');
+        icon.className = 'yt-play-icon';
+        icon.textContent = '▶';
+        el.appendChild(icon);
+      }
+      el.addEventListener('click', e => {
+        if (el.classList.contains('playing')) return;
+        e.preventDefault();
+        const start = el.dataset.start || '0';
+        const iframe = document.createElement('iframe');
+        const params = new URLSearchParams({
+          autoplay: '1',
+          start: start,
+          rel: '0',
+          modestbranding: '1'
+        });
+        iframe.src = `https://www.youtube.com/embed/${id}?${params.toString()}`;
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.allowFullscreen = true;
+        iframe.loading = 'lazy';
+        el.classList.add('playing');
+        el.innerHTML = '';
+        el.appendChild(iframe);
+      });
+    });
+  }
+  setupFacade();
+  // 동적으로 추가되는 경우 대비
+  if (typeof MutationObserver !== 'undefined') {
+    new MutationObserver(setupFacade).observe(document.body, { childList: true, subtree: true });
+  }
+})();
+

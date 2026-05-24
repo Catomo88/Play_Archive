@@ -51,7 +51,38 @@ def parse_md(path):
     return {}, text
 
 
+
+
+def expand_youtube_syntax(text):
+    """마크다운에서 @yt[ID@SEC](제목) / @yt-mini[ID@SEC](제목) 변환."""
+    # 큰 facade 카드
+    pattern_big = re.compile(r'@yt\[([^\]@]+?)(?:@(\d+))?\]\(([^)]*)\)')
+    def repl_big(m):
+        vid = m.group(1).strip()
+        start = m.group(2) or '0'
+        title = m.group(3).strip()
+        return (
+            f'<div class="yt-facade" data-id="{escape(vid)}" data-start="{start}">'
+            f'<div class="yt-facade-title">{escape(title)}</div>'
+            f'</div>'
+        )
+    text = pattern_big.sub(repl_big, text)
+    # 작은 인라인 미니 링크
+    pattern_mini = re.compile(r'@ytm\[([^\]@]+?)(?:@(\d+))?\]\(([^)]*)\)')
+    def repl_mini(m):
+        vid = m.group(1).strip()
+        start = m.group(2) or '0'
+        title = m.group(3).strip()
+        url = f'https://youtu.be/{vid}'
+        if start != '0':
+            url += f'?t={start}'
+        return f'<a href="{url}" class="yt-mini" target="_blank" rel="noopener">{escape(title)}</a>'
+    text = pattern_mini.sub(repl_mini, text)
+    return text
+
+
 def md_to_html(text):
+    text = expand_youtube_syntax(text)
     md = markdown.Markdown(
         extensions=["extra", "md_in_html", "sane_lists", "toc"],
         extension_configs={"toc": {"toc_depth": "2-3"}},
@@ -913,6 +944,123 @@ blockquote.quote::before {
   .step-list > li::before { width: 1.7rem; height: 1.7rem; font-size: 0.8rem; left: 0.5rem; }
 }
 
+
+/* ===== YouTube 임베드 (lite-youtube facade) ===== */
+.yt-facade {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 16 / 9;
+  background-color: var(--bg-elevated);
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 1.2rem 0;
+  border: 1px solid var(--border-strong);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.yt-facade::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, transparent 40%, rgba(0,0,0,0.7) 100%);
+  pointer-events: none;
+}
+.yt-facade:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.4), 0 0 24px rgba(0,240,255,0.18);
+}
+.yt-facade::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px; height: 72px;
+  background: rgba(220,30,30,0.92);
+  border-radius: 50%;
+  transition: background 0.15s, transform 0.15s;
+  z-index: 2;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+}
+.yt-facade .yt-play-icon {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-45%, -50%);
+  color: white;
+  font-size: 1.6rem;
+  pointer-events: none;
+  z-index: 3;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+.yt-facade:hover::before {
+  background: rgba(255,40,40,1);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+.yt-facade-title {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 0.7rem 1rem;
+  color: white;
+  font-size: 0.88rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  z-index: 3;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+.yt-facade.playing { cursor: default; }
+.yt-facade.playing::before,
+.yt-facade.playing::after,
+.yt-facade.playing .yt-play-icon,
+.yt-facade.playing .yt-facade-title { display: none; }
+.yt-facade iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* 인라인 미니 링크 (▶ 칩) */
+.yt-mini {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.18rem 0.55rem;
+  background: rgba(255,40,40,0.10);
+  border: 1px solid rgba(255,40,40,0.32);
+  border-radius: 999px;
+  color: #ff6b6b !important;
+  font-size: 0.78rem;
+  text-decoration: none !important;
+  vertical-align: middle;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.yt-mini::before {
+  content: '▶';
+  font-size: 0.6rem;
+  line-height: 1;
+}
+.yt-mini:hover {
+  background: rgba(255,40,40,0.22);
+  color: #ff8c8c !important;
+}
+
+/* 영상 그리드 (여러 개 옆에 배치 시) */
+.yt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1.2rem 0;
+}
+.yt-grid .yt-facade {
+  margin: 0;
+  max-width: none;
+}
+
 """
 
 JS = r"""
@@ -1181,6 +1329,55 @@ if (tabContents.length) {
   const origRefresh = window.refreshBookmarkUI;
   if (typeof origRefresh === 'function') {
     // (이미 정의된 경우 — 안전장치, 보통 위 IIFE보다 위에 있어서 사용 안됨)
+  }
+})();
+
+
+// ===== YouTube facade (lite embed) =====
+(function () {
+  function setupFacade() {
+    document.querySelectorAll('.yt-facade').forEach(el => {
+      if (el.dataset.initialized) return;
+      el.dataset.initialized = '1';
+      const id = el.dataset.id;
+      if (!id) return;
+      // 썸네일 배경 (이미 inline style 있으면 skip)
+      if (!el.style.backgroundImage) {
+        const thumb = `url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)`;
+        el.style.backgroundImage = thumb;
+      }
+      // 재생 아이콘 (CSS ::before 위에 별도 span으로)
+      if (!el.querySelector('.yt-play-icon')) {
+        const icon = document.createElement('span');
+        icon.className = 'yt-play-icon';
+        icon.textContent = '▶';
+        el.appendChild(icon);
+      }
+      el.addEventListener('click', e => {
+        if (el.classList.contains('playing')) return;
+        e.preventDefault();
+        const start = el.dataset.start || '0';
+        const iframe = document.createElement('iframe');
+        const params = new URLSearchParams({
+          autoplay: '1',
+          start: start,
+          rel: '0',
+          modestbranding: '1'
+        });
+        iframe.src = `https://www.youtube.com/embed/${id}?${params.toString()}`;
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.allowFullscreen = true;
+        iframe.loading = 'lazy';
+        el.classList.add('playing');
+        el.innerHTML = '';
+        el.appendChild(iframe);
+      });
+    });
+  }
+  setupFacade();
+  // 동적으로 추가되는 경우 대비
+  if (typeof MutationObserver !== 'undefined') {
+    new MutationObserver(setupFacade).observe(document.body, { childList: true, subtree: true });
   }
 })();
 
