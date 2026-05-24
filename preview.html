@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Play Archive — 인터페이스 프리뷰</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+
+<style>
+/* ============================================================= */
+/* Play Archive — Dark Gaming Theme (preview용 단일 파일 버전)  */
+/* ============================================================= */
+:root {
+  --bg-base: #0a0a0f;
+  --bg-elevated: #14141c;
+  --bg-card: #1a1a25;
+  --text-primary: #e6e6f0;
+  --text-secondary: #a0a0b8;
+  --text-muted: #6a6a82;
+  --accent-cyan: #00f0ff;
+  --accent-magenta: #ff00aa;
+  --accent-amber: #ffb800;
+  --accent-success: #00ff88;
+  --accent-danger: #ff3355;
+  --border-subtle: rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.16);
+  --font-display: 'Orbitron', 'Bebas Neue', system-ui, sans-serif;
+  --font-body: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --max-width: 1280px;
+  --content-max: 880px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--bg-base);
+  background-image:
+    radial-gradient(ellipse at top, rgba(0,240,255,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom, rgba(255,0,170,0.03) 0%, transparent 50%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 1.7;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
+}
+
+a { color: var(--accent-cyan); text-decoration: none; transition: color 0.15s ease; }
+a:hover { color: #66f5ff; }
+
+/* 헤더 */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,10,15,0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.site-header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.site-logo {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  color: var(--text-primary); font-family: var(--font-display);
+  font-weight: 900; font-size: 1.1rem; letter-spacing: 0.12em;
+}
+.logo-mark { color: var(--accent-cyan); text-shadow: 0 0 12px rgba(0,240,255,0.6); }
+.site-nav { display: flex; gap: 1.5rem; }
+.site-nav .nav-link { color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; }
+.site-nav .nav-link:hover { color: var(--text-primary); }
+
+/* 메인 컨테이너 */
+.site-main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== 홈 (라이브러리) ===== */
+.hero { position: relative; padding: 4rem 0 3rem; text-align: center; overflow: hidden; }
+.hero-glow {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(0,240,255,0.12) 0%, transparent 60%);
+  pointer-events: none; z-index: 0;
+}
+.hero-inner { position: relative; z-index: 1; }
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(3rem, 8vw, 6rem);
+  letter-spacing: 0.05em;
+  margin: 0 0 0.5rem;
+  line-height: 1;
+  text-shadow: 0 0 40px rgba(0,240,255,0.25);
+}
+.hero-title .accent {
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-magenta) 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-tagline { font-size: 1.1rem; color: var(--text-secondary); margin: 0 0 1.5rem; }
+.hero-meta { display: inline-flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+.chip {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  background: rgba(255,255,255,0.03);
+}
+
+.games-section { margin-top: 2rem; }
+.games-section-header {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;
+}
+.section-title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1.5rem; letter-spacing: 0.05em; margin: 0;
+}
+.section-title::before { content: '◆ '; color: var(--accent-cyan); }
+
+.game-search {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 0.55rem 0.9rem;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.9rem;
+  min-width: 240px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.game-search:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 3px rgba(0,240,255,0.15);
+}
+.game-search::placeholder { color: var(--text-muted); }
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+.game-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  overflow: hidden;
+  color: var(--text-primary);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  display: flex; flex-direction: column;
+  cursor: pointer;
+}
+.game-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.4), 0 0 24px rgba(0,240,255,0.2);
+}
+.game-card:hover .game-card-title { color: var(--accent-cyan); }
+
+.game-card-cover {
+  position: relative; aspect-ratio: 16 / 9;
+  background-color: var(--bg-elevated);
+  background-size: cover; background-position: center;
+}
+.cover-placeholder {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 4rem; font-weight: 900;
+  color: rgba(0,240,255,0.3);
+  background: linear-gradient(135deg, rgba(0,240,255,0.05), rgba(255,0,170,0.05));
+}
+.game-card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(10,10,15,0.7) 100%);
+}
+.game-card-badge {
+  position: absolute; top: 0.6rem; right: 0.6rem;
+  padding: 0.2rem 0.55rem; border-radius: 4px;
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  background: rgba(10,10,15,0.85);
+  border: 1px solid var(--border-subtle);
+}
+.badge-완료 { color: var(--accent-success); border-color: rgba(0,255,136,0.4) !important; }
+.badge-진행중 { color: var(--accent-amber); border-color: rgba(255,184,0,0.4) !important; }
+.badge-계획 { color: var(--text-muted); }
+
+.game-card-info { padding: 1rem 1.1rem 1.2rem; }
+.game-card-title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1.05rem; margin: 0 0 0.3rem;
+  letter-spacing: 0.02em; transition: color 0.2s;
+}
+.game-card-meta { font-size: 0.8rem; color: var(--text-muted); margin: 0 0 0.5rem; }
+.game-card-summary {
+  font-size: 0.88rem; color: var(--text-secondary); margin: 0;
+  display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden;
+}
+
+/* ===== 게임 상세 페이지 ===== */
+.game-hero {
+  position: relative;
+  padding: 4rem 1.5rem 3rem;
+  margin: -2rem -1.5rem 0;
+  background-color: var(--bg-elevated);
+  background-size: cover; background-position: center;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.game-hero-inner { max-width: var(--content-max); margin: 0 auto; }
+.back-link { display: inline-block; color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1rem; }
+.back-link:hover { color: var(--accent-cyan); }
+.game-title {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: 0.04em;
+  margin: 0 0 0.4rem; line-height: 1.1;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.8);
+}
+.game-subtitle { font-size: 1.05rem; color: var(--text-secondary); margin: 0 0 1.5rem; }
+.game-meta { display: flex; flex-wrap: wrap; gap: 1.2rem 2rem; margin-top: 1.5rem; }
+.meta-item { display: flex; flex-direction: column; gap: 0.15rem; }
+.meta-label {
+  font-size: 0.72rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.meta-value { font-size: 0.95rem; color: var(--text-primary); font-weight: 500; }
+.game-status {
+  display: inline-block; margin-top: 1.2rem;
+  padding: 0.3rem 0.7rem; border-radius: 4px;
+  font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  background: rgba(10,10,15,0.6); border: 1px solid var(--border-strong);
+}
+
+.game-body {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2.5rem 0;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 3rem;
+}
+@media (max-width: 900px) {
+  .game-body { grid-template-columns: 1fr; }
+  .game-toc { display: none; }
+}
+
+.toc-sticky {
+  position: sticky; top: 5rem;
+  max-height: calc(100vh - 6rem);
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+.toc-title {
+  font-family: var(--font-display);
+  font-size: 0.85rem; font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent-cyan);
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+}
+.toc-nav { display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.88rem; }
+.toc-nav a {
+  color: var(--text-secondary);
+  padding: 0.25rem 0.6rem;
+  border-left: 2px solid transparent;
+  transition: all 0.15s;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--text-primary);
+  border-left-color: var(--accent-cyan);
+  background: rgba(0,240,255,0.05);
+}
+.toc-nav a.toc-h3 { padding-left: 1.4rem; font-size: 0.83rem; color: var(--text-muted); }
+
+.spoiler-toggle {
+  margin-top: 2rem; padding-top: 1.2rem;
+  border-top: 1px solid var(--border-subtle);
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: 0.85rem; color: var(--text-secondary);
+}
+.switch { position: relative; display: inline-block; width: 36px; height: 20px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.switch .slider {
+  position: absolute; inset: 0;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  border-radius: 999px; cursor: pointer;
+  transition: background 0.2s;
+}
+.switch .slider::before {
+  content: ''; position: absolute;
+  width: 14px; height: 14px;
+  left: 2px; top: 2px;
+  background: var(--text-secondary);
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+.switch input:checked + .slider {
+  background: var(--accent-cyan); border-color: var(--accent-cyan);
+}
+.switch input:checked + .slider::before {
+  transform: translateX(16px); background: var(--bg-base);
+}
+
+.game-content { max-width: var(--content-max); font-size: 1rem; line-height: 1.8; }
+.game-content h2 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1.7rem; letter-spacing: 0.03em;
+  margin: 3rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  scroll-margin-top: 5rem;
+}
+.game-content h2::before { content: '▸ '; color: var(--accent-cyan); }
+.game-content h2:first-child { margin-top: 0; }
+.game-content h3 {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: 1.25rem; margin: 2rem 0 0.8rem;
+  color: var(--accent-cyan);
+  scroll-margin-top: 5rem;
+}
+.game-content h4 { font-size: 1.05rem; font-weight: 700; margin: 1.5rem 0 0.5rem; }
+.game-content p { margin: 0 0 1rem; }
+.game-content ul, .game-content ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+.game-content li { margin-bottom: 0.4rem; }
+.game-content input[type="checkbox"] { margin-right: 0.5rem; accent-color: var(--accent-cyan); }
+
+.game-content blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.2rem;
+  background: rgba(0,240,255,0.05);
+  border-left: 3px solid var(--accent-cyan);
+  border-radius: 0 6px 6px 0;
+  color: var(--text-secondary);
+}
+.game-content blockquote p:last-child { margin-bottom: 0; }
+
+.game-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.92rem;
+}
+.game-content th, .game-content td {
+  padding: 0.7rem 0.9rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.game-content th {
+  background: var(--bg-elevated);
+  color: var(--accent-cyan);
+  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.game-content tr:hover td { background: rgba(255,255,255,0.02); }
+.game-content hr { border: none; border-top: 1px solid var(--border-subtle); margin: 2.5rem 0; }
+
+.tip, .warn, .boss, .secret {
+  margin: 1.5rem 0;
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  border-left: 4px solid;
+}
+.tip { background: rgba(0,255,136,0.06); border-left-color: var(--accent-success); }
+.warn { background: rgba(255,184,0,0.06); border-left-color: var(--accent-amber); }
+.boss { background: rgba(255,51,85,0.06); border-left-color: var(--accent-danger); }
+.secret { background: rgba(255,0,170,0.06); border-left-color: var(--accent-magenta); }
+.tip strong, .warn strong, .boss strong, .secret strong { display: block; margin-bottom: 0.5rem; font-family: var(--font-display); letter-spacing: 0.04em; }
+.tip strong { color: var(--accent-success); }
+.warn strong { color: var(--accent-amber); }
+.boss strong { color: var(--accent-danger); }
+.secret strong { color: var(--accent-magenta); }
+
+.spoiler {
+  background: var(--text-primary);
+  color: var(--text-primary);
+  border-radius: 3px;
+  padding: 0 0.2em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+body.show-spoilers .spoiler { background: transparent; color: inherit; }
+.spoiler-banner {
+  padding: 0.8rem 1.2rem;
+  margin-bottom: 2rem;
+  background: rgba(255,51,85,0.08);
+  border: 1px solid rgba(255,51,85,0.3);
+  border-radius: 12px;
+  color: var(--accent-danger);
+  font-size: 0.92rem;
+}
+
+.sources {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+.sources h2 {
+  font-family: var(--font-display);
+  font-size: 1.1rem; color: var(--text-muted);
+  border: none; padding: 0; margin: 0 0 0.8rem;
+}
+.sources h2::before { content: ''; }
+.sources-list { list-style: none; padding: 0; font-size: 0.88rem; color: var(--text-muted); }
+.sources-list li { margin-bottom: 0.4rem; }
+
+.site-footer {
+  border-top: 1px solid var(--border-subtle);
+  padding: 2rem 1.5rem;
+  margin-top: 4rem;
+  position: relative; z-index: 2;
+}
+.site-footer-inner { max-width: var(--max-width); margin: 0 auto; text-align: center; }
+.footer-text { color: var(--text-muted); font-size: 0.85rem; margin: 0.3rem 0; }
+.footer-text.small { font-size: 0.78rem; }
+
+@media (max-width: 600px) {
+  .games-grid { grid-template-columns: 1fr; }
+  .game-search { min-width: 0; width: 100%; }
+  .games-section-header { flex-direction: column; align-items: stretch; }
+}
+
+/* 프리뷰 전용 알림 배너 */
+.preview-banner {
+  background: linear-gradient(90deg, rgba(0,240,255,0.12), rgba(255,0,170,0.12));
+  border-bottom: 1px solid var(--accent-cyan);
+  padding: 0.6rem 1rem;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  position: relative; z-index: 200;
+}
+.preview-banner strong { color: var(--accent-cyan); }
+
+/* 뷰 전환 */
+.view { display: none; }
+.view.active { display: block; }
+</style>
+</head>
+<body class="theme-dark">
+
+<div class="preview-banner">
+  <strong>인터페이스 프리뷰</strong> · 실제 사이트와 동일한 디자인입니다. 카드를 클릭해서 상세 페이지를 확인해보세요.
+</div>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="#/" class="site-logo">
+      <span class="logo-mark">▶</span>
+      <span class="logo-text">PLAY ARCHIVE</span>
+    </a>
+    <nav class="site-nav">
+      <a href="#/" class="nav-link">라이브러리</a>
+      <a href="https://github.com/Catomo88/Play_Archive" class="nav-link" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main class="site-main">
+
+  <!-- ==================== 라이브러리 (메인) ==================== -->
+  <section id="view-home" class="view active">
+    <section class="hero">
+      <div class="hero-inner">
+        <h1 class="hero-title">PLAY <span class="accent">ARCHIVE</span></h1>
+        <p class="hero-tagline">내가 플레이한 게임들의 100% 공략 아카이브</p>
+        <div class="hero-meta">
+          <span class="chip">총 6 작품</span>
+          <span class="chip">100% 공략 추구</span>
+          <span class="chip">한글 가이드</span>
+        </div>
+      </div>
+      <div class="hero-glow" aria-hidden="true"></div>
+    </section>
+
+    <section class="games-section">
+      <div class="games-section-header">
+        <h2 class="section-title">게임 라이브러리</h2>
+        <input type="search" id="game-search" class="game-search" placeholder="게임 검색..." aria-label="게임 검색" />
+      </div>
+
+      <div class="games-grid" id="games-grid">
+        <!-- 게임 카드 6개 (목 데이터) -->
+        <a href="#/games/pragmata" class="game-card" data-title="프레그마타 pragmata" data-genre="액션">
+          <div class="game-card-cover" style="background: linear-gradient(135deg, #1a1a3a 0%, #003344 50%, #001122 100%);">
+            <div class="cover-placeholder">P</div>
+            <div class="game-card-overlay"></div>
+            <span class="game-card-badge badge-진행중">진행중</span>
+          </div>
+          <div class="game-card-info">
+            <h3 class="game-card-title">프레그마타</h3>
+            <p class="game-card-meta">SF 액션 · Capcom</p>
+            <p class="game-card-summary">달 표면의 폐허가 된 연구 시설에서 펼쳐지는 SF 액션. 클릭하면 상세 페이지로 이동합니다.</p>
+          </div>
+        </a>
+
+        <a href="#" class="game-card" data-title="엘든링 elden ring" data-genre="소울라이크">
+          <div class="game-card-cover" style="background: linear-gradient(135deg, #2a1810 0%, #4a2810 50%, #1a0808 100%);">
+            <div class="cover-placeholder">E</div>
+            <div class="game-card-overlay"></div>
+            <span class="game-card-badge badge-완료">완료</span>
+          </div>
+          <div class="game-card-info">
+            <h3 class="game-card-title">엘든 링</h3>
+            <p class="game-card-meta">소울라이크 · FromSoftware</p>
+            <p class="game-card-summary">오픈월드 다크판타지. 더미 카드입니다.</p>
+          </div>
+        </a>
+
+        <a href="#" class="game-card" data-title="발더스 게이트 baldur" data-genre="crpg">
+          <div class="game-card-cover" style="background: linear-gradient(135deg, #2a1a3a 0%, #4a1a4a 50%, #1a0a2a 100%);">
+            <div class="cover-placeholder">B</div>
+            <div class="game-card-overlay"></div>
+            <span class="game-card-badge badge-완료">완료</span>
+          </div>
+          <div class="game-card-info">
+            <h3 class="game-card-title">발더스 게이트 3</h3>
+            <p class="game-card-meta">CRPG · Larian Studios</p>
+            <p class="game-card-summary">D&D 5e 기반의 거대한 RPG. 더미 카드입니다.</p>
+          </div>
+        </a>
+
+        <a href="#" class="game-card" data-title="갓오브워 god of war" data-genre="액션">
+          <div class="game-card-cover" style="background: linear-gradient(135deg, #1a2a3a 0%, #2a3a5a 50%, #0a1a2a 100%);">
+            <div class="cover-placeholder">G</div>
+            <div class="game-card-overlay"></div>
+            <span class="game-card-badge badge-계획">계획</span>
+          </div>
+          <div class="game-card-info">
+            <h3 class="game-card-title">갓 오브 워 라그나로크</h3>
+            <p class="game-card-meta">액션 어드벤처 · Santa Monica</p>
+            <p class="game-card-summary">크라토스의 북유럽 여정 후속작. 더미 카드입니다.</p>
+          </div>
+        </a>
+
+        <a href="#" class="game-card" data-title="호라이즌 horizon" data-genre="액션 rpg">
+          <div class="game-card-cover" style="background: linear-gradient(135deg, #1a3a2a 0%, #2a5a3a 50%, #0a2a1a 100%);">
+            <div class="cover-placeholder">H</div>
+            <div class="game-card-overlay"></div>
+            <span class="game-card-badge badge-계획">계획</span>
+          </div>
+          <div class="game-card-info">
+            <h3 class="game-card-title">호라이즌 포비든 웨스트</h3>
+            <p class="game-card-meta">액션 RPG · Guerrilla Games</p>
+            <p class="game-card-summary">기계 공룡과 미래 부족 사회. 더미 카드입니다.</p>
+          </div>
+        </a>
+
+        <a href="#" class="game-card" data-title="사일런트 힐 silent hill" data-genre="호러">
+          <div class="game-card-cover" style="background: linear-gradient(135deg, #3a1a1a 0%, #5a2a2a 50%, #2a0a0a 100%);">
+            <div class="cover-placeholder">S</div>
+            <div class="game-card-overlay"></div>
+            <span class="game-card-badge badge-진행중">진행중</span>
+          </div>
+          <div class="game-card-info">
+            <h3 class="game-card-title">사일런트 힐 2 리메이크</h3>
+            <p class="game-card-meta">서바이벌 호러 · Bloober Team</p>
+            <p class="game-card-summary">사이코로지컬 호러의 명작 리메이크. 더미 카드입니다.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+  </section>
+
+  <!-- ==================== 게임 상세 페이지 (샘플) ==================== -->
+  <section id="view-game" class="view">
+    <article class="game-page">
+      <header class="game-hero" style="background-image: linear-gradient(180deg, rgba(14,14,18,0.3) 0%, rgba(14,14,18,0.95) 80%), linear-gradient(135deg, #1a1a3a 0%, #003344 50%, #001122 100%);">
+        <div class="game-hero-inner">
+          <a href="#/" class="back-link">← 라이브러리</a>
+          <h1 class="game-title">프레그마타</h1>
+          <p class="game-subtitle">PRAGMATA — 이 페이지는 인터페이스 시연용 더미입니다</p>
+
+          <div class="game-meta">
+            <div class="meta-item"><span class="meta-label">장르</span><span class="meta-value">SF 액션</span></div>
+            <div class="meta-item"><span class="meta-label">개발사</span><span class="meta-value">Capcom</span></div>
+            <div class="meta-item"><span class="meta-label">발매</span><span class="meta-value">미정 (예시)</span></div>
+            <div class="meta-item"><span class="meta-label">플랫폼</span><span class="meta-value">PS5 / Xbox / PC</span></div>
+            <div class="meta-item"><span class="meta-label">난이도</span><span class="meta-value">★★★★☆</span></div>
+            <div class="meta-item"><span class="meta-label">플레이타임</span><span class="meta-value">본편 25h / 100% 60h</span></div>
+          </div>
+
+          <div class="game-status">진행중</div>
+        </div>
+      </header>
+
+      <div class="game-body">
+        <aside class="game-toc" id="game-toc">
+          <div class="toc-sticky">
+            <h3 class="toc-title">목차</h3>
+            <nav id="toc-nav" class="toc-nav"></nav>
+            <div class="spoiler-toggle">
+              <label class="switch">
+                <input type="checkbox" id="spoiler-switch" />
+                <span class="slider"></span>
+              </label>
+              <span>스포일러 표시</span>
+            </div>
+          </div>
+        </aside>
+
+        <div class="game-content">
+          <div class="spoiler-banner">⚠️ 이 페이지에는 스토리 스포일러가 포함되어 있습니다.</div>
+
+          <h2>개요</h2>
+          <p>여기에 게임의 핵심 시스템과 전투 흐름을 2~3문단으로 소개합니다. <strong>이것은 인터페이스 시연용 더미 텍스트</strong>입니다. 실제 프레그마타 공략은 사용자 승인 후 한국 위키/커뮤니티에서 자료를 수집해서 작성될 예정입니다.</p>
+          <p>본문은 <code>코드 인라인</code>, <strong>굵은 글씨</strong>, <em>기울임</em>, <a href="#">링크</a> 등 모든 마크다운 요소를 지원하며, 아래에 박스 종류별 시연이 있습니다.</p>
+
+          <div class="tip"><strong>💡 팁 박스 (.tip)</strong>녹색 강조. 시작 전 알아두면 좋은 정보, 추천 빌드 등에 사용.</div>
+          <div class="warn"><strong>⚠️ 주의 박스 (.warn)</strong>주황색 강조. 일회성 분기, 놓치기 쉬운 이벤트, 회차 필요 항목 등에 사용.</div>
+          <div class="boss"><strong>👹 보스 박스 (.boss)</strong>빨강 강조. 보스 정보, 약점, 패턴, 추천 전략에 사용.</div>
+          <div class="secret"><strong>🔒 히든 박스 (.secret)</strong>자홍 강조. 숨겨진 장소, 진입 조건, 비밀 아이템에 사용.</div>
+
+          <h2>챕터별 공략</h2>
+
+          <h3>Chapter 1: 달 표면 도착</h3>
+          <p>챕터 진행 흐름 요약. 주요 이벤트, 보스, 분기점을 시간순으로.</p>
+
+          <h4>필수 수집품</h4>
+          <ul>
+            <li><label><input type="checkbox"> 보조 모듈 α — 시설 입구 좌측 컨테이너</label></li>
+            <li><label><input type="checkbox"> 데이터 큐브 #1 — 통신실 책상 위</label></li>
+            <li><label><input type="checkbox"> 헬멧 업그레이드 칩 — 보스 처치 후 자동 획득</label></li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">체크 상태는 브라우저에 저장되어 게임별로 진행도가 유지됩니다.</p>
+
+          <h4>선택지 분기</h4>
+          <table>
+            <thead><tr><th>선택지</th><th>결과</th><th>추천</th></tr></thead>
+            <tbody>
+              <tr><td>AI 휴) 휴머노이드 신뢰</td><td>동료 신뢰도 +20</td><td>◎</td></tr>
+              <tr><td>시스템 강제 종료</td><td>독자 진행, 일부 컷씬 차단</td><td>△</td></tr>
+            </tbody>
+          </table>
+
+          <div class="boss">
+            <strong>👹 보스: 자율 방어 드론 "센티넬-7"</strong>
+            <ul>
+              <li>체력: 8,400 / 약점: <span class="spoiler">EMP 속성, 등 뒤쪽 코어</span></li>
+              <li>패턴 1: 회전 빔 → 바닥 슬라이딩으로 회피</li>
+              <li>패턴 2: 미사일 4연발 → 엄폐물 뒤로 이동</li>
+              <li>추천 빌드: <span class="spoiler">EMP 그레네이드 + 단발 고관통 라이플</span></li>
+            </ul>
+          </div>
+
+          <h3>Chapter 2: 지하 격납고</h3>
+          <p>여기에 챕터 2의 진행 흐름. 위와 동일한 구조로 반복됩니다.</p>
+
+          <blockquote>
+            <p>인용 박스 예시. NPC의 핵심 대사나 게임 내 텍스트를 강조할 때 사용합니다.</p>
+          </blockquote>
+
+          <h2>업적 100% 가이드</h2>
+
+          <h3>스토리 업적</h3>
+          <table>
+            <thead><tr><th>업적</th><th>조건</th><th>메모</th></tr></thead>
+            <tbody>
+              <tr><td>달 위의 발걸음</td><td>Ch.1 클리어</td><td>자동</td></tr>
+              <tr><td>침묵의 증인</td><td>Ch.3 분기에서 NPC 살리기</td><td>회차 필요할 수 있음</td></tr>
+              <tr><td>진실에 다가서다</td><td>트루 엔딩 도달</td><td>2회차 + 모든 데이터 큐브</td></tr>
+            </tbody>
+          </table>
+
+          <h3>챌린지 업적</h3>
+          <ul>
+            <li><strong>피격 없이 보스 처치</strong> — 센티넬-7 한정. 회피 빌드 권장</li>
+            <li><strong>30분 안에 챕터 클리어</strong> — Ch.2에서 시도</li>
+          </ul>
+
+          <h2>히든 장소</h2>
+
+          <h3>비밀 지역: 폐쇄된 연구실</h3>
+          <div class="secret">
+            <strong>🔒 진입 방법</strong>
+            Ch.3 클리어 후 통신실에서 단말기 코드 <code>1985</code> 입력 → 바닥 패널 개방
+          </div>
+          <p><strong>보상</strong>: 유니크 무기 "에너지 카타나", 데이터 큐브 ×3, 업적 1개</p>
+
+          <h2>히든 보스</h2>
+
+          <h3>프로토타입 Ω</h3>
+          <p><strong>등장 조건</strong>: 모든 데이터 큐브 12개 수집 후 격납고로 복귀</p>
+          <p><strong>약점</strong>: <span class="spoiler">머리 후방 코어, 빙결 속성 데미지 2배</span></p>
+
+          <div class="boss">
+            <strong>패턴 분석</strong>
+            <ol>
+              <li><strong>3연속 돌진</strong> — 사이에 1초 텀, 마지막 돌진 직후 백어택 윈도우</li>
+              <li><strong>광역 충격파</strong> (체력 50% 이하) — 점프로 회피</li>
+              <li><strong>분신 소환</strong> (체력 20% 이하) — 본체는 그림자가 가장 짧은 쪽</li>
+            </ol>
+          </div>
+
+          <h2>엔딩 분기</h2>
+          <ul>
+            <li><strong>엔딩 A (트루)</strong> — 모든 데이터 큐브 수집 + 프로토타입 Ω 처치</li>
+            <li><strong>엔딩 B (굿)</strong> — 동료 NPC 생존 + 메인 스토리 완료</li>
+            <li><strong>엔딩 C (배드)</strong> — Ch.5 분기에서 시스템 종료 선택</li>
+          </ul>
+
+          <section class="sources">
+            <h2>출처</h2>
+            <ul class="sources-list">
+              <li><a href="#" target="_blank">나무위키 - 프레그마타</a> — 더미 링크</li>
+              <li><a href="#" target="_blank">인벤 공략 게시판</a> — 더미 링크</li>
+              <li><a href="#" target="_blank">루리웹 PS5 공략</a> — 더미 링크</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </article>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <p class="footer-text">© 2026 Qlee · Play Archive</p>
+    <p class="footer-text small">공략 내용은 한국 위키/커뮤니티(나무위키, 인벤, 디시인사이드 등)의 출처를 기반으로 재정리되었습니다.</p>
+  </div>
+</footer>
+
+<script>
+// ---------------------------------------------------------
+// 1) 해시 기반 라우팅
+// ---------------------------------------------------------
+function showView() {
+  const hash = location.hash || '#/';
+  const viewHome = document.getElementById('view-home');
+  const viewGame = document.getElementById('view-game');
+  if (hash.startsWith('#/games/')) {
+    viewHome.classList.remove('active');
+    viewGame.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  } else {
+    viewGame.classList.remove('active');
+    viewHome.classList.add('active');
+  }
+}
+window.addEventListener('hashchange', showView);
+window.addEventListener('load', showView);
+
+// ---------------------------------------------------------
+// 2) 게임 카드 검색
+// ---------------------------------------------------------
+const search = document.getElementById('game-search');
+const grid = document.getElementById('games-grid');
+if (search && grid) {
+  search.addEventListener('input', e => {
+    const q = e.target.value.trim().toLowerCase();
+    grid.querySelectorAll('.game-card').forEach(card => {
+      const t = (card.dataset.title || '') + ' ' + (card.dataset.genre || '');
+      card.style.display = (!q || t.includes(q)) ? '' : 'none';
+    });
+  });
+}
+
+// 더미 카드 클릭 안내 (프레그마타 외)
+grid.querySelectorAll('.game-card').forEach(card => {
+  if (card.getAttribute('href') === '#') {
+    card.addEventListener('click', e => {
+      e.preventDefault();
+      alert('이 카드는 인터페이스 시연용 더미입니다.\n프레그마타 카드를 클릭하면 실제 상세 페이지 레이아웃을 볼 수 있어요.');
+    });
+  }
+});
+
+// ---------------------------------------------------------
+// 3) 게임 페이지 — 목차 자동 생성
+// ---------------------------------------------------------
+function buildTOC() {
+  const tocNav = document.getElementById('toc-nav');
+  const content = document.querySelector('.game-content');
+  if (!tocNav || !content) return;
+  tocNav.innerHTML = '';
+  const headings = content.querySelectorAll('h2, h3');
+  headings.forEach(h => {
+    if (!h.id) {
+      h.id = h.textContent.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^\w가-힣-]/g, '');
+    }
+    const link = document.createElement('a');
+    link.href = '#' + h.id;
+    link.textContent = h.textContent;
+    link.className = h.tagName === 'H3' ? 'toc-h3' : 'toc-h2';
+    tocNav.appendChild(link);
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const id = entry.target.id;
+      const link = tocNav.querySelector('a[href="#' + id + '"]');
+      if (!link) return;
+      if (entry.isIntersecting) {
+        tocNav.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-80px 0px -70% 0px' });
+  headings.forEach(h => observer.observe(h));
+}
+window.addEventListener('load', buildTOC);
+
+// ---------------------------------------------------------
+// 4) 스포일러 토글
+// ---------------------------------------------------------
+const spoilerSwitch = document.getElementById('spoiler-switch');
+if (spoilerSwitch) {
+  spoilerSwitch.addEventListener('change', () => {
+    document.body.classList.toggle('show-spoilers', spoilerSwitch.checked);
+  });
+}
+
+// 인라인 스포일러 클릭으로 표시
+document.addEventListener('click', e => {
+  if (e.target && e.target.classList && e.target.classList.contains('spoiler')) {
+    e.target.style.background = 'transparent';
+    e.target.style.color = 'inherit';
+  }
+});
+</script>
+</body>
+</html>
