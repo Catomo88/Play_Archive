@@ -718,6 +718,201 @@ body.show-spoilers .spoiler { background: transparent; color: inherit; }
   .site-nav { display: none; }  /* 모바일에서는 햄버거 메뉴로 통합 */
 }
 
+/* ===== 시각화 컴포넌트 (v4) ===== */
+
+/* 챕터 시작 정보 카드 */
+.info-card {
+  margin: 1.5rem 0 2rem;
+  padding: 1.2rem 1.3rem;
+  background: linear-gradient(135deg, rgba(0,240,255,0.07), rgba(255,0,170,0.04));
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+}
+.info-card::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+  background: linear-gradient(180deg, var(--accent-cyan), var(--accent-magenta));
+}
+.info-card-header {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;
+  margin-bottom: 0.7rem;
+}
+.info-card-title {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 1.05rem;
+  letter-spacing: 0.04em; color: var(--accent-cyan);
+  margin: 0; padding-left: 0.6rem;
+}
+.info-card-tags { display: inline-flex; flex-wrap: wrap; gap: 0.35rem; margin-left: auto; padding-right: 0.6rem; }
+.info-card-body { padding-left: 0.6rem; font-size: 0.93rem; }
+.info-card-body p:first-child { margin-top: 0; }
+.info-card-body p:last-child { margin-bottom: 0; }
+
+/* 태그 (자동/탐색/백트래킹 등) */
+.tag {
+  display: inline-block;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border: 1px solid;
+  background: rgba(255,255,255,0.04);
+}
+.tag-auto { color: var(--accent-success); border-color: rgba(0,255,136,0.4); }
+.tag-explore { color: var(--accent-cyan); border-color: rgba(0,240,255,0.4); }
+.tag-backtrack { color: var(--accent-amber); border-color: rgba(255,184,0,0.4); }
+.tag-boss { color: var(--accent-danger); border-color: rgba(255,51,85,0.4); }
+.tag-secret { color: var(--accent-magenta); border-color: rgba(255,0,170,0.4); }
+.tag-difficulty { color: var(--accent-magenta); border-color: rgba(255,0,170,0.4); }
+
+/* 진행 단계 (큰 원 번호 + 텍스트) */
+.step-list {
+  counter-reset: step-counter;
+  list-style: none;
+  padding-left: 0;
+  margin: 1.2rem 0;
+}
+.step-list > li {
+  counter-increment: step-counter;
+  position: relative;
+  padding: 0.6rem 0.8rem 0.6rem 3.2rem;
+  margin-bottom: 0.5rem;
+  background: var(--bg-card);
+  border-left: 3px solid var(--accent-cyan);
+  border-radius: 0 8px 8px 0;
+  min-height: 2.6rem;
+  display: flex;
+  align-items: center;
+}
+.step-list > li::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: 0.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2rem; height: 2rem;
+  background: linear-gradient(135deg, var(--accent-cyan), #008fb3);
+  color: var(--bg-base);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.9rem;
+}
+
+/* 보스 카드 (기존 .boss보다 더 시각적) */
+.boss-card {
+  margin: 1.5rem 0;
+  background: linear-gradient(135deg, rgba(255,51,85,0.10), rgba(255,51,85,0.03));
+  border: 1px solid rgba(255,51,85,0.3);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.boss-card-header {
+  padding: 0.9rem 1.1rem;
+  background: rgba(255,51,85,0.15);
+  border-bottom: 1px solid rgba(255,51,85,0.2);
+  display: flex; align-items: center; gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.boss-icon {
+  font-size: 1.4rem;
+  filter: drop-shadow(0 0 8px rgba(255,51,85,0.5));
+}
+.boss-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--accent-danger);
+  margin: 0;
+  flex: 1;
+}
+.boss-card-body {
+  padding: 1rem 1.2rem;
+  font-size: 0.93rem;
+}
+.boss-card-body p:first-child { margin-top: 0; }
+.boss-card-body p:last-child { margin-bottom: 0; }
+.boss-card-body ul { margin-top: 0.4rem; }
+
+/* 수집품 표시 (격자) */
+.collectibles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.5rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  background: var(--bg-elevated);
+  border-radius: 12px;
+}
+.collectible {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.45rem 0.6rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+.collectible-icon { font-size: 1rem; flex-shrink: 0; }
+
+/* 인용구 강조 (게임뷰 같은 후기 텍스트) */
+blockquote.quote {
+  position: relative;
+  padding-left: 2.5rem;
+  font-style: italic;
+}
+blockquote.quote::before {
+  content: '"';
+  position: absolute;
+  left: 0.5rem; top: -0.5rem;
+  font-size: 3rem;
+  color: var(--accent-cyan);
+  opacity: 0.5;
+  font-family: var(--font-display);
+}
+
+/* 챕터 헤더 (h3) 더 명확히 */
+.tab-content > h3 {
+  position: relative;
+  padding: 0.4rem 0.8rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, rgba(0,240,255,0.08), transparent 70%);
+  border-radius: 8px;
+}
+
+/* 챕터 진행 흐름 다이어그램 */
+.flow {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem;
+  margin: 1rem 0;
+  padding: 0.8rem 1rem;
+  background: var(--bg-elevated);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+}
+.flow-item {
+  padding: 0.3rem 0.7rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.flow-arrow { color: var(--accent-cyan); font-weight: 700; }
+
+/* 게임 메타 그리드 모바일 시 가로 스크롤 가능 */
+@media (max-width: 600px) {
+  .info-card-tags { margin-left: 0; width: 100%; }
+  .info-card-header { flex-direction: column; align-items: flex-start; }
+  .step-list > li { padding-left: 3rem; }
+  .step-list > li::before { width: 1.7rem; height: 1.7rem; font-size: 0.8rem; left: 0.5rem; }
+}
+
 """
 
 JS = r"""

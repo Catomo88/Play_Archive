@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>모험가 엘리엇의 천 년 이야기 · Play Archive</title>
+<meta name="description" content="스퀘어 에닉스의 HD-2D 시리즈 최초 신작 액션 RPG. 옥토패스 트래블러 그래픽 + 2D 젤다 액션의 결합. 데모판 공략 위주 정리." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/Play_Archive/assets/style.css">
+</head>
+<body class="theme-dark">
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="/Play_Archive/" class="site-logo">
+      <span class="logo-mark">▶</span>
+      <span class="logo-text">PLAY ARCHIVE</span>
+    </a>
+    <div class="header-right">
+      <nav class="site-nav">
+        <a href="/Play_Archive/" class="nav-link">라이브러리</a>
+        <a href="https://github.com/Catomo88/Play_Archive" class="nav-link" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button class="menu-toggle" id="menu-toggle" aria-label="메뉴 열기" type="button">
+        <span class="bars"><span></span><span></span><span></span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="side-menu-overlay" id="side-menu-overlay"></div>
+<aside class="side-menu" id="side-menu" aria-hidden="true">
+  <div class="side-menu-header">
+    <h3 class="side-menu-title">목차</h3>
+    <button class="menu-close" id="menu-close" aria-label="메뉴 닫기" type="button">✕</button>
+  </div>
+  <div class="menu-section">
+    <div class="menu-section-title">카테고리</div>
+    <button class="menu-item menu-item-tab" data-tab="overview" type="button"><span class="icon">▸</span><span class="label">개요</span></button>
+<button class="menu-item menu-item-tab" data-tab="데모-공략" type="button"><span class="icon">▸</span><span class="label">데모 공략</span></button>
+<button class="menu-item menu-item-tab" data-tab="무기와-마석" type="button"><span class="icon">▸</span><span class="label">무기와 마석</span></button>
+<button class="menu-item menu-item-tab" data-tab="tips" type="button"><span class="icon">▸</span><span class="label">팁</span></button>
+<button class="menu-item menu-item-tab" data-tab="발매-정보" type="button"><span class="icon">▸</span><span class="label">발매 정보</span></button>
+  </div>
+  <div class="menu-section">
+    <div class="menu-section-title">📌 책갈피</div>
+    <div id="menu-bookmarks-list">
+      <div class="menu-empty">아직 책갈피가 없습니다</div>
+    </div>
+  </div>
+</aside>
+<article class="game-page">
+  <header class="game-hero" style="background-image: linear-gradient(180deg, rgba(14,14,18,0.3) 0%, rgba(14,14,18,0.95) 80%), linear-gradient(135deg, #1a1a3a 0%, #003344 50%, #001122 100%);background-color: var(--bg-elevated);">
+    <div class="game-hero-inner">
+      <a href="/Play_Archive/" class="back-link">← 라이브러리</a>
+      <h1 class="game-title">모험가 엘리엇의 천 년 이야기</h1>
+      <p class="game-subtitle">The Adventures of Elliot: The Millennium Tales — 데모판 공략</p>
+      <div class="game-meta"><div class="meta-item"><span class="meta-label">장르</span><span class="meta-value">HD-2D 액션 RPG / 액션 어드벤처</span></div>
+<div class="meta-item"><span class="meta-label">개발사</span><span class="meta-value">Square Enix</span></div>
+<div class="meta-item"><span class="meta-label">발매</span><span class="meta-value">2026-06-18 (Steam 6/19)</span></div>
+<div class="meta-item"><span class="meta-label">플랫폼</span><span class="meta-value">PS5 / PC(Steam) / Xbox Series X|S / Switch 2</span></div>
+<div class="meta-item"><span class="meta-label">난이도</span><span class="meta-value">★★★☆☆ (데모 기준)</span></div>
+<div class="meta-item"><span class="meta-label">플레이타임</span><span class="meta-value">데모 약 1시간 30분 / 본편 미정</span></div>
+</div>
+      <div class="game-status">데모 플레이</div>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div class="spoiler-banner">⚠️ 스토리 스포일러 포함. 토글로 가려진 텍스트 표시 가능</div>
+    <div class="spoiler-toolbar"><label class="switch"><input type="checkbox" id="spoiler-switch" /><span class="slider"></span></label><span>스포일러 표시</span></div>
+    <div class="tab-panels">
+      <div class="tab-panel tab-content" data-tab="overview"><div class="info-card">
+<div class="info-card-header">
+<h3 class="info-card-title" id="_1">⏳ 데모판 한정 공략</h3>
+<div class="info-card-tags">
+    <span class="tag tag-explore">데모 플레이</span>
+    <span class="tag tag-difficulty">★★★☆☆</span>
+  </div>
+</div>
+<div class="info-card-body">
+<p>이 페이지는 <strong>2026년 6월 18일 정식 발매 전 공개된 "프롤로그 데모"</strong> 기준으로 작성되었습니다. 본편 콘텐츠(4개 시대 본격 전개, 후반 던전, 보스 등)는 발매 후 추가될 예정. 데모 진행 가이드 + 시스템 이해 위주로 정리.</p>
+</div>
+</div>
+<h2 id="_2">게임 개요</h2>
+<p>스퀘어 에닉스가 <strong>HD-2D 그래픽</strong>(옥토패스 트래블러로 시작한 도트 + 3D CG 융합 비주얼) 시리즈 최초로 만든 <strong>신작 액션 RPG</strong>. 2D 톱뷰 액션 어드벤처로, 한국 유저 평가는 <strong>"옥토패스 그래픽으로 만든 2D 젤다"</strong>가 가장 자주 나오는 표현. 영문권 리뷰에서도 <em>"Zelda meets Octopath Traveler"</em>, <em>"A Link to the Past + Breath of the Wild + Secret of Mana"</em>라는 비교가 다수.</p>
+<p><strong>무대</strong>: 필레빌디아(Philabieldia) — 천 년에 걸친 4개의 시대(발아의 시대 등)가 펼쳐지는 세계. 주인공 <strong>엘리엇</strong>과 요정 파트너 <strong>페이(Faie)</strong> 가 함께 모험.</p>
+<div class="info-card">
+<div class="info-card-header">
+<h3 class="info-card-title" id="_3">💡 시작 전 꼭 알아두면 좋은 점</h3>
+</div>
+<div class="info-card-body">
+<ul>
+<li><strong>경험치/레벨 없음</strong> — 액션 RPG라기보다 <strong>젤다식 액션 어드벤처</strong>. 강해지는 방법은 무기 / 마석 / 아이템 조합</li>
+<li><strong>무기 7종, 동시 2개 장비</strong> — 검·부메랑·폭탄·망치·창·활·사슬낫. 자주 바꿔쓰는 게 기본</li>
+<li><strong>마석 시스템</strong>으로 무기 커스터마이즈 — 빌드 자유도의 핵심</li>
+<li><strong>데모 진행은 약 1시간 30분</strong> — 본편 데이터 연동 가능</li>
+<li><strong>데모 평점은 80점 내외</strong> — "타격감 약함" vs "아기자기함·재미" 양분</li>
+<li>한국어 자막 + 정식 한글화 지원</li>
+</ul>
+</div>
+</div>
+<h2 id="_4">핵심 시스템 한눈에 보기</h2>
+<h3 id="_5">🛡️ 라이프(체력) 시스템</h3>
+<p>화면 <strong>좌상단의 빨간 물방울 마크</strong>가 체력. 게이지가 아니라 <strong>개별 라이프</strong> 개념(젤다의 하트와 동일). 회복 방법:</p>
+<ul>
+<li><strong>회복의 약</strong> — 마을 상점에서 구매</li>
+<li><strong>모험의 길잡이</strong> — 세계 각지에 배치. 접근하면 <strong>즉시 완전 회복</strong> (체크포인트 + 회복소 결합)</li>
+</ul>
+<div class="tip">
+<p><strong>💡 길잡이 발견 시 무조건 접근</strong> — 다음 위험 구간 진입 전 풀체력 보장. 또한 사망 시 가까운 길잡이에서 부활.</p>
+</div>
+<h3 id="2">⚔️ 무기 시스템 — 동시 2개 장비</h3>
+<p>7종 무기를 자유롭게 교체. 주무기 + 보조무기 슬롯에 1개씩 장비하고 상황에 맞게 빠르게 스왑.</p>
+<table>
+<thead>
+<tr>
+<th>무기</th>
+<th>특성</th>
+<th>데모 평가</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>검</strong></td>
+<td>빠른 휘두름 + 좌우 판정</td>
+<td>⭐ 만능, 다루기 가장 쉬움</td>
+</tr>
+<tr>
+<td><strong>부메랑</strong></td>
+<td>던진 뒤 돌아올 때까지 <strong>계속 공격 판정</strong> 유지</td>
+<td>⭐ 견제·다수 적 처리</td>
+</tr>
+<tr>
+<td><strong>폭탄</strong></td>
+<td>광역, 벽/장애물 파괴</td>
+<td>보스전 기믹 필수</td>
+</tr>
+<tr>
+<td><strong>망치</strong></td>
+<td>강타·중량, 느림</td>
+<td>강적 처치</td>
+</tr>
+<tr>
+<td><strong>창</strong></td>
+<td>사거리 ↑, 찌르기</td>
+<td>안전 거리 유지</td>
+</tr>
+<tr>
+<td><strong>활</strong></td>
+<td>원거리 정밀 사격</td>
+<td>⚠️ <strong>조준 어색</strong> (다수 리뷰 공통 단점)</td>
+</tr>
+<tr>
+<td><strong>사슬낫</strong></td>
+<td>광역 + 끌어오기</td>
+<td>군집 적 정리</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">🔮 마석 시스템</h3>
+<p>무기를 강화하는 핵심 자원.</p>
+<div class="step-list">
+<ol>
+<li><strong>마석 파편 획득</strong> — 적 처치 무작위 드롭 / 보물 상자 / 도전 룸 보상</li>
+<li><strong>마을 마석점 방문</strong> — 모은 파편으로 마석 생성</li>
+<li><strong>무기에 마석 장착</strong> — 다양한 효과 부여 (공격력↑, 속성 추가, 특수 효과 등)</li>
+<li><strong>자신의 플레이 스타일에 맞는 조합 찾기</strong> — 빌드 자유도의 핵심</li>
+</ol>
+</div>
+<h3 id="faie">🧚 페이(Faie, 요정 파트너)</h3>
+<p>엘리엇의 동반자. 솔로 모드에서는 AI가 조작, <strong>로컬 협동에서는 다른 플레이어가 직접 조작</strong> 가능 (1인 → 2인 협동 전환).</p>
+<div class="info-card">
+<div class="info-card-header">
+<h3 class="info-card-title" id="_7">🧚 페이의 능력 (데모 기준)</h3>
+</div>
+<div class="info-card-body">
+<ul>
+<li><strong>마법 사격</strong> — 자동 견제, 약한 적 직접 처치</li>
+<li><strong>워프(Warp)</strong> — 관문 유적 보스에서 학습. 짧은 거리 순간이동 (회피·접근에 활용)</li>
+<li><strong>부활</strong> — 엘리엇 체력 0이 되면 <strong>페이의 마법으로 부활</strong> (보스전에서도 유효, 매우 관대한 사망 페널티)</li>
+<li><strong>시너지 공격</strong> — 엘리엇 공격 + 페이 마법 조합으로 추가 데미지·이펙트</li>
+</ul>
+</div>
+</div>
+<div class="warn">
+<p><strong>⚠️ 보스전 사망 시스템</strong> — 보스에게 죽어도 <strong>그 자리에서 부활</strong>, 보스에게 입혔던 데미지는 그대로 유지. 처음부터 다시 시작이 아님. <strong>공격적으로 플레이해도 손해 적음</strong>.</p>
+</div></div>
+<div class="tab-panel tab-content" data-tab="데모-공략"><h2 id="_1">데모판 진행 흐름</h2>
+<div class="flow">
+  <span class="flow-item">시작 마을</span>
+  <span class="flow-arrow">→</span>
+  <span class="flow-item">동부 광야 탐색</span>
+  <span class="flow-arrow">→</span>
+  <span class="flow-item">관문 유적 진입</span>
+  <span class="flow-arrow">→</span>
+  <span class="flow-item">기믹·열쇠 2개</span>
+  <span class="flow-arrow">→</span>
+  <span class="flow-item">태그 가디언 보스</span>
+  <span class="flow-arrow">→</span>
+  <span class="flow-item">페이 워프 학습</span>
+</div>
+
+<p>데모 분량은 약 1.5시간이지만, <strong>챌린지 룸 + 사이드 탐색 모두 클리어 시 2~3시간</strong>까지 늘어남. 본편 출시 시 데모 세이브 그대로 인계.</p>
+<h2 id="chapter-1">Chapter 1 ─ 모험가 길드와 출발</h2>
+<div class="info-card">
+<div class="info-card-header">
+<h3 class="info-card-title" id="_2">🏘️ 시작 마을 / 모험가 길드</h3>
+<div class="info-card-tags">
+    <span class="tag tag-auto">스토리 자동</span>
+    <span class="tag tag-explore">탐색 추천</span>
+  </div>
+</div>
+<div class="info-card-body">
+<p>필레빌디아의 거점 마을. 모험가 길드 등록, 기본 장비 수령, 페이와의 동행 시작이 이루어지는 튜토리얼 구간.</p>
+</div>
+</div>
+<h3 id="_3">진행 단계</h3>
+<div class="step-list">
+<ol>
+<li><strong>오프닝 컷씬 + 캐릭터 생성/선택</strong> → 엘리엇 조작 시작</li>
+<li><strong>모험가 길드 방문</strong> — NPC 대화로 첫 의뢰 수령. 페이가 합류</li>
+<li><strong>검 장비 + 기본 조작 튜토리얼</strong> — 휘두르기, 회피, 점프 학습</li>
+<li><strong>마을 둘러보기</strong> (선택) — 상점·여관·마석점·게시판 위치 파악</li>
+<li><strong>동부 광야로 출발</strong></li>
+</ol>
+</div>
+<h3 id="_4">마을에서 챙길 것</h3>
+<div class="collectibles">
+<ul>
+<li>🪙 <strong>회복의 약 × 2~3개</strong> (상점, 초기 자금 허용 범위)</li>
+<li>🗡️ <strong>검 (기본)</strong> — 길드에서 지급</li>
+<li>📜 <strong>퀘스트 보드 확인</strong> — 사이드 의뢰 미리 체크</li>
+<li>💎 <strong>마석점 위치 기억</strong> — 데모 후반 마석 생성 시 재방문</li>
+</ul>
+</div>
+<div class="tip">
+<p><strong>💡 초보 팁</strong> — 데모 분량은 짧지만 <strong>마을에서 NPC 대사를 모두 읽으면</strong> 본편 발매 후 시대(발아의 시대 등)에 대한 사전 정보를 얻을 수 있음. 한국 유저 후기에서 "본편 떡밥이 마을에 깔려 있다"는 평이 다수.</p>
+</div>
+<h2 id="chapter-2">Chapter 2 ─ 동부 광야 (오버월드 탐색)</h2>
+<div class="info-card">
+<div class="info-card-header">
+<h3 class="info-card-title" id="_5">🌾 광활한 동부 지역</h3>
+<div class="info-card-tags">
+    <span class="tag tag-explore">자유 탐색</span>
+    <span class="tag tag-secret">챌린지 룸</span>
+  </div>
+</div>
+<div class="info-card-body">
+<p>관문 유적 진입 전 자유롭게 탐색 가능한 오버월드. 적 처치·상자·<strong>챌린지 룸</strong>(젤다 BotW의 사당과 유사)이 흩어져 있음. 데모 안에서도 <strong>30분~1시간 분량의 사이드 콘텐츠</strong>.</p>
+</div>
+</div>
+<h3 id="_6">동부 광야에서 만나는 것</h3>
+<ul>
+<li>🗡️ <strong>비스트맨(Beastmen)</strong> — 기본 잡몹, 검·부메랑으로 처리</li>
+<li>💎 <strong>마석 파편</strong> — 적 드롭·상자에서 무작위</li>
+<li>📦 <strong>보물 상자</strong> — 추가 회복약·무기 시도용·마석 파편</li>
+<li>🛕 <strong>챌린지 룸(Trial)</strong> — 짧고 빠른 도전. 특정 무기 / 기믹 활용 시험. 클리어 시 보상(마석·소량 자원)</li>
+<li>🧭 <strong>모험의 길잡이</strong> — 풀체력 회복 + 빠른 이동 거점 (추후 발견한 곳으로 워프 가능)</li>
+</ul>
+<div class="tip">
+<p><strong>💡 챌린지 룸 활용</strong> — 본편 발매 후 BotW식 "찾는 만큼 캐릭터가 강해지는" 시스템이 될 가능성 높음. 데모 단계에서 위치·풀이법을 익혀두면 본편 적응 ↑. 데모 안에서 발견 가능한 챌린지 룸은 영상 가이드(YouTube Full Demo Walkthrough) 참조.</p>
+</div>
+<h3 id="_7">동부 광야 ─ 추천 진행 순서</h3>
+<div class="step-list">
+<ol>
+<li><strong>검 + 부메랑 2개 슬롯 장착</strong> — 가장 안정적인 조합</li>
+<li><strong>광야 외곽 한 바퀴 → 상자·마석 파편 수집</strong></li>
+<li><strong>챌린지 룸 발견 시 즉시 클리어</strong> (데모 보상은 적지만 시스템 학습 효과 ↑)</li>
+<li><strong>모험의 길잡이 활성화</strong> — 데모 안에서 발견 가능한 곳 전부</li>
+<li><strong>마석점 재방문</strong> — 모은 파편으로 마석 생성, 검·부메랑에 장착</li>
+<li><strong>관문 유적 입구로 이동</strong></li>
+</ol>
+</div>
+<h2 id="chapter-3-doorway-ruins">Chapter 3 ─ 관문 유적 (Doorway Ruins)</h2>
+<div class="info-card">
+<div class="info-card-header">
+<h3 class="info-card-title" id="_8">🏛️ 데모판 메인 던전</h3>
+<div class="info-card-tags">
+    <span class="tag tag-boss">보스 있음</span>
+    <span class="tag tag-explore">전투 중심</span>
+  </div>
+</div>
+<div class="info-card-body">
+<p>필레빌디아 동쪽에 위치한 고대 유적. <strong>퍼즐보다 전투 중심</strong>으로 설계되어, <strong>전투에서 익힌 기믹을 보스전에서 활용</strong>하는 전형적 젤다식 던전 구조. 데모 안에서만 <strong>2개 던전</strong>이 진입 가능하다는 후기가 있으며, 핵심은 관문 유적.</p>
+<p><strong>해야 할 일</strong>: 던전 내 흩어진 <strong>열쇠 2개</strong>를 기믹으로 획득 → 봉인된 보스방 개방 → 태그 가디언 처치 → 보상.</p>
+</div>
+</div>
+<h3 id="_9">던전 내 적 분석</h3>
+<div class="boss-card">
+<div class="boss-card-header">
+  <span class="boss-icon">⚔️</span>
+  <h4 class="boss-name" id="greatsword-guardian">Greatsword Guardian (대검 가디언)</h4>
+</div>
+<div class="boss-card-body">
+<ul>
+<li><strong>공격</strong>: 광범위한 좌우 횡베기, 가드 단단함</li>
+<li><strong>약점</strong>: 공격 후 <strong>백스윙 경직</strong>, 측후방 공격</li>
+<li><strong>공략</strong>: 정면 충돌 ❌ → 부메랑으로 견제 → 빈틈에 검 콤보</li>
+<li><strong>빠른 처리</strong>: 폭탄으로 가드 깨기 + 시너지 공격</li>
+</ul>
+</div>
+</div>
+<div class="boss-card">
+<div class="boss-card-header">
+  <span class="boss-icon">🏹</span>
+  <h4 class="boss-name" id="great-bow-guardian">Great Bow Guardian (대궁 가디언)</h4>
+</div>
+<div class="boss-card-body">
+<ul>
+<li><strong>공격</strong>: 장거리 정밀 사격, 차징 후 강한 일격</li>
+<li><strong>약점</strong>: 차징 동안 <strong>이동 불가</strong> → 측면 접근 가능</li>
+<li><strong>공략</strong>: 엄폐물 지그재그 → 사격선 회피 → 접근 후 검 / 망치</li>
+<li><strong>주의</strong>: 1대1 정면 사격전 = 즉사 위험</li>
+</ul>
+</div>
+</div>
+<h3 id="_10">진행 단계 (관문 유적)</h3>
+<div class="step-list">
+<ol>
+<li><strong>유적 입구 진입</strong> — 첫 룸에서 비스트맨 처치 (튜토리얼 식)</li>
+<li><strong>갈림길 도달</strong> — 좌측·우측 중 한쪽으로 진행 (어느 쪽이든 OK, 순서만 다름)</li>
+<li><strong>첫 열쇠 구역</strong> — 기믹 + 가디언 1체 처치 → 열쇠 #1 획득</li>
+<li><strong>새 무기 발견</strong> (선택) — 데모 도중 <strong>강화된 검</strong> 획득 가능, 보스전에 큰 도움</li>
+<li><strong>두 번째 열쇠 구역</strong> — 또 다른 기믹 + 가디언 1체 → 열쇠 #2</li>
+<li><strong>봉인된 문 개방</strong> → 보스방 진입 직전 <strong>모험의 길잡이 활성화</strong> 권장</li>
+<li><strong>태그 가디언</strong> 전투 → 클리어 시 <strong>페이의 워프 능력</strong> 학습</li>
+</ol>
+</div>
+<h3 id="_11">🎯 던전 내 수집 권장</h3>
+<div class="collectibles">
+<ul>
+<li>🗝️ 열쇠 ×2 (필수)</li>
+<li>🗡️ 강화된 검 (데모 보상 무기, 보스전 큰 도움)</li>
+<li>💎 마석 파편 (적 드롭)</li>
+<li>📦 보물 상자 (회복약·자원)</li>
+<li>🌀 페이의 워프 능력 (보스 처치 자동)</li>
+</ul>
+</div>
+<h2 id="chapter-4-tag-guardians">Chapter 4 ─ 보스: 태그 가디언 (Tag Guardians)</h2>
+<div class="boss-card">
+<div class="boss-card-header">
+  <span class="boss-icon">👹</span>
+  <h4 class="boss-name" id="tag-guardians">Tag Guardians ─ 데모 최종 보스</h4>
+</div>
+<div class="boss-card-body">
+<p><strong>개요</strong>: 2체가 번갈아(또는 동시에) 공격하는 태그매치 형식의 가디언 듀오. 던전에서 익힌 기믹(폭탄·페이 마법)을 종합적으로 활용해야 함.</p>
+<p><strong>핵심 메커니즘</strong> (전형적 젤다식):
+1. <strong>약점/기믹 노출 페이즈</strong> — 보스가 일정 패턴 후 약점 노출
+2. <strong>폭탄 투척</strong> → 약점 명중 → <strong>딜타임</strong> 발생
+3. <strong>딜타임 중 검·부메랑으로 풀딜</strong>
+4. 반복</p>
+<p><strong>페이 활용</strong>:
+- <strong>워프</strong>(보스 처치 직전 학습이라 본 보스전엔 미사용) — 데모 안에서는 보스 처치 직후 학습
+- <strong>시너지 공격</strong> — 약점 노출 시 페이에게 마법 명령 → 추가 데미지
+- <strong>부활</strong>: 죽어도 그 자리 부활, 누적 데미지 유지 → <strong>공격적 플레이 권장</strong></p>
+</div>
+</div>
+<h3 id="_12">단계별 공략</h3>
+<div class="step-list">
+<ol>
+<li><strong>거리 유지</strong> — 두 가디언 동시 접근 허용 X. 부메랑으로 한 쪽 견제</li>
+<li><strong>약점 신호 포착</strong> — 보스 공격 패턴 끝나면 <strong>빛나는 부위 노출</strong> (몇 초 짧음)</li>
+<li><strong>폭탄 투척</strong> → 약점 명중 → 보스 경직 (딜타임)</li>
+<li><strong>검·강화된 검으로 풀딜</strong> — 4~6타 가능</li>
+<li><strong>페이에게 마법 명령</strong> — 약점 한 번 더 노출 / 추가 시너지 데미지</li>
+<li><strong>사망 시 부활 활용</strong> — 데미지 누적 유지, 다시 공격적으로 진입</li>
+<li><strong>체력 1/3 이하 페이즈</strong> — 두 가디언이 <strong>동시 협공</strong> 가능. 거리 유지 + 견제 강화</li>
+</ol>
+</div>
+<div class="tip">
+<p><strong>💡 보스전 효율 팁</strong> (한국 유저 후기 종합)
+- 무기 슬롯: <strong>검 + 부메랑</strong> 추천 (활은 조준 어색해서 비추)
+- 마석은 <strong>공격력 ↑</strong> 우선 (시간 단축)
+- 회복약은 <strong>체력 1/3 이하</strong>에서만 사용 — 페이 부활을 적극 활용하면 회복약 거의 불필요
+- 폭탄 잔량 확인 — 던전 진입 전 마을에서 충분히 보충</p>
+</div>
+<h3 id="_13">보상</h3>
+<ul>
+<li>🌀 <strong>페이의 워프 능력</strong> — 짧은 거리 순간이동. 본편 진행에 필수</li>
+<li>📜 <strong>데모 엔딩 시퀀스</strong> — 본편 발매 후 이어질 스토리 떡밥</li>
+<li>💾 <strong>세이브 데이터</strong> — 본편 데이터 연동</li>
+</ul></div>
+<div class="tab-panel tab-content" data-tab="무기와-마석"><h2 id="_1">무기 시스템 완전 정리</h2>
+<p>엘리엇은 <strong>7종 무기</strong>를 자유롭게 운용. <strong>주무기 + 보조 무기 2슬롯</strong> 동시 장비, R/L 키로 즉시 스왑(추정).</p>
+<h3 id="_2">무기별 상세</h3>
+<div class="info-card">
+<div class="info-card-header">
+<h3 class="info-card-title" id="sword">⚔️ 검 (Sword)</h3>
+<div class="info-card-tags"><span class="tag tag-auto">기본 무기</span></div>
+</div>
+<div class="info-card-body">
+<ul>
+<li><strong>휘두름 속도</strong>: 매우 빠름</li>
+<li><strong>공격 판정</strong>: 정면 + 좌우 (호 형태)</li>
+<li><strong>사거리</strong>: 짧음</li>
+<li><strong>추천 상황</strong>: 잡몹 정리, 보스 약점 풀딜, 모든 상황의 안정픽</li>
+</ul>
+</div>
+</div>
+<div class="info-card">
+<div class="info-card-header">
+<h3 class="info-card-title" id="boomerang">🪃 부메랑 (Boomerang)</h3>
+<div class="info-card-tags"><span class="tag tag-explore">견제·다수 적</span></div>
+</div>
+<div class="info-card-body">
+<ul>
+<li><strong>특수성</strong>: 던지고 돌아오는 <strong>궤도 전체에 공격 판정</strong></li>
+<li><strong>사거리</strong>: 중거리</li>
+<li><strong>추천 상황</strong>: 다수 적 견제, 보스 약점 페이즈 외 시간에 데미지 누적, 안전 거리 유지</li>
+</ul>
+</div>
+</div>
+<div class="info-card">
+<div class="info-card-header">
+<h3 class="info-card-title" id="bomb">💣 폭탄 (Bomb)</h3>
+<div class="info-card-tags"><span class="tag tag-boss">보스 필수</span></div>
+</div>
+<div class="info-card-body">
+<ul>
+<li><strong>특수성</strong>: 광역 데미지 + <strong>장애물/약점 패널 파괴</strong></li>
+<li><strong>사용 제한</strong>: 잔량 시스템 (마을에서 보충)</li>
+<li><strong>추천 상황</strong>: 보스 기믹 약점 명중, 군집 적 일소, 던전 막힌 길 개방</li>
+</ul>
+</div>
+</div>
+<div class="info-card">
+<div class="info-card-header">
+<h3 class="info-card-title" id="_3">🔨 망치·창·사슬낫</h3>
+</div>
+<div class="info-card-body">
+<ul>
+<li><strong>망치 (Hammer)</strong>: 강타 + 중량. 느리지만 단발 데미지 ↑. 강적·기믹용</li>
+<li><strong>창 (Spear)</strong>: 사거리 ↑, 찌르기. 안전 거리 유지에 최적</li>
+<li><strong>사슬낫 (Chain Scythe)</strong>: 광역 + 끌어오기. 군집 정리 + 위치 조정</li>
+</ul>
+</div>
+</div>
+<div class="warn">
+<p><strong>🏹 활(Bow) 주의</strong> — 데모 단계에서 <strong>조준이 어색하다는 평이 다수</strong>. "맞을 것 같은데 빗나가는 경우가 잦음." 정식 발매 시 조정 가능성 있지만, 데모 안에서는 <strong>활 의존도 낮추는 것이 안정</strong>.</p>
+</div>
+<h2 id="_4">마석 시스템 완전 정리</h2>
+<div class="step-list">
+<ol>
+<li><strong>마석 파편 수집</strong> — 적 처치 무작위 드롭, 상자, 챌린지 룸 보상</li>
+<li><strong>마을 → 마석점 방문</strong> — 파편을 소모해 <strong>마석 생성</strong></li>
+<li><strong>인벤토리에서 무기에 장착</strong> — 각 무기마다 슬롯 수가 있을 것으로 추정</li>
+<li><strong>효과 확인 후 전투</strong> — 빌드 조정</li>
+</ol>
+</div>
+<h3 id="_5">추정되는 마석 효과 (데모 + 트레일러 기준)</h3>
+<ul>
+<li><strong>공격력 ↑</strong> — 단순 데미지 증가</li>
+<li><strong>속성 부여</strong> — 화염·얼음·번개 등 (보스 약점 속성 매칭 시 큰 데미지)</li>
+<li><strong>크리티컬 확률 ↑</strong></li>
+<li><strong>사거리 ↑</strong> — 부메랑·창에 효과적</li>
+<li><strong>회복 효과</strong> — 일정 확률로 적 처치 시 체력 회복</li>
+<li><strong>마나/스태미나 회복</strong></li>
+<li><strong>특수 효과</strong> — 폭발 추가·관통 등</li>
+</ul>
+<div class="tip">
+<p><strong>💡 마석 배분 우선순위 (데모 기준)</strong>
+1. <strong>공격력 ↑</strong> — 가장 직관적이고 강함
+2. <strong>속성</strong> — 보스 약점 알 수 있다면 매칭
+3. <strong>회복/크리</strong> — 보조용</p>
+</div>
+<h2 id="_6">페이 활용 가이드</h2>
+<p>페이는 단순 NPC가 아니라 <strong>전략 파트너</strong>.</p>
+<ul>
+<li><strong>AI 모드 (솔로)</strong> — 자동 견제·회복. 명령으로 특정 적 공격 / 마법 발동 가능</li>
+<li><strong>협동 모드 (2인 로컬)</strong> — 2P가 직접 조작. 더 정교한 시너지 공격</li>
+<li><strong>시너지 공격</strong> — 엘리엇이 약점 노출시켜 페이가 마무리 / 페이가 견제하는 사이 엘리엇이 풀딜</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>페이 능력</th>
+<th>획득 시점</th>
+<th>용도</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>마법 사격</strong></td>
+<td>시작부터</td>
+<td>자동 견제, 약한 적 처치</td>
+</tr>
+<tr>
+<td><strong>워프(Warp)</strong></td>
+<td>관문 유적 보스 처치</td>
+<td>짧은 거리 순간이동, 회피·접근</td>
+</tr>
+<tr>
+<td><strong>부활</strong></td>
+<td>시작부터</td>
+<td>엘리엇 체력 0 시 자동 부활 (강력)</td>
+</tr>
+<tr>
+<td><strong>시너지</strong></td>
+<td>시작부터</td>
+<td>약점 노출·강력한 콤보 발동</td>
+</tr>
+</tbody>
+</table></div>
+<div class="tab-panel tab-content" data-tab="tips"><h2 id="_1">데모 평가 (한국 유저 후기 종합)</h2>
+<div class="info-card">
+<div class="info-card-header">
+<h3 class="info-card-title" id="_2">👍 호평 포인트</h3>
+</div>
+<div class="info-card-body">
+<ul>
+<li><strong>HD-2D 그래픽의 아기자기함</strong> — 옥토패스 트래블러 팬에게 매우 익숙하고 좋은 인상</li>
+<li><strong>2D 젤다 향수</strong> — 과거 2D 액션 RPG·젤다 팬에게 강한 어필</li>
+<li><strong>퍼즐+전투 균형</strong> — 던전이 단순 미로가 아니라 전투 학습 → 보스 활용 구조</li>
+<li><strong>페이 부활 시스템</strong> — 보스전 좌절 ↓, 공격적 플레이 유도</li>
+<li><strong>무기 7종 시스템</strong> — 정식 발매 시 빌드 자유도 기대</li>
+<li><strong>체험판 분량</strong> — 1.5시간 + 사이드 합치면 2~3시간, 부담 없이 본편 맛보기 가능</li>
+</ul>
+</div>
+</div>
+<div class="warn">
+<p><strong>👎 아쉬운 점 (데모 기준)</strong>
+- <strong>활 조준 어색</strong> — 다수 후기 공통 단점. 정식 발매 시 패치 기대
+- <strong>액션 타격감 약함</strong> — "아기자기하지만 묵직함 부족"
+- <strong>액션 스피드 약간 느림</strong> — 정통 ARPG보다 어드벤처 쪽에 가까움
+- <strong>경험치·레벨 없음</strong> — RPG 성장 기대했다면 실망 가능</p>
+</div>
+<h2 id="_3">전투 핵심 팁</h2>
+<div class="step-list">
+<ol>
+<li><strong>검 + 부메랑 = 만능 조합</strong> — 솔로 플레이 안정픽</li>
+<li><strong>회피 우선</strong> — 가드는 약하고 회피 윈도우가 넉넉</li>
+<li><strong>점프 활용</strong> — 일부 적 공격은 <strong>수직 회피 가능</strong></li>
+<li><strong>페이 부활 적극 활용</strong> — 한 번 죽어도 누적 데미지 유지 → 보스에 공격적으로</li>
+<li><strong>모험의 길잡이 = 회복 + 빠른 이동 거점</strong> — 위험 구간 전 무조건 활성화</li>
+<li><strong>챌린지 룸은 보너스 컨텐츠</strong> — 본편 강화 자원 확보 + 시스템 학습</li>
+<li><strong>폭탄 잔량 관리</strong> — 보스 직전엔 풀로</li>
+</ol>
+</div>
+<h2 id="_4">자주 묻는 질문</h2>
+<p><strong>Q. Switch 2 한정 데모 아닌가? 다른 플랫폼에서도 가능?</strong>
+A. 초기에는 Switch 2 한정으로 공개됐지만, 이후 <strong>모든 발매 플랫폼(PS5/XSX/PC)에서 한국어판 데모 배포</strong>가 진행 중. 자세한 일정은 <a href="https://www.square-enix.com/asia/newsportal/ko/kr/elliot1000/">스퀘어 에닉스 공식</a> 또는 <a href="https://store.playstation.com/ko-kr/concept/10007935">PS Store 페이지</a> 확인.</p>
+<p><strong>Q. 데모 세이브가 본편에 인계되나?</strong>
+A. <strong>Yes</strong>. "프롤로그 데모"는 명시적으로 본편 데이터 연동 지원. 단, 동일 플랫폼에서만 연동 가능.</p>
+<p><strong>Q. 1인용? 협동?</strong>
+A. <strong>솔로 + 로컬 협동 2인</strong>. 페이를 2P가 조작. 온라인 협동은 미발표.</p>
+<p><strong>Q. 한국어 더빙?</strong>
+A. 미발표. <strong>자막 한국어화</strong> 확정. 음성은 영어/일본어 선택 가능.</p>
+<p><strong>Q. 옥토패스 트래블러 후속작?</strong>
+A. <strong>아닙니다</strong>. HD-2D 그래픽 엔진은 동일하지만 <strong>세계관·시리즈 무관</strong>. 옥토패스는 턴제 RPG, 엘리엇은 액션 어드벤처.</p>
+<p><strong>Q. 4개의 시대란?</strong>
+A. 발아의 시대 등 <strong>천 년에 걸친 4개 시대</strong>가 본편 전개의 핵심. 데모는 가장 첫 시대(=발아의 시대) 일부만 다룸. 시간 여행 / 시대 분기가 본편 시스템.</p>
+<p><strong>Q. 본편 분량 예상?</strong>
+A. 공식 발표 없음. 4개 시대 × 데모 분량(1.5h)을 단순 곱해도 6h+이지만, 시대당 던전·사이드 합치면 <strong>본편 30~50시간</strong> 추정.</p></div>
+<div class="tab-panel tab-content" data-tab="발매-정보"><h2 id="_1">정식 발매 일정</h2>
+<div class="info-card">
+<div class="info-card-header">
+<h3 class="info-card-title" id="_2">📅 발매일 &amp; 플랫폼</h3>
+</div>
+<div class="info-card-body">
+<table>
+<thead>
+<tr>
+<th>플랫폼</th>
+<th>발매일</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Nintendo Switch 2</strong></td>
+<td>2026-06-18</td>
+</tr>
+<tr>
+<td><strong>PlayStation 5</strong></td>
+<td>2026-06-18</td>
+</tr>
+<tr>
+<td><strong>Xbox Series X|S</strong></td>
+<td>2026-06-18</td>
+</tr>
+<tr>
+<td><strong>Steam (Windows)</strong></td>
+<td>2026-06-19</td>
+</tr>
+</tbody>
+</table>
+<p>가격은 미공개 (예약 가능). 한국 정식 한글 자막 지원.</p>
+</div>
+</div>
+<h2 id="_3">데모 → 본편 체크리스트</h2>
+<p>데모를 즐겁게 했다면 본편 발매 대비:</p>
+<div class="step-list">
+<ol>
+<li><strong>데모 클리어</strong> + 세이브 보존 (본편 인계)</li>
+<li><strong>사이드 콘텐츠 모두 클리어</strong> — 챌린지 룸·옵션 사이드 미션·상자 다 확인</li>
+<li><strong>마석 시스템 익숙해지기</strong> — 본편의 빌드 자유도가 시스템 이해에서 옴</li>
+<li><strong>본편 예약 결정</strong> — 데모 평가 80점 기준, 옥토패스/젤다 좋아하면 추천</li>
+<li><strong>루리웹·인벤·디시 커뮤니티 가입</strong> — 본편 발매 시 빠른 공략 공유 위해</li>
+</ol>
+</div>
+<h2 id="_4">본편에서 기대되는 것 (트레일러·인터뷰 기반)</h2>
+<ul>
+<li><strong>4개 시대 본격 전개</strong> — 시간 여행으로 같은 장소의 다른 시대 방문</li>
+<li><strong>추가 던전</strong> — 데모의 관문 유적은 1개 예시일 뿐</li>
+<li><strong>신규 무기·마석 확장</strong></li>
+<li><strong>보스 다양화</strong> — 시대마다 특색 있는 보스 예고</li>
+<li><strong>챌린지 룸 대량 확장</strong> — BotW의 사당처럼 본편 강화 자원 핵심</li>
+<li><strong>사이드 스토리·서브 캐릭터</strong> — 마을 NPC들의 본격 등장</li>
+</ul>
+<div class="tip">
+<p><strong>💡 출시 직후 권장 사항</strong>
+1. <strong>데모 세이브 인계</strong>로 시작 → 초반 시간 절약
+2. <strong>루리웹/인벤 공략 게시판 모니터링</strong> — 한국 유저 공략은 보통 발매 2~3일 내 첫 100% 가이드 등장 (프래그마타 사례 참조)
+3. <strong>속도보다 탐색</strong> — 챌린지 룸 + 사이드 처리하면서 진행해야 본편 후반 안 막힘</p>
+</div></div>
+    </div>
+    <section class="sources"><h2>출처</h2><ul class="sources-list"><li><a href="https://namu.wiki/w/%EB%AA%A8%ED%97%98%EA%B0%80%20%EC%97%98%EB%A6%AC%EC%97%87%EC%9D%98%20%EC%B2%9C%20%EB%85%84%20%EC%9D%B4%EC%95%BC%EA%B8%B0" target="_blank" rel="noopener noreferrer">나무위키 - 모험가 엘리엇의 천 년 이야기</a></li>
+<li><a href="https://www.square-enix.com/asia/newsportal/ko/kr/elliot1000/" target="_blank" rel="noopener noreferrer">스퀘어 에닉스 공식 아시아 뉴스 포털</a></li>
+<li><a href="https://bbs.ruliweb.com/news/board/300001/read/2353748" target="_blank" rel="noopener noreferrer">루리웹 - 한국어판 프롤로그 데모 배포</a></li>
+<li><a href="https://bbs.ruliweb.com/news/read/220980" target="_blank" rel="noopener noreferrer">루리웹 - 캐릭터 및 게임 시스템 소개</a></li>
+<li><a href="https://bbs.ruliweb.com/news/read/224926" target="_blank" rel="noopener noreferrer">루리웹 - 발아의 시대 소개</a></li>
+<li><a href="https://m.ruliweb.com/ps/board/300421/read/31059865" target="_blank" rel="noopener noreferrer">루리웹 - 데모 후기 (액션 어드벤처)</a></li>
+<li><a href="https://bbs.ruliweb.com/ps/board/300421/read/31071149" target="_blank" rel="noopener noreferrer">루리웹 - 인상 정리</a></li>
+<li><a href="https://quasarzone.com/bbs/qf_pcgame/views/519938" target="_blank" rel="noopener noreferrer">퀘이사존 - 프롤로그 데모 후기</a></li>
+<li><a href="https://m.dcinside.com/board/indiegame/239933" target="_blank" rel="noopener noreferrer">디시 인디게임 - 데모 리뷰</a></li>
+<li><a href="https://www.gamevu.co.kr/news/articleView.html?idxno=52263" target="_blank" rel="noopener noreferrer">게임뷰 - 고전 2D ARPG의 향수</a></li>
+<li><a href="https://blog.playstation.com/2026/05/18/time-travel-trials-and-treasure-awaits-in-the-adventures-of-elliot-the-millennium-tales/" target="_blank" rel="noopener noreferrer">PlayStation Blog - Time travel, trials, and treasure</a></li>
+<li><a href="https://game8.co/articles/reviews/the-adventures-of-elliot-the-millennium-tales-review-demo" target="_blank" rel="noopener noreferrer">Game8 - Demo Review (Zelda Meets Octopath Traveler)</a></li>
+<li><a href="https://www.rpgfan.com/2026/05/18/adventures-of-elliot-millennium-tales-preview/" target="_blank" rel="noopener noreferrer">RPGFan - Hands-On Preview</a></li>
+<li><a href="https://noisypixel.net/adventures-elliot-millennium-tales-preview/" target="_blank" rel="noopener noreferrer">Noisy Pixel - Final Preview</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLsvKzct5-R6KPfv5LGSq4gX5PJZkqtbiS" target="_blank" rel="noopener noreferrer">YouTube - Full Demo Walkthrough</a></li>
+<li><a href="https://www.youtube.com/watch?v=qEUrGKxLiAk" target="_blank" rel="noopener noreferrer">YouTube - Beating Bosses in Demo</a></li>
+<li><a href="https://store.steampowered.com/app/3483510/The_Adventures_of_Elliot_The_Millennium_Tales/?l=koreana" target="_blank" rel="noopener noreferrer">Steam 예약 페이지</a></li>
+</ul></section>
+  </main>
+</article>
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <p class="footer-text">© 2026 Qlee · Play Archive</p>
+    <p class="footer-text small">공략 내용은 한국 위키/커뮤니티(나무위키, 인벤, 디시인사이드 등)의 출처를 기반으로 재정리되었습니다.</p>
+  </div>
+</footer>
+<script src="/Play_Archive/assets/main.js"></script>
+</body>
+</html>
