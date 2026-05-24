@@ -30,6 +30,7 @@ function showTab(slug, pushState = true) {
     if (location.hash !== newHash) history.replaceState(null, '', newHash);
   }
   window.scrollTo({ top: 0, behavior: 'instant' });
+  if (window.refreshMenuActiveState) window.refreshMenuActiveState();
 }
 
 document.querySelectorAll('.tab').forEach(t => {
@@ -125,10 +126,12 @@ document.querySelectorAll('.bookmark-btn').forEach(btn => {
     }
     saveBookmarks(bookmarks);
     refreshBookmarkUI();
+    if (window.refreshMenuBookmarks) window.refreshMenuBookmarks();
   });
 });
 
 refreshBookmarkUI();
+if (window.refreshMenuBookmarks) window.refreshMenuBookmarks();
 
 // ===== 스포일러 토글 =====
 const sw = document.getElementById('spoiler-switch');
@@ -164,3 +167,103 @@ if (tabContents.length) {
     });
   });
 }
+
+// ===== 햄버거 + 슬라이드 사이드 메뉴 (v3) =====
+(function () {
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('side-menu');
+  const overlay = document.getElementById('side-menu-overlay');
+  const closeBtn = document.getElementById('menu-close');
+  if (!toggle || !menu || !overlay) return;
+
+  function openMenu() {
+    menu.classList.add('open');
+    overlay.classList.add('open');
+    menu.setAttribute('aria-hidden', 'false');
+    refreshMenuActiveState();
+    refreshMenuBookmarks();
+  }
+  function closeMenu() {
+    menu.classList.remove('open');
+    overlay.classList.remove('open');
+    menu.setAttribute('aria-hidden', 'true');
+  }
+
+  toggle.addEventListener('click', openMenu);
+  overlay.addEventListener('click', closeMenu);
+  if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
+  });
+
+  // 메뉴의 카테고리 항목 → 탭 전환 + 닫기
+  document.querySelectorAll('.menu-item-tab').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const slug = btn.dataset.tab;
+      showTab(slug);
+      closeMenu();
+    });
+  });
+
+  // 현재 활성 탭에 active 클래스
+  function refreshMenuActiveState() {
+    const activePanel = document.querySelector('.tab-panel.active');
+    const activeSlug = activePanel ? activePanel.dataset.tab : null;
+    document.querySelectorAll('.menu-item-tab').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.tab === activeSlug);
+    });
+  }
+
+  // 메뉴의 책갈피 목록 갱신
+  function refreshMenuBookmarks() {
+    const list = document.getElementById('menu-bookmarks-list');
+    if (!list) return;
+    const bookmarks = loadBookmarks();
+    if (bookmarks.length === 0) {
+      list.innerHTML = '<div class="menu-empty">아직 책갈피가 없습니다</div>';
+      return;
+    }
+    list.innerHTML = '';
+    bookmarks.forEach(id => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'menu-item menu-bookmark-item';
+      btn.innerHTML = '<span class="icon star">★</span><span class="label">' +
+        escapeHtml(getChapterTitle(id)) + '</span>';
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        // 책갈피는 챕터 탭에 있음 → 탭 전환 후 스크롤
+        showTab('chapters');
+        setTimeout(() => {
+          const target = document.getElementById(id);
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 150);
+        closeMenu();
+      });
+      list.appendChild(btn);
+    });
+  }
+  // refreshBookmarkUI에서 호출할 수 있도록 전역 노출
+  window.refreshMenuBookmarks = refreshMenuBookmarks;
+  window.refreshMenuActiveState = refreshMenuActiveState;
+
+  function escapeHtml(s) {
+    const d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  // 최초 1회
+  refreshMenuActiveState();
+  refreshMenuBookmarks();
+})();
+
+// 기존 책갈피/탭 변경 훅에서 메뉴 갱신 호출
+(function () {
+  const origRefresh = window.refreshBookmarkUI;
+  if (typeof origRefresh === 'function') {
+    // (이미 정의된 경우 — 안전장치, 보통 위 IIFE보다 위에 있어서 사용 안됨)
+  }
+})();
+

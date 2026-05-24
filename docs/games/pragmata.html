@@ -18,13 +18,39 @@
       <span class="logo-mark">▶</span>
       <span class="logo-text">PLAY ARCHIVE</span>
     </a>
-    <nav class="site-nav">
-      <a href="/Play_Archive/" class="nav-link">라이브러리</a>
-      <a href="https://github.com/Catomo88/Play_Archive" class="nav-link" target="_blank" rel="noopener">GitHub</a>
-    </nav>
+    <div class="header-right">
+      <nav class="site-nav">
+        <a href="/Play_Archive/" class="nav-link">라이브러리</a>
+        <a href="https://github.com/Catomo88/Play_Archive" class="nav-link" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button class="menu-toggle" id="menu-toggle" aria-label="메뉴 열기" type="button">
+        <span class="bars"><span></span><span></span><span></span></span>
+      </button>
+    </div>
   </div>
 </header>
 
+<div class="side-menu-overlay" id="side-menu-overlay"></div>
+<aside class="side-menu" id="side-menu" aria-hidden="true">
+  <div class="side-menu-header">
+    <h3 class="side-menu-title">목차</h3>
+    <button class="menu-close" id="menu-close" aria-label="메뉴 닫기" type="button">✕</button>
+  </div>
+  <div class="menu-section">
+    <div class="menu-section-title">카테고리</div>
+    <button class="menu-item menu-item-tab" data-tab="overview" type="button"><span class="icon">▸</span><span class="label">개요</span></button>
+<button class="menu-item menu-item-tab" data-tab="chapters" type="button"><span class="icon">▸</span><span class="label">챕터</span></button>
+<button class="menu-item menu-item-tab" data-tab="hidden" type="button"><span class="icon">▸</span><span class="label">히든</span></button>
+<button class="menu-item menu-item-tab" data-tab="achievements" type="button"><span class="icon">▸</span><span class="label">업적</span></button>
+<button class="menu-item menu-item-tab" data-tab="tips" type="button"><span class="icon">▸</span><span class="label">팁</span></button>
+  </div>
+  <div class="menu-section">
+    <div class="menu-section-title">📌 책갈피</div>
+    <div id="menu-bookmarks-list">
+      <div class="menu-empty">아직 책갈피가 없습니다</div>
+    </div>
+  </div>
+</aside>
 <article class="game-page">
   <header class="game-hero" style="background-image: linear-gradient(180deg, rgba(14,14,18,0.3) 0%, rgba(14,14,18,0.95) 80%), linear-gradient(135deg, #1a1a3a 0%, #003344 50%, #001122 100%);background-color: var(--bg-elevated);">
     <div class="game-hero-inner">
@@ -41,14 +67,6 @@
       <div class="game-status">진행중</div>
     </div>
   </header>
-
-  <div class="tabs-wrapper">
-    <div class="tabs"><button class="tab" data-tab="overview">개요</button>
-<button class="tab" data-tab="chapters">챕터</button>
-<button class="tab" data-tab="hidden">히든</button>
-<button class="tab" data-tab="achievements">업적</button>
-<button class="tab" data-tab="tips">팁</button></div>
-  </div>
 
   <main class="site-main">
     <div class="spoiler-banner">⚠️ 스토리 스포일러 포함. 토글로 가려진 텍스트 표시 가능</div>

@@ -536,6 +536,188 @@ body.show-spoilers .spoiler { background: transparent; color: inherit; }
   .chapter-nav { padding: 0.8rem; }
   .chapter-jump { padding: 0.4rem 0.7rem; font-size: 0.8rem; }
 }
+/* ===== 햄버거 메뉴 + 슬라이드 사이드바 (v3 UI) ===== */
+/* 기존 가로 스크롤 탭바 숨김 */
+.tabs-wrapper { display: none !important; }
+
+/* 헤더의 햄버거 버튼 */
+.menu-toggle {
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
+  width: 40px; height: 40px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  padding: 0;
+}
+.menu-toggle:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  box-shadow: 0 0 12px rgba(0,240,255,0.2);
+}
+.menu-toggle .bars {
+  display: inline-flex; flex-direction: column; gap: 4px;
+  width: 18px;
+}
+.menu-toggle .bars span {
+  display: block; height: 2px; background: currentColor; border-radius: 1px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+/* 슬라이드 사이드 메뉴 */
+.side-menu {
+  position: fixed;
+  top: 0; right: 0;
+  height: 100vh; height: 100dvh;
+  width: min(340px, 88vw);
+  background: var(--bg-elevated);
+  border-left: 1px solid var(--border-strong);
+  box-shadow: -8px 0 32px rgba(0,0,0,0.5);
+  transform: translateX(100%);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 300;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+}
+.side-menu.open { transform: translateX(0); }
+
+.side-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s;
+  z-index: 250;
+}
+.side-menu-overlay.open { opacity: 1; pointer-events: auto; }
+
+.side-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid var(--border-subtle);
+  position: sticky; top: 0;
+  background: var(--bg-elevated);
+  z-index: 1;
+}
+.side-menu-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  margin: 0;
+}
+.menu-close {
+  background: none;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+.menu-close:hover {
+  border-color: var(--accent-danger);
+  color: var(--accent-danger);
+}
+
+.menu-section {
+  padding: 1rem 0.6rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.menu-section:last-child { border-bottom: none; }
+.menu-section-title {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  padding: 0 0.6rem 0.6rem;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-decoration: none;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  margin-bottom: 0.15rem;
+}
+.menu-item:hover {
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+.menu-item.active {
+  background: linear-gradient(135deg, rgba(0,240,255,0.14), rgba(255,0,170,0.08));
+  color: var(--accent-cyan);
+  border-left: 3px solid var(--accent-cyan);
+  padding-left: calc(1rem - 3px);
+}
+.menu-item .icon {
+  width: 24px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.menu-item .label {
+  flex: 1;
+  font-weight: 500;
+}
+
+.menu-bookmark-item {
+  background: rgba(255,184,0,0.06);
+  border-left: 2px solid rgba(255,184,0,0.3);
+}
+.menu-bookmark-item:hover {
+  background: rgba(255,184,0,0.12);
+  color: #ffd95e;
+}
+.menu-bookmark-item .star {
+  color: var(--accent-amber);
+  flex-shrink: 0;
+}
+
+.menu-empty {
+  padding: 1rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.header-right { display: flex; align-items: center; gap: 0.8rem; }
+@media (max-width: 600px) {
+  .site-nav { display: none; }  /* 모바일에서는 햄버거 메뉴로 통합 */
+}
+
 """
 
 JS = r"""
@@ -570,6 +752,7 @@ function showTab(slug, pushState = true) {
     if (location.hash !== newHash) history.replaceState(null, '', newHash);
   }
   window.scrollTo({ top: 0, behavior: 'instant' });
+  if (window.refreshMenuActiveState) window.refreshMenuActiveState();
 }
 
 document.querySelectorAll('.tab').forEach(t => {
@@ -665,10 +848,12 @@ document.querySelectorAll('.bookmark-btn').forEach(btn => {
     }
     saveBookmarks(bookmarks);
     refreshBookmarkUI();
+    if (window.refreshMenuBookmarks) window.refreshMenuBookmarks();
   });
 });
 
 refreshBookmarkUI();
+if (window.refreshMenuBookmarks) window.refreshMenuBookmarks();
 
 // ===== 스포일러 토글 =====
 const sw = document.getElementById('spoiler-switch');
@@ -704,6 +889,106 @@ if (tabContents.length) {
     });
   });
 }
+
+// ===== 햄버거 + 슬라이드 사이드 메뉴 (v3) =====
+(function () {
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('side-menu');
+  const overlay = document.getElementById('side-menu-overlay');
+  const closeBtn = document.getElementById('menu-close');
+  if (!toggle || !menu || !overlay) return;
+
+  function openMenu() {
+    menu.classList.add('open');
+    overlay.classList.add('open');
+    menu.setAttribute('aria-hidden', 'false');
+    refreshMenuActiveState();
+    refreshMenuBookmarks();
+  }
+  function closeMenu() {
+    menu.classList.remove('open');
+    overlay.classList.remove('open');
+    menu.setAttribute('aria-hidden', 'true');
+  }
+
+  toggle.addEventListener('click', openMenu);
+  overlay.addEventListener('click', closeMenu);
+  if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
+  });
+
+  // 메뉴의 카테고리 항목 → 탭 전환 + 닫기
+  document.querySelectorAll('.menu-item-tab').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const slug = btn.dataset.tab;
+      showTab(slug);
+      closeMenu();
+    });
+  });
+
+  // 현재 활성 탭에 active 클래스
+  function refreshMenuActiveState() {
+    const activePanel = document.querySelector('.tab-panel.active');
+    const activeSlug = activePanel ? activePanel.dataset.tab : null;
+    document.querySelectorAll('.menu-item-tab').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.tab === activeSlug);
+    });
+  }
+
+  // 메뉴의 책갈피 목록 갱신
+  function refreshMenuBookmarks() {
+    const list = document.getElementById('menu-bookmarks-list');
+    if (!list) return;
+    const bookmarks = loadBookmarks();
+    if (bookmarks.length === 0) {
+      list.innerHTML = '<div class="menu-empty">아직 책갈피가 없습니다</div>';
+      return;
+    }
+    list.innerHTML = '';
+    bookmarks.forEach(id => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'menu-item menu-bookmark-item';
+      btn.innerHTML = '<span class="icon star">★</span><span class="label">' +
+        escapeHtml(getChapterTitle(id)) + '</span>';
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        // 책갈피는 챕터 탭에 있음 → 탭 전환 후 스크롤
+        showTab('chapters');
+        setTimeout(() => {
+          const target = document.getElementById(id);
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 150);
+        closeMenu();
+      });
+      list.appendChild(btn);
+    });
+  }
+  // refreshBookmarkUI에서 호출할 수 있도록 전역 노출
+  window.refreshMenuBookmarks = refreshMenuBookmarks;
+  window.refreshMenuActiveState = refreshMenuActiveState;
+
+  function escapeHtml(s) {
+    const d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  // 최초 1회
+  refreshMenuActiveState();
+  refreshMenuBookmarks();
+})();
+
+// 기존 책갈피/탭 변경 훅에서 메뉴 갱신 호출
+(function () {
+  const origRefresh = window.refreshBookmarkUI;
+  if (typeof origRefresh === 'function') {
+    // (이미 정의된 경우 — 안전장치, 보통 위 IIFE보다 위에 있어서 사용 안됨)
+  }
+})();
+
 """
 
 HEAD_TPL = """<!DOCTYPE html>
@@ -728,10 +1013,15 @@ HEADER_TPL = """<header class="site-header">
       <span class="logo-mark">▶</span>
       <span class="logo-text">PLAY ARCHIVE</span>
     </a>
-    <nav class="site-nav">
-      <a href="{base}/" class="nav-link">라이브러리</a>
-      <a href="https://github.com/{user}/Play_Archive" class="nav-link" target="_blank" rel="noopener">GitHub</a>
-    </nav>
+    <div class="header-right">
+      <nav class="site-nav">
+        <a href="{base}/" class="nav-link">라이브러리</a>
+        <a href="https://github.com/{user}/Play_Archive" class="nav-link" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button class="menu-toggle" id="menu-toggle" aria-label="메뉴 열기" type="button">
+        <span class="bars"><span></span><span></span><span></span></span>
+      </button>
+    </div>
   </div>
 </header>
 """
@@ -933,7 +1223,33 @@ def render_game(game, base, user, author):
     header = HEADER_TPL.format(base=base, user=user)
     footer = FOOTER_TPL.format(author=escape(author), base=base)
 
+    # 사이드 메뉴 카테고리 항목
+    menu_tab_items = "\n".join(
+        f'<button class="menu-item menu-item-tab" data-tab="{escape(t["slug"])}" type="button">'
+        f'<span class="icon">▸</span><span class="label">{escape(t["name"])}</span></button>'
+        for t in tabs
+    )
+
+    side_menu = f"""<div class="side-menu-overlay" id="side-menu-overlay"></div>
+<aside class="side-menu" id="side-menu" aria-hidden="true">
+  <div class="side-menu-header">
+    <h3 class="side-menu-title">목차</h3>
+    <button class="menu-close" id="menu-close" aria-label="메뉴 닫기" type="button">✕</button>
+  </div>
+  <div class="menu-section">
+    <div class="menu-section-title">카테고리</div>
+    {menu_tab_items}
+  </div>
+  <div class="menu-section">
+    <div class="menu-section-title">📌 책갈피</div>
+    <div id="menu-bookmarks-list">
+      <div class="menu-empty">아직 책갈피가 없습니다</div>
+    </div>
+  </div>
+</aside>"""
+
     return f"""{head}{header}
+{side_menu}
 <article class="game-page">
   <header class="game-hero" style="{hero_style}">
     <div class="game-hero-inner">
@@ -944,10 +1260,6 @@ def render_game(game, base, user, author):
       {status_html}
     </div>
   </header>
-
-  <div class="tabs-wrapper">
-    <div class="tabs">{tab_buttons}</div>
-  </div>
 
   <main class="site-main">
     {spoiler_banner}

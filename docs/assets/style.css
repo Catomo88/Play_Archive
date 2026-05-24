@@ -401,3 +401,185 @@ body.show-spoilers .spoiler { background: transparent; color: inherit; }
   .chapter-nav { padding: 0.8rem; }
   .chapter-jump { padding: 0.4rem 0.7rem; font-size: 0.8rem; }
 }
+/* ===== 햄버거 메뉴 + 슬라이드 사이드바 (v3 UI) ===== */
+/* 기존 가로 스크롤 탭바 숨김 */
+.tabs-wrapper { display: none !important; }
+
+/* 헤더의 햄버거 버튼 */
+.menu-toggle {
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
+  width: 40px; height: 40px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  padding: 0;
+}
+.menu-toggle:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  box-shadow: 0 0 12px rgba(0,240,255,0.2);
+}
+.menu-toggle .bars {
+  display: inline-flex; flex-direction: column; gap: 4px;
+  width: 18px;
+}
+.menu-toggle .bars span {
+  display: block; height: 2px; background: currentColor; border-radius: 1px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+/* 슬라이드 사이드 메뉴 */
+.side-menu {
+  position: fixed;
+  top: 0; right: 0;
+  height: 100vh; height: 100dvh;
+  width: min(340px, 88vw);
+  background: var(--bg-elevated);
+  border-left: 1px solid var(--border-strong);
+  box-shadow: -8px 0 32px rgba(0,0,0,0.5);
+  transform: translateX(100%);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 300;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+}
+.side-menu.open { transform: translateX(0); }
+
+.side-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s;
+  z-index: 250;
+}
+.side-menu-overlay.open { opacity: 1; pointer-events: auto; }
+
+.side-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid var(--border-subtle);
+  position: sticky; top: 0;
+  background: var(--bg-elevated);
+  z-index: 1;
+}
+.side-menu-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  margin: 0;
+}
+.menu-close {
+  background: none;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+.menu-close:hover {
+  border-color: var(--accent-danger);
+  color: var(--accent-danger);
+}
+
+.menu-section {
+  padding: 1rem 0.6rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.menu-section:last-child { border-bottom: none; }
+.menu-section-title {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  padding: 0 0.6rem 0.6rem;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-decoration: none;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  margin-bottom: 0.15rem;
+}
+.menu-item:hover {
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+.menu-item.active {
+  background: linear-gradient(135deg, rgba(0,240,255,0.14), rgba(255,0,170,0.08));
+  color: var(--accent-cyan);
+  border-left: 3px solid var(--accent-cyan);
+  padding-left: calc(1rem - 3px);
+}
+.menu-item .icon {
+  width: 24px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.menu-item .label {
+  flex: 1;
+  font-weight: 500;
+}
+
+.menu-bookmark-item {
+  background: rgba(255,184,0,0.06);
+  border-left: 2px solid rgba(255,184,0,0.3);
+}
+.menu-bookmark-item:hover {
+  background: rgba(255,184,0,0.12);
+  color: #ffd95e;
+}
+.menu-bookmark-item .star {
+  color: var(--accent-amber);
+  flex-shrink: 0;
+}
+
+.menu-empty {
+  padding: 1rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.header-right { display: flex; align-items: center; gap: 0.8rem; }
+@media (max-width: 600px) {
+  .site-nav { display: none; }  /* 모바일에서는 햄버거 메뉴로 통합 */
+}
+
