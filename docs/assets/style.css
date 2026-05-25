@@ -895,3 +895,217 @@ blockquote.quote::before {
   max-width: none;
 }
 
+/* ===== P0 가시성 개선 (v5) ===== */
+
+/* 1. 본문 폰트 16px 회복 (모바일 가독성) */
+.tab-content { font-size: 1rem; line-height: 1.75; }
+
+/* 2. 박스 톤다운 — 배경 거의 투명, 좌측 보더만 강조 */
+.tip, .warn, .boss, .secret {
+  background: rgba(255,255,255,0.02);
+  padding: 0.85rem 1.1rem;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.95rem;
+}
+.tip { border-left: 3px solid var(--accent-success); }
+.warn { border-left: 3px solid var(--accent-amber); }
+.boss { border-left: 3px solid var(--accent-danger); }
+.secret { border-left: 3px solid var(--accent-magenta); }
+
+/* info-card 단일 톤 + 좌측 보더만 진하게 */
+.info-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+}
+.info-card::before {
+  width: 3px;
+  background: var(--accent-cyan);
+}
+
+/* boss-card 더 절제된 색감 */
+.boss-card {
+  background: rgba(255,51,85,0.04);
+  border: 1px solid rgba(255,51,85,0.18);
+}
+.boss-card-header {
+  background: rgba(255,51,85,0.08);
+}
+
+/* 3. 표 안의 ▶ 칩 톤다운 — 빨간 배경 제거, 작은 텍스트로 */
+.tab-content table .yt-mini {
+  background: transparent;
+  border: none;
+  color: var(--text-muted) !important;
+  padding: 0;
+  font-weight: 600;
+  font-size: 0.78rem;
+}
+.tab-content table .yt-mini::before {
+  color: var(--accent-cyan);
+  opacity: 0.8;
+}
+.tab-content table .yt-mini:hover {
+  color: var(--accent-cyan) !important;
+  background: transparent;
+}
+
+/* 4. 모바일 표 → 카드 리스트 변환 (375px 이하 작은 화면 우선) */
+@media (max-width: 600px) {
+  .tab-content { font-size: 1rem; }
+  .tab-content table {
+    display: block;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  .tab-content table thead { display: none; }
+  .tab-content table tbody { display: block; }
+  .tab-content table tr {
+    display: block;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+    margin-bottom: 0.55rem;
+  }
+  .tab-content table td {
+    display: block;
+    border: none !important;
+    padding: 0.15rem 0;
+    font-size: 0.92rem;
+    background: transparent !important;
+  }
+  .tab-content table td:first-child {
+    font-family: var(--font-display);
+    color: var(--accent-cyan);
+    font-size: 0.82rem;
+    letter-spacing: 0.03em;
+    border-bottom: 1px solid var(--border-subtle) !important;
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.4rem;
+  }
+  .tab-content table td:nth-child(2) {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .tab-content table td:nth-child(3),
+  .tab-content table td:nth-child(4) {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+  }
+  .tab-content table tr:hover td { background: transparent !important; }
+}
+
+/* ===== 챕터 sub-router (인덱스 ↔ 챕터 상세) ===== */
+.chapter-index {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.chapter-card {
+  display: block;
+  padding: 1.2rem 1.3rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  text-decoration: none !important;
+  color: var(--text-primary) !important;
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.chapter-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 4px; height: 100%;
+  background: linear-gradient(180deg, var(--accent-cyan), var(--accent-magenta));
+  opacity: 0.7;
+}
+.chapter-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3), 0 0 20px rgba(0,240,255,0.15);
+}
+.chapter-card-num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.78rem;
+  color: var(--accent-cyan);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.3rem;
+}
+.chapter-card-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 0 0 0.4rem;
+  color: var(--text-primary);
+}
+.chapter-card-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+.chapter-card-tags {
+  display: flex; flex-wrap: wrap; gap: 0.3rem;
+  margin-top: 0.6rem;
+}
+
+/* 챕터 상세 view */
+.chapter-section { display: none; }
+.chapter-section.active {
+  display: block;
+  animation: chSlideIn 0.25s ease;
+}
+@keyframes chSlideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+.chapter-back-bar {
+  position: sticky;
+  top: 54px;
+  z-index: 40;
+  background: rgba(10,10,15,0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+  margin: -1.5rem -1.2rem 1.5rem;
+  padding: 0.6rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.chapter-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.35rem 0.7rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  color: var(--text-secondary) !important;
+  text-decoration: none !important;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+.chapter-back-link:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan) !important;
+}
+.chapter-current-label {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* 챕터 인덱스 활성 시 안내문 */
+.chapter-index-intro {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 0.6rem 0 1rem;
+  font-size: 0.93rem;
+}
+

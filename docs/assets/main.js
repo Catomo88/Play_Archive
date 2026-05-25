@@ -316,3 +316,69 @@ if (tabContents.length) {
   }
 })();
 
+
+// ===== 챕터 sub-router (인덱스 ↔ 챕터 상세) =====
+(function () {
+  const indexView = document.getElementById('chapter-index-view');
+  const sections = document.querySelectorAll('.chapter-section');
+  if (!indexView || !sections.length) return;
+
+  function showChapter(num) {
+    if (!num || num === 'index') {
+      indexView.style.display = '';
+      sections.forEach(s => s.classList.remove('active'));
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      return;
+    }
+    indexView.style.display = 'none';
+    sections.forEach(s => {
+      s.classList.toggle('active', s.dataset.ch === String(num));
+    });
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  // 인덱스 카드 클릭
+  document.querySelectorAll('.chapter-card').forEach(card => {
+    card.addEventListener('click', e => {
+      e.preventDefault();
+      const num = card.dataset.ch;
+      const newHash = `#tab=chapters&ch=${num}`;
+      if (location.hash !== newHash) history.pushState(null, '', newHash);
+      showChapter(num);
+    });
+  });
+
+  // 뒤로가기 (챕터 → 인덱스)
+  document.querySelectorAll('.chapter-back-link').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      history.pushState(null, '', '#tab=chapters');
+      showChapter('index');
+    });
+  });
+
+  // ESC → 인덱스
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !document.getElementById('side-menu').classList.contains('open')) {
+      const active = document.querySelector('.chapter-section.active');
+      if (active) {
+        history.pushState(null, '', '#tab=chapters');
+        showChapter('index');
+      }
+    }
+  });
+
+  // 초기 URL 처리 — #tab=chapters&ch=N 있으면 해당 챕터 표시
+  function syncFromHash() {
+    const hash = location.hash;
+    const m = hash.match(/ch=(\d+)/);
+    if (m && hash.includes('tab=chapters')) {
+      showChapter(m[1]);
+    } else if (hash.includes('tab=chapters')) {
+      showChapter('index');
+    }
+  }
+  syncFromHash();
+  window.addEventListener('popstate', syncFromHash);
+})();
+

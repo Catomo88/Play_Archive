@@ -138,30 +138,92 @@ def split_into_tabs(body):
 
 
 def add_chapter_features(html, tab_slug):
-    """챕터 탭에서 챕터 점프 네비 + 책갈피 별 토글을 추가."""
+    """챕터 탭에서 챕터 점프 네비 + 책갈피 + sub-router (인덱스 ↔ 챕터 상세)."""
     if "chapter" not in tab_slug.lower():
         return html, []
-    # h3 추출 (챕터 후보)
+    # h3 추출 (책갈피용)
     h3_pattern = re.compile(r'<h3([^>]*)>(.*?)</h3>', re.DOTALL)
     chapters = []
     for m in h3_pattern.finditer(html):
         attrs = m.group(1)
         title = re.sub(r'<[^>]+>', '', m.group(2)).strip()
-        # h3 id 추출 (markdown extension이 자동 생성)
         id_match = re.search(r'id="([^"]+)"', attrs)
         h_id = id_match.group(1) if id_match else re.sub(r'[^\w가-힣]+', '-', title).strip('-').lower()
         chapters.append({"id": h_id, "title": title})
-    # 각 h3 옆에 책갈피 버튼 삽입
+
+    # 책갈피 버튼 삽입
     def inject_bookmark(m):
         attrs = m.group(1)
         inner = m.group(2)
         id_match = re.search(r'id="([^"]+)"', attrs)
         h_id = id_match.group(1) if id_match else ""
-        # 책갈피 별 버튼
         btn = f'<button class="bookmark-btn" data-chapter-id="{escape(h_id)}" title="책갈피 토글" aria-label="책갈피 토글">★</button>'
         return f'<h3{attrs}>{btn}{inner}</h3>'
-    html_with_btns = h3_pattern.sub(inject_bookmark, html)
-    return html_with_btns, chapters
+    html = h3_pattern.sub(inject_bookmark, html)
+
+    # ===== 챕터별 sub-section wrap =====
+    # ## 챕터 X 헤더 = <h2 id="X">로 markdown 변환됨
+    # 챕터 시작 패턴: <h2 ...>챕터 N ─ ...</h2>
+    ch_header_re = re.compile(r'<h2([^>]*)>(\s*)(챕터\s*(\d+)[^<]*)</h2>', re.DOTALL)
+    matches = list(ch_header_re.finditer(html))
+
+    if not matches:
+        return html, chapters
+
+    # 챕터 인덱스 메타
+    ch_meta = {
+        '1': ('태양광 발전소', '튜토리얼 + 첫 보스(섹터 가드)'),
+        '2': ('대규모 출력 실험장', '다이애나 정화 파워 해금 · 크리에이터 보스'),
+        '3': ('테라돔', '에이트 조우 · 가든 키퍼 보스 · 메인 목표 공개'),
+        '4': ('루넘 채굴장', '루나 디거 보스 · 메인 프레임 결전지'),
+        '5': ('센트럴 포트', '데드 필라멘트 정화 + 키네틱 그래플'),
+        '6': ('섹터 9 궤도 엘리베이터', '⚠️ Point of No Return · 최종 보스'),
+    }
+
+    # 챕터 인트로 부분 (첫 챕터 헤더 전 — 영상 가이드 카드 등) 그대로 + 인덱스 카드 + 챕터 sections
+    intro_part = html[:matches[0].start()]
+
+    # 인덱스 카드 생성
+    cards = []
+    for i, m in enumerate(matches):
+        num = m.group(4)
+        title, desc = ch_meta.get(num, (f'챕터 {num}', ''))
+        cards.append(
+            f'<a class="chapter-card" data-ch="{num}" href="#tab=chapters&ch={num}">'
+            f'<div class="chapter-card-num">CH.{num}</div>'
+            f'<h3 class="chapter-card-title">{escape(title)}</h3>'
+            f'<p class="chapter-card-desc">{escape(desc)}</p>'
+            f'</a>'
+        )
+    index_html = (
+        '<div class="chapter-index-view" id="chapter-index-view">'
+        '<div class="chapter-index-intro">📚 챕터 카드를 선택하면 해당 챕터로 들어갑니다. ESC 또는 ← 라이브러리로 인덱스 복귀.</div>'
+        '<div class="chapter-index">' + '\n'.join(cards) + '</div>'
+        '</div>'
+    )
+
+    # 각 챕터 sections 생성
+    sections = []
+    for i, m in enumerate(matches):
+        num = m.group(4)
+        ch_start = m.start()
+        ch_end = matches[i+1].start() if i+1 < len(matches) else len(html)
+        ch_content = html[ch_start:ch_end]
+        title, desc = ch_meta.get(num, (f'챕터 {num}', ''))
+        back_bar = (
+            f'<div class="chapter-back-bar">'
+            f'<a class="chapter-back-link" href="#tab=chapters" data-ch="back">← 챕터 인덱스</a>'
+            f'<span class="chapter-current-label">CH.{num} · {escape(title)}</span>'
+            f'</div>'
+        )
+        sections.append(
+            f'<section class="chapter-section" data-ch="{num}" id="chapter-{num}">'
+            f'{back_bar}{ch_content}'
+            f'</section>'
+        )
+
+    new_html = intro_part + index_html + '\n'.join(sections)
+    return new_html, chapters
 
 
 CSS = """
@@ -1061,6 +1123,220 @@ blockquote.quote::before {
   max-width: none;
 }
 
+/* ===== P0 가시성 개선 (v5) ===== */
+
+/* 1. 본문 폰트 16px 회복 (모바일 가독성) */
+.tab-content { font-size: 1rem; line-height: 1.75; }
+
+/* 2. 박스 톤다운 — 배경 거의 투명, 좌측 보더만 강조 */
+.tip, .warn, .boss, .secret {
+  background: rgba(255,255,255,0.02);
+  padding: 0.85rem 1.1rem;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.95rem;
+}
+.tip { border-left: 3px solid var(--accent-success); }
+.warn { border-left: 3px solid var(--accent-amber); }
+.boss { border-left: 3px solid var(--accent-danger); }
+.secret { border-left: 3px solid var(--accent-magenta); }
+
+/* info-card 단일 톤 + 좌측 보더만 진하게 */
+.info-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+}
+.info-card::before {
+  width: 3px;
+  background: var(--accent-cyan);
+}
+
+/* boss-card 더 절제된 색감 */
+.boss-card {
+  background: rgba(255,51,85,0.04);
+  border: 1px solid rgba(255,51,85,0.18);
+}
+.boss-card-header {
+  background: rgba(255,51,85,0.08);
+}
+
+/* 3. 표 안의 ▶ 칩 톤다운 — 빨간 배경 제거, 작은 텍스트로 */
+.tab-content table .yt-mini {
+  background: transparent;
+  border: none;
+  color: var(--text-muted) !important;
+  padding: 0;
+  font-weight: 600;
+  font-size: 0.78rem;
+}
+.tab-content table .yt-mini::before {
+  color: var(--accent-cyan);
+  opacity: 0.8;
+}
+.tab-content table .yt-mini:hover {
+  color: var(--accent-cyan) !important;
+  background: transparent;
+}
+
+/* 4. 모바일 표 → 카드 리스트 변환 (375px 이하 작은 화면 우선) */
+@media (max-width: 600px) {
+  .tab-content { font-size: 1rem; }
+  .tab-content table {
+    display: block;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  .tab-content table thead { display: none; }
+  .tab-content table tbody { display: block; }
+  .tab-content table tr {
+    display: block;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+    margin-bottom: 0.55rem;
+  }
+  .tab-content table td {
+    display: block;
+    border: none !important;
+    padding: 0.15rem 0;
+    font-size: 0.92rem;
+    background: transparent !important;
+  }
+  .tab-content table td:first-child {
+    font-family: var(--font-display);
+    color: var(--accent-cyan);
+    font-size: 0.82rem;
+    letter-spacing: 0.03em;
+    border-bottom: 1px solid var(--border-subtle) !important;
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.4rem;
+  }
+  .tab-content table td:nth-child(2) {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .tab-content table td:nth-child(3),
+  .tab-content table td:nth-child(4) {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+  }
+  .tab-content table tr:hover td { background: transparent !important; }
+}
+
+/* ===== 챕터 sub-router (인덱스 ↔ 챕터 상세) ===== */
+.chapter-index {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.chapter-card {
+  display: block;
+  padding: 1.2rem 1.3rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  text-decoration: none !important;
+  color: var(--text-primary) !important;
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.chapter-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 4px; height: 100%;
+  background: linear-gradient(180deg, var(--accent-cyan), var(--accent-magenta));
+  opacity: 0.7;
+}
+.chapter-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3), 0 0 20px rgba(0,240,255,0.15);
+}
+.chapter-card-num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.78rem;
+  color: var(--accent-cyan);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.3rem;
+}
+.chapter-card-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 0 0 0.4rem;
+  color: var(--text-primary);
+}
+.chapter-card-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+.chapter-card-tags {
+  display: flex; flex-wrap: wrap; gap: 0.3rem;
+  margin-top: 0.6rem;
+}
+
+/* 챕터 상세 view */
+.chapter-section { display: none; }
+.chapter-section.active {
+  display: block;
+  animation: chSlideIn 0.25s ease;
+}
+@keyframes chSlideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+.chapter-back-bar {
+  position: sticky;
+  top: 54px;
+  z-index: 40;
+  background: rgba(10,10,15,0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+  margin: -1.5rem -1.2rem 1.5rem;
+  padding: 0.6rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.chapter-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.35rem 0.7rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  color: var(--text-secondary) !important;
+  text-decoration: none !important;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+.chapter-back-link:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan) !important;
+}
+.chapter-current-label {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* 챕터 인덱스 활성 시 안내문 */
+.chapter-index-intro {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 0.6rem 0 1rem;
+  font-size: 0.93rem;
+}
+
 """
 
 JS = r"""
@@ -1379,6 +1655,72 @@ if (tabContents.length) {
   if (typeof MutationObserver !== 'undefined') {
     new MutationObserver(setupFacade).observe(document.body, { childList: true, subtree: true });
   }
+})();
+
+
+// ===== 챕터 sub-router (인덱스 ↔ 챕터 상세) =====
+(function () {
+  const indexView = document.getElementById('chapter-index-view');
+  const sections = document.querySelectorAll('.chapter-section');
+  if (!indexView || !sections.length) return;
+
+  function showChapter(num) {
+    if (!num || num === 'index') {
+      indexView.style.display = '';
+      sections.forEach(s => s.classList.remove('active'));
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      return;
+    }
+    indexView.style.display = 'none';
+    sections.forEach(s => {
+      s.classList.toggle('active', s.dataset.ch === String(num));
+    });
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  // 인덱스 카드 클릭
+  document.querySelectorAll('.chapter-card').forEach(card => {
+    card.addEventListener('click', e => {
+      e.preventDefault();
+      const num = card.dataset.ch;
+      const newHash = `#tab=chapters&ch=${num}`;
+      if (location.hash !== newHash) history.pushState(null, '', newHash);
+      showChapter(num);
+    });
+  });
+
+  // 뒤로가기 (챕터 → 인덱스)
+  document.querySelectorAll('.chapter-back-link').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      history.pushState(null, '', '#tab=chapters');
+      showChapter('index');
+    });
+  });
+
+  // ESC → 인덱스
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !document.getElementById('side-menu').classList.contains('open')) {
+      const active = document.querySelector('.chapter-section.active');
+      if (active) {
+        history.pushState(null, '', '#tab=chapters');
+        showChapter('index');
+      }
+    }
+  });
+
+  // 초기 URL 처리 — #tab=chapters&ch=N 있으면 해당 챕터 표시
+  function syncFromHash() {
+    const hash = location.hash;
+    const m = hash.match(/ch=(\d+)/);
+    if (m && hash.includes('tab=chapters')) {
+      showChapter(m[1]);
+    } else if (hash.includes('tab=chapters')) {
+      showChapter('index');
+    }
+  }
+  syncFromHash();
+  window.addEventListener('popstate', syncFromHash);
 })();
 
 """
