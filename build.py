@@ -195,10 +195,12 @@ def add_chapter_features(html, tab_slug):
             f'<p class="chapter-card-desc">{escape(desc)}</p>'
             f'</a>'
         )
+    # 인덱스 view 내부: 카드 그리드 + intro_part (Ch.0 등 챕터 전 콘텐츠)
     index_html = (
         '<div class="chapter-index-view" id="chapter-index-view">'
-        '<div class="chapter-index-intro">📚 챕터 카드를 선택하면 해당 챕터로 들어갑니다. ESC 또는 ← 라이브러리로 인덱스 복귀.</div>'
+        '<div class="chapter-index-intro">📚 챕터 카드를 선택하면 해당 챕터로 들어갑니다. ESC 또는 ← 챕터 인덱스 버튼으로 복귀.</div>'
         '<div class="chapter-index">' + '\n'.join(cards) + '</div>'
+        '<div class="chapter-index-extra">' + intro_part + '</div>'
         '</div>'
     )
 
@@ -216,13 +218,23 @@ def add_chapter_features(html, tab_slug):
             f'<span class="chapter-current-label">CH.{num} · {escape(title)}</span>'
             f'</div>'
         )
+        # 챕터 hero 배너 (상단 큰 헤더)
+        # ch_content에서 첫 <h2> 제거 (hero가 대신 함)
+        ch_no_h2 = re.sub(r'^<h2[^>]*>[^<]*</h2>', '', ch_content.lstrip(), count=1)
+        hero = (
+            f'<header class="chapter-hero">'
+            f'<div class="chapter-hero-num">CHAPTER {num}</div>'
+            f'<h2 class="chapter-hero-title">{escape(title)}</h2>'
+            f'<p class="chapter-hero-desc">{escape(desc)}</p>'
+            f'</header>'
+        )
         sections.append(
             f'<section class="chapter-section" data-ch="{num}" id="chapter-{num}">'
-            f'{back_bar}{ch_content}'
+            f'{back_bar}{hero}{ch_no_h2}'
             f'</section>'
         )
 
-    new_html = intro_part + index_html + '\n'.join(sections)
+    new_html = index_html + '\n'.join(sections)
     return new_html, chapters
 
 
@@ -1337,6 +1349,141 @@ blockquote.quote::before {
   font-size: 0.93rem;
 }
 
+
+/* ===== 메뉴 챕터 항목 + chapter-nav 숨김 (v6) ===== */
+.menu-chapter-item {
+  background: rgba(0,240,255,0.04);
+  border-left: 2px solid rgba(0,240,255,0.3);
+}
+.menu-chapter-item:hover {
+  background: rgba(0,240,255,0.12);
+  color: var(--accent-cyan);
+}
+.menu-chapter-item .icon {
+  color: var(--accent-cyan);
+}
+
+/* 기존 chapter-nav (큰 빠른 이동 네비) 완전 숨김 - sub-router로 대체됨 */
+.chapter-nav { display: none !important; }
+
+
+/* ===== v6 챕터 내부 가시성 강화 ===== */
+
+/* 챕터 인덱스 안의 intro 영역 */
+.chapter-index-extra {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* 챕터 hero 배너 (각 챕터 상단 큰 헤더) */
+.chapter-hero {
+  position: relative;
+  padding: 1.8rem 1.5rem 1.5rem;
+  margin: 0 -1.2rem 2rem;
+  background: linear-gradient(135deg, rgba(0,240,255,0.10), rgba(255,0,170,0.05));
+  border-bottom: 1px solid var(--border-strong);
+  border-top: 1px solid var(--border-subtle);
+  text-align: center;
+  overflow: hidden;
+}
+.chapter-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; right: -100px;
+  width: 300px; height: 100%;
+  background: radial-gradient(ellipse, rgba(0,240,255,0.15), transparent 70%);
+  pointer-events: none;
+}
+.chapter-hero-num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.78rem;
+  color: var(--accent-cyan);
+  letter-spacing: 0.18em;
+  margin-bottom: 0.3rem;
+  position: relative;
+}
+.chapter-hero-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  letter-spacing: 0.04em;
+  margin: 0 0 0.4rem;
+  line-height: 1.1;
+  color: var(--text-primary);
+  position: relative;
+}
+.chapter-hero-title::before { content: ''; }
+.chapter-hero-desc {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.93rem;
+  position: relative;
+}
+
+/* 챕터 내부 h2 (sub-section 타이틀) — 일관된 시각 */
+.chapter-section .tab-content > h2,
+.chapter-section > h2 {
+  margin-top: 3rem;
+  padding: 0.5rem 0.8rem;
+  background: linear-gradient(90deg, rgba(0,240,255,0.10), transparent 80%);
+  border-left: 4px solid var(--accent-cyan);
+  border-radius: 0 8px 8px 0;
+  border-bottom: none;
+  font-size: 1.4rem;
+}
+
+/* h3 — 사이드 라벨 스타일 (가시성 ↑) */
+.chapter-section h3 {
+  position: relative;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-left: 0.9rem;
+  background: transparent;
+  border-radius: 0;
+  border-left: 3px solid var(--accent-magenta);
+  font-size: 1.15rem;
+  color: var(--accent-cyan);
+}
+
+/* h4 — 더 작은 시각 구분 */
+.chapter-section h4 {
+  margin-top: 1.3rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: var(--text-primary);
+  border-bottom: 1px dashed var(--border-subtle);
+  padding-bottom: 0.3rem;
+}
+
+/* sub-section 사이 자연 호흡 */
+.chapter-section hr {
+  margin: 3rem 0;
+  border: none;
+  border-top: 1px solid var(--border-subtle);
+  position: relative;
+}
+.chapter-section hr::after {
+  content: '◆';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-base);
+  padding: 0 0.8rem;
+  color: var(--accent-cyan);
+  font-size: 0.8rem;
+}
+
+/* 챕터 카드 그리드 — 한 줄에 2개로 변경 (모바일은 1개) */
+@media (min-width: 600px) {
+  .chapter-index { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 900px) {
+  .chapter-index { grid-template-columns: repeat(3, 1fr); }
+}
+
 """
 
 JS = r"""
@@ -1523,6 +1670,7 @@ if (tabContents.length) {
     menu.setAttribute('aria-hidden', 'false');
     refreshMenuActiveState();
     refreshMenuBookmarks();
+    refreshMenuChapters();
   }
   function closeMenu() {
     menu.classList.remove('open');
@@ -1557,6 +1705,43 @@ if (tabContents.length) {
   }
 
   // 메뉴의 책갈피 목록 갱신
+  function refreshMenuChapters() {
+    const list = document.getElementById('menu-chapters-list');
+    if (!list) return;
+    const cards = document.querySelectorAll('.chapter-card');
+    if (!cards.length) {
+      const section = document.getElementById('menu-chapters-section');
+      if (section) section.style.display = 'none';
+      return;
+    }
+    list.innerHTML = '';
+    cards.forEach(card => {
+      const num = card.dataset.ch;
+      const title = card.querySelector('.chapter-card-title')?.textContent?.trim() || `챕터 ${num}`;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'menu-item menu-chapter-item';
+      btn.dataset.ch = num;
+      btn.innerHTML = '<span class="icon">📖</span><span class="label">CH.' + num + ' · ' + escapeHtml(title) + '</span>';
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        // 챕터 탭으로 전환 + 해당 챕터 표시
+        showTab('chapters');
+        setTimeout(() => {
+          history.pushState(null, '', `#tab=chapters&ch=${num}`);
+          // chapter sub-router의 showChapter 호출 트리거 (popstate)
+          window.dispatchEvent(new PopStateEvent('popstate'));
+          // fallback: 직접 카드 클릭 흉내
+          const targetCard = document.querySelector(`.chapter-card[data-ch="${num}"]`);
+          if (targetCard) targetCard.click();
+        }, 150);
+        closeMenu();
+      });
+      list.appendChild(btn);
+    });
+  }
+  window.refreshMenuChapters = refreshMenuChapters;
+
   function refreshMenuBookmarks() {
     const list = document.getElementById('menu-bookmarks-list');
     if (!list) return;
@@ -1598,6 +1783,7 @@ if (tabContents.length) {
   // 최초 1회
   refreshMenuActiveState();
   refreshMenuBookmarks();
+  refreshMenuChapters();
 })();
 
 // 기존 책갈피/탭 변경 훅에서 메뉴 갱신 호출
@@ -1862,20 +2048,12 @@ def render_tab_panel(tab, fm):
     html_body, chapters = add_chapter_features(html_body, tab["slug"])
     extras = ""
     if chapters:
+        # 책갈피 패널만 유지 (chapter-nav는 sub-router로 대체됨)
         extras += (
             '<div id="bookmarks-panel" class="bookmarks-panel empty">'
             '<div class="bookmarks-panel-title">📌 책갈피</div>'
             '<div class="bookmarks-list"></div>'
             '</div>'
-        )
-        jumps = "\n".join(
-            f'<button class="chapter-jump" data-target="{escape(c["id"])}">{escape(c["title"])}</button>'
-            for c in chapters
-        )
-        extras += (
-            '<nav class="chapter-nav">'
-            '<div class="chapter-nav-title">⚡ 챕터 빠른 이동</div>'
-            f'{jumps}</nav>'
         )
     return f'<div class="tab-panel tab-content" data-tab="{escape(tab["slug"])}">{extras}{html_body}</div>'
 
@@ -1973,6 +2151,12 @@ def render_game(game, base, user, author):
   <div class="menu-section">
     <div class="menu-section-title">카테고리</div>
     {menu_tab_items}
+  </div>
+  <div class="menu-section" id="menu-chapters-section">
+    <div class="menu-section-title">📚 챕터 바로가기</div>
+    <div id="menu-chapters-list">
+      <div class="menu-empty">챕터 데이터 로드 중…</div>
+    </div>
   </div>
   <div class="menu-section">
     <div class="menu-section-title">📌 책갈피</div>

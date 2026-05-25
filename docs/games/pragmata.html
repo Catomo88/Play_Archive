@@ -44,6 +44,12 @@
 <button class="menu-item menu-item-tab" data-tab="achievements" type="button"><span class="icon">▸</span><span class="label">업적</span></button>
 <button class="menu-item menu-item-tab" data-tab="tips" type="button"><span class="icon">▸</span><span class="label">팁</span></button>
   </div>
+  <div class="menu-section" id="menu-chapters-section">
+    <div class="menu-section-title">📚 챕터 바로가기</div>
+    <div id="menu-chapters-list">
+      <div class="menu-empty">챕터 데이터 로드 중…</div>
+    </div>
+  </div>
   <div class="menu-section">
     <div class="menu-section-title">📌 책갈피</div>
     <div id="menu-bookmarks-list">
@@ -284,38 +290,12 @@
 <li><strong>🔰 방어 유닛</strong>: 디코이 제네레이터, 임팩트 배리어, 드론 하이브</li>
 </ul>
 <p><strong>오버드라이브 프로토콜</strong>: 일시 파워업. <strong>보스전·체력 60~80% 사이 최종 방어 시퀀스</strong>에서만 쓰는 게 정석.</p></div>
-<div class="tab-panel tab-content" data-tab="chapters"><div id="bookmarks-panel" class="bookmarks-panel empty"><div class="bookmarks-panel-title">📌 책갈피</div><div class="bookmarks-list"></div></div><nav class="chapter-nav"><div class="chapter-nav-title">⚡ 챕터 빠른 이동</div><button class="chapter-jump" data-target="100">📺 이클리피아 100% 공략 영상 시리즈</button>
-<button class="chapter-jump" data-target="chapter-0-opening">🎬 시리즈 시작 — Chapter 0. Opening</button>
-<button class="chapter-jump" data-target="ch0">📖 Ch.0 핵심 ─ 다이애나 대사 변화 시스템</button>
-<button class="chapter-jump" data-target="_1">진행 흐름</button>
-<button class="chapter-jump" data-target="_2">스토리 자동 수집</button>
-<button class="chapter-jump" data-target="rem-2">REM #2 — 크레파스 (탐색)</button>
-<button class="chapter-jump" data-target="2">챕터 2 클리어 후 백트래킹 회수</button>
-<button class="chapter-jump" data-target="3">🐱 미니 캐빈 피규어 (3개)</button>
-<button class="chapter-jump" data-target="ch1-1-2520">📺 이클리피아 영상 분석 ─ Ch.1-1 태양광 발전소 (25:20)</button>
-<button class="chapter-jump" data-target="_3">🎯 시간순 진행 · 수집품 · 함정</button>
-<button class="chapter-jump" data-target="_5">진행 흐름</button>
-<button class="chapter-jump" data-target="1314">🗺️ 구역별 수집품 (총 13~14개)</button>
-<button class="chapter-jump" data-target="3_1">🐱 미니 캐빈 피규어 (3개)</button>
-<button class="chapter-jump" data-target="ch2">📺 이클리피아 영상 분석 ─ Ch.2 대규모 출력 실험장 (가상 뉴욕)</button>
-<button class="chapter-jump" data-target="ch2-1-1-24">🎯 Ch.2-1 가상 뉴욕 파트 1 (24개 스팟)</button>
-<button class="chapter-jump" data-target="ch2-2-2-10">🎯 Ch.2-2 뉴욕 심층부 파트 2 (10개 스팟)</button>
-<button class="chapter-jump" data-target="ch2-3-1-2-12">🔓 Ch.2-3 1, 2챕터 백트래킹 (12개 스팟)</button>
-<button class="chapter-jump" data-target="ch3-1-1">📺 이클리피아 영상 분석 ─ Ch.3-1 테라 돔 파트 1 (온실 구역)</button>
-<button class="chapter-jump" data-target="9">🎯 시간순 진행 · 수집품 (9개 스팟)</button>
-<button class="chapter-jump" data-target="ch3-2-2">📺 이클리피아 영상 분석 ─ Ch.3-2 테라 돔 파트 2 (심층부 + 에이트 조우)</button>
-<button class="chapter-jump" data-target="17">🎯 시간순 진행 · 수집품 (17개 스팟)</button>
-<button class="chapter-jump" data-target="ch3-3">📺 이클리피아 영상 분석 ─ Ch.3-3 [보스] 가든 키퍼 + 에이트의 희생</button>
-<button class="chapter-jump" data-target="_6">🎁 보스전 드롭 (필드 수집 없음)</button>
-<button class="chapter-jump" data-target="_7">진행 흐름</button>
-<button class="chapter-jump" data-target="_8">🗺️ 구역별 수집품</button>
-<button class="chapter-jump" data-target="3_2">🐱 미니 캐빈 피규어 (3개)</button>
-<button class="chapter-jump" data-target="_9">진행 흐름</button>
-<button class="chapter-jump" data-target="_10">🗺️ 구역별 수집품</button>
-<button class="chapter-jump" data-target="3_3">🐱 미니 캐빈 피규어 (3개)</button>
-<button class="chapter-jump" data-target="_11">핵심 흐름</button>
-<button class="chapter-jump" data-target="_12">백트래킹 체크리스트 (센트럴 포트 클리어 후)</button>
-<button class="chapter-jump" data-target="100_1">동기화율 100% 만드는 법</button></nav><div class="info-card">
+<div class="tab-panel tab-content" data-tab="chapters"><div id="bookmarks-panel" class="bookmarks-panel empty"><div class="bookmarks-panel-title">📌 책갈피</div><div class="bookmarks-list"></div></div><div class="chapter-index-view" id="chapter-index-view"><div class="chapter-index-intro">📚 챕터 카드를 선택하면 해당 챕터로 들어갑니다. ESC 또는 ← 챕터 인덱스 버튼으로 복귀.</div><div class="chapter-index"><a class="chapter-card" data-ch="1" href="#tab=chapters&ch=1"><div class="chapter-card-num">CH.1</div><h3 class="chapter-card-title">태양광 발전소</h3><p class="chapter-card-desc">튜토리얼 + 첫 보스(섹터 가드)</p></a>
+<a class="chapter-card" data-ch="2" href="#tab=chapters&ch=2"><div class="chapter-card-num">CH.2</div><h3 class="chapter-card-title">대규모 출력 실험장</h3><p class="chapter-card-desc">다이애나 정화 파워 해금 · 크리에이터 보스</p></a>
+<a class="chapter-card" data-ch="3" href="#tab=chapters&ch=3"><div class="chapter-card-num">CH.3</div><h3 class="chapter-card-title">테라돔</h3><p class="chapter-card-desc">에이트 조우 · 가든 키퍼 보스 · 메인 목표 공개</p></a>
+<a class="chapter-card" data-ch="4" href="#tab=chapters&ch=4"><div class="chapter-card-num">CH.4</div><h3 class="chapter-card-title">루넘 채굴장</h3><p class="chapter-card-desc">루나 디거 보스 · 메인 프레임 결전지</p></a>
+<a class="chapter-card" data-ch="5" href="#tab=chapters&ch=5"><div class="chapter-card-num">CH.5</div><h3 class="chapter-card-title">센트럴 포트</h3><p class="chapter-card-desc">데드 필라멘트 정화 + 키네틱 그래플</p></a>
+<a class="chapter-card" data-ch="6" href="#tab=chapters&ch=6"><div class="chapter-card-num">CH.6</div><h3 class="chapter-card-title">섹터 9 궤도 엘리베이터</h3><p class="chapter-card-desc">⚠️ Point of No Return · 최종 보스</p></a></div><div class="chapter-index-extra"><div class="info-card">
 <div class="info-card-header">
 <h3 class="info-card-title" id="100"><button class="bookmark-btn" data-chapter-id="100" title="책갈피 토글" aria-label="책갈피 토글">★</button>📺 이클리피아 100% 공략 영상 시리즈</h3>
 <div class="info-card-tags">
@@ -352,12 +332,7 @@
 </ul>
 </div>
 </div>
-<div class="chapter-index-view" id="chapter-index-view"><div class="chapter-index-intro">📚 챕터 카드를 선택하면 해당 챕터로 들어갑니다. ESC 또는 ← 라이브러리로 인덱스 복귀.</div><div class="chapter-index"><a class="chapter-card" data-ch="1" href="#tab=chapters&ch=1"><div class="chapter-card-num">CH.1</div><h3 class="chapter-card-title">태양광 발전소</h3><p class="chapter-card-desc">튜토리얼 + 첫 보스(섹터 가드)</p></a>
-<a class="chapter-card" data-ch="2" href="#tab=chapters&ch=2"><div class="chapter-card-num">CH.2</div><h3 class="chapter-card-title">대규모 출력 실험장</h3><p class="chapter-card-desc">다이애나 정화 파워 해금 · 크리에이터 보스</p></a>
-<a class="chapter-card" data-ch="3" href="#tab=chapters&ch=3"><div class="chapter-card-num">CH.3</div><h3 class="chapter-card-title">테라돔</h3><p class="chapter-card-desc">에이트 조우 · 가든 키퍼 보스 · 메인 목표 공개</p></a>
-<a class="chapter-card" data-ch="4" href="#tab=chapters&ch=4"><div class="chapter-card-num">CH.4</div><h3 class="chapter-card-title">루넘 채굴장</h3><p class="chapter-card-desc">루나 디거 보스 · 메인 프레임 결전지</p></a>
-<a class="chapter-card" data-ch="5" href="#tab=chapters&ch=5"><div class="chapter-card-num">CH.5</div><h3 class="chapter-card-title">센트럴 포트</h3><p class="chapter-card-desc">데드 필라멘트 정화 + 키네틱 그래플</p></a>
-<a class="chapter-card" data-ch="6" href="#tab=chapters&ch=6"><div class="chapter-card-num">CH.6</div><h3 class="chapter-card-title">섹터 9 궤도 엘리베이터</h3><p class="chapter-card-desc">⚠️ Point of No Return · 최종 보스</p></a></div></div><section class="chapter-section" data-ch="1" id="chapter-1"><div class="chapter-back-bar"><a class="chapter-back-link" href="#tab=chapters" data-ch="back">← 챕터 인덱스</a><span class="chapter-current-label">CH.1 · 태양광 발전소</span></div><h2 id="1-solar-power-plant">챕터 1 ─ 태양광 발전소 (Solar Power Plant)</h2>
+</div></div><section class="chapter-section" data-ch="1" id="chapter-1"><div class="chapter-back-bar"><a class="chapter-back-link" href="#tab=chapters" data-ch="back">← 챕터 인덱스</a><span class="chapter-current-label">CH.1 · 태양광 발전소</span></div><header class="chapter-hero"><div class="chapter-hero-num">CHAPTER 1</div><h2 class="chapter-hero-title">태양광 발전소</h2><p class="chapter-hero-desc">튜토리얼 + 첫 보스(섹터 가드)</p></header>
 <div class="yt-facade" data-id="E0fVvSaHC00" data-start="0"><div class="yt-facade-title">챕터 1-1. 태양광 발전소</div></div>
 
 <div class="yt-facade" data-id="Xdj1RLr3qyY" data-start="0"><div class="yt-facade-title">챕터 1-2. [보스] 섹터 가드</div></div>
@@ -529,7 +504,7 @@
 </div>
 <hr />
 </section>
-<section class="chapter-section" data-ch="2" id="chapter-2"><div class="chapter-back-bar"><a class="chapter-back-link" href="#tab=chapters" data-ch="back">← 챕터 인덱스</a><span class="chapter-current-label">CH.2 · 대규모 출력 실험장</span></div><h2 id="2-mass-production-array">챕터 2 ─ 대규모 출력 실험장 (Mass Production Array)</h2>
+<section class="chapter-section" data-ch="2" id="chapter-2"><div class="chapter-back-bar"><a class="chapter-back-link" href="#tab=chapters" data-ch="back">← 챕터 인덱스</a><span class="chapter-current-label">CH.2 · 대규모 출력 실험장</span></div><header class="chapter-hero"><div class="chapter-hero-num">CHAPTER 2</div><h2 class="chapter-hero-title">대규모 출력 실험장</h2><p class="chapter-hero-desc">다이애나 정화 파워 해금 · 크리에이터 보스</p></header>
 <div class="yt-facade" data-id="_L3XGuQIjMg" data-start="0"><div class="yt-facade-title">챕터 2-1. 대규모 출력 실험장 파트 1</div></div>
 
 <div class="yt-facade" data-id="npH9SD3Xrb8" data-start="0"><div class="yt-facade-title">챕터 2-2. 대규모 출력 실험장 파트 2</div></div>
@@ -949,7 +924,7 @@
 </div>
 <hr />
 </section>
-<section class="chapter-section" data-ch="3" id="chapter-3"><div class="chapter-back-bar"><a class="chapter-back-link" href="#tab=chapters" data-ch="back">← 챕터 인덱스</a><span class="chapter-current-label">CH.3 · 테라돔</span></div><h2 id="3-terra-dome">챕터 3 ─ 테라돔 (Terra Dome)</h2>
+<section class="chapter-section" data-ch="3" id="chapter-3"><div class="chapter-back-bar"><a class="chapter-back-link" href="#tab=chapters" data-ch="back">← 챕터 인덱스</a><span class="chapter-current-label">CH.3 · 테라돔</span></div><header class="chapter-hero"><div class="chapter-hero-num">CHAPTER 3</div><h2 class="chapter-hero-title">테라돔</h2><p class="chapter-hero-desc">에이트 조우 · 가든 키퍼 보스 · 메인 목표 공개</p></header>
 <div class="yt-facade" data-id="YwLkqqdRsfY" data-start="0"><div class="yt-facade-title">챕터 3-1. 테라 돔 파트 1</div></div>
 
 <div class="yt-facade" data-id="iJtzCaLcQEo" data-start="0"><div class="yt-facade-title">챕터 3-2. 테라 돔 파트 2</div></div>
@@ -1331,7 +1306,7 @@
 </ul>
 <hr />
 </section>
-<section class="chapter-section" data-ch="4" id="chapter-4"><div class="chapter-back-bar"><a class="chapter-back-link" href="#tab=chapters" data-ch="back">← 챕터 인덱스</a><span class="chapter-current-label">CH.4 · 루넘 채굴장</span></div><h2 id="4-lunum-mining-facility">챕터 4 ─ 루넘 채굴장 (Lunum Mining Facility)</h2>
+<section class="chapter-section" data-ch="4" id="chapter-4"><div class="chapter-back-bar"><a class="chapter-back-link" href="#tab=chapters" data-ch="back">← 챕터 인덱스</a><span class="chapter-current-label">CH.4 · 루넘 채굴장</span></div><header class="chapter-hero"><div class="chapter-hero-num">CHAPTER 4</div><h2 class="chapter-hero-title">루넘 채굴장</h2><p class="chapter-hero-desc">루나 디거 보스 · 메인 프레임 결전지</p></header>
 <div class="yt-facade" data-id="vfXHHbkZL-k" data-start="0"><div class="yt-facade-title">챕터 4-1. 루넘 채굴장 파트 1</div></div>
 
 <div class="yt-facade" data-id="iyVV50rlW14" data-start="0"><div class="yt-facade-title">챕터 4-2. 루넘 채굴장 파트 2</div></div>
@@ -1392,7 +1367,7 @@
 </ul>
 <hr />
 </section>
-<section class="chapter-section" data-ch="5" id="chapter-5"><div class="chapter-back-bar"><a class="chapter-back-link" href="#tab=chapters" data-ch="back">← 챕터 인덱스</a><span class="chapter-current-label">CH.5 · 센트럴 포트</span></div><h2 id="5-central-port">챕터 5 ─ 센트럴 포트 (Central Port)</h2>
+<section class="chapter-section" data-ch="5" id="chapter-5"><div class="chapter-back-bar"><a class="chapter-back-link" href="#tab=chapters" data-ch="back">← 챕터 인덱스</a><span class="chapter-current-label">CH.5 · 센트럴 포트</span></div><header class="chapter-hero"><div class="chapter-hero-num">CHAPTER 5</div><h2 class="chapter-hero-title">센트럴 포트</h2><p class="chapter-hero-desc">데드 필라멘트 정화 + 키네틱 그래플</p></header>
 <blockquote>
 <p>📺 <strong>챕터 5 영상</strong>: 이클리피아 재생목록에 아직 업로드되지 않음 (게임 진행 중). 등장 시 자동 추가 예정.</p>
 </blockquote>
@@ -1439,7 +1414,7 @@
 </table>
 <hr />
 </section>
-<section class="chapter-section" data-ch="6" id="chapter-6"><div class="chapter-back-bar"><a class="chapter-back-link" href="#tab=chapters" data-ch="back">← 챕터 인덱스</a><span class="chapter-current-label">CH.6 · 섹터 9 궤도 엘리베이터</span></div><h2 id="6-9-point-of-no-return">챕터 6 ─ 섹터 9 궤도 엘리베이터 ⚠️ Point of No Return</h2>
+<section class="chapter-section" data-ch="6" id="chapter-6"><div class="chapter-back-bar"><a class="chapter-back-link" href="#tab=chapters" data-ch="back">← 챕터 인덱스</a><span class="chapter-current-label">CH.6 · 섹터 9 궤도 엘리베이터</span></div><header class="chapter-hero"><div class="chapter-hero-num">CHAPTER 6</div><h2 class="chapter-hero-title">섹터 9 궤도 엘리베이터</h2><p class="chapter-hero-desc">⚠️ Point of No Return · 최종 보스</p></header>
 <blockquote>
 <p>📺 <strong>챕터 6 영상</strong>: 이클리피아 재생목록에 아직 업로드되지 않음. 등장 시 자동 추가 예정.</p>
 </blockquote>

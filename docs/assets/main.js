@@ -182,6 +182,7 @@ if (tabContents.length) {
     menu.setAttribute('aria-hidden', 'false');
     refreshMenuActiveState();
     refreshMenuBookmarks();
+    refreshMenuChapters();
   }
   function closeMenu() {
     menu.classList.remove('open');
@@ -216,6 +217,43 @@ if (tabContents.length) {
   }
 
   // 메뉴의 책갈피 목록 갱신
+  function refreshMenuChapters() {
+    const list = document.getElementById('menu-chapters-list');
+    if (!list) return;
+    const cards = document.querySelectorAll('.chapter-card');
+    if (!cards.length) {
+      const section = document.getElementById('menu-chapters-section');
+      if (section) section.style.display = 'none';
+      return;
+    }
+    list.innerHTML = '';
+    cards.forEach(card => {
+      const num = card.dataset.ch;
+      const title = card.querySelector('.chapter-card-title')?.textContent?.trim() || `챕터 ${num}`;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'menu-item menu-chapter-item';
+      btn.dataset.ch = num;
+      btn.innerHTML = '<span class="icon">📖</span><span class="label">CH.' + num + ' · ' + escapeHtml(title) + '</span>';
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        // 챕터 탭으로 전환 + 해당 챕터 표시
+        showTab('chapters');
+        setTimeout(() => {
+          history.pushState(null, '', `#tab=chapters&ch=${num}`);
+          // chapter sub-router의 showChapter 호출 트리거 (popstate)
+          window.dispatchEvent(new PopStateEvent('popstate'));
+          // fallback: 직접 카드 클릭 흉내
+          const targetCard = document.querySelector(`.chapter-card[data-ch="${num}"]`);
+          if (targetCard) targetCard.click();
+        }, 150);
+        closeMenu();
+      });
+      list.appendChild(btn);
+    });
+  }
+  window.refreshMenuChapters = refreshMenuChapters;
+
   function refreshMenuBookmarks() {
     const list = document.getElementById('menu-bookmarks-list');
     if (!list) return;
@@ -257,6 +295,7 @@ if (tabContents.length) {
   // 최초 1회
   refreshMenuActiveState();
   refreshMenuBookmarks();
+  refreshMenuChapters();
 })();
 
 // 기존 책갈피/탭 변경 훅에서 메뉴 갱신 호출
