@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2333a4"/>
+      <stop offset="0.55" stop-color="#141c5a"/>
+      <stop offset="1" stop-color="#0a1238"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7c8cff" stop-opacity="0.55"/>
+      <stop offset="0.55" stop-color="#7c8cff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="padBody" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#cdd3e6"/>
+    </linearGradient>
+    <linearGradient id="padInset" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1c2452"/>
+      <stop offset="1" stop-color="#0a0e2c"/>
+    </linearGradient>
+    <linearGradient id="docBody" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#dfe3ee"/>
+    </linearGradient>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="0" dy="10" result="off"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.5"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect x="0" y="0" width="512" height="512" rx="116" ry="116" fill="url(#bg)"/>
+  <rect x="6" y="6" width="500" height="500" rx="112" ry="112" fill="none" stroke="url(#rim)" stroke-width="3"/>
+
+  <g filter="url(#softShadow)">
+    <path d="M 132 178 C 102 178 86 208 92 248 C 97 282 112 305 136 318 C 158 330 182 326 202 322 L 310 322 C 330 326 354 330 376 318 C 400 305 415 282 420 248 C 426 208 410 178 380 178 C 350 178 328 191 314 202 L 198 202 C 184 191 162 178 132 178 Z" fill="url(#padBody)"/>
+    <rect x="208" y="210" width="96" height="40" rx="10" ry="10" fill="url(#padInset)"/>
+    <circle cx="256" cy="230" r="3.5" fill="#7c8cff" opacity="0.9"/>
+    <circle cx="196" cy="270" r="22" fill="#0a0e2c"/>
+    <circle cx="196" cy="270" r="13" fill="#2c3470"/>
+    <circle cx="316" cy="270" r="22" fill="#0a0e2c"/>
+    <circle cx="316" cy="270" r="13" fill="#2c3470"/>
+    <g fill="#2c3470">
+      <rect x="148" y="222" width="36" height="11" rx="2.5"/>
+      <rect x="160.5" y="210" width="11" height="35" rx="2.5"/>
+    </g>
+    <circle cx="346" cy="214" r="6.5" fill="#06d6ff"/>
+    <circle cx="358" cy="227" r="6.5" fill="#ff4d8d"/>
+    <circle cx="334" cy="227" r="6.5" fill="#9b6dff"/>
+    <circle cx="346" cy="240" r="6.5" fill="#22c55e"/>
+  </g>
+
+  <g transform="translate(256 416)" filter="url(#softShadow)">
+    <path d="M -54 -34 L -54 34 L 54 34 L 54 -18 L 30 -34 Z" fill="url(#docBody)"/>
+    <path d="M 30 -34 L 30 -18 L 54 -18 Z" fill="#c8cee0"/>
+    <path d="M -12 -12 L -12 20 L 18 4 Z" fill="#1d2a8c"/>
+  </g>
+</svg>

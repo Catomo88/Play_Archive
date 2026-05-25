@@ -1922,6 +1922,12 @@ HEAD_TPL = """<!DOCTYPE html>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="icon" type="image/svg+xml" href="{base}/assets/icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="{base}/assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{base}/assets/icon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="{base}/assets/icon-180.png">
+<link rel="shortcut icon" href="{base}/favicon.ico">
+<meta name="theme-color" content="#141c5a">
 <link rel="stylesheet" href="{base}/assets/style.css">
 </head>
 <body class="theme-dark">
