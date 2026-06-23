@@ -268,65 +268,300 @@ sources:
 
 <!-- tab:캐릭터 -->
 
-## 직업 시스템 — JP 누적과 분기
+## 직업 시스템 핵심 — 스탯이 결정되는 공식
 
-각 캐릭터는 전투에서 **JP(Job Points)** 를 획득해 그 직업의 **레벨(JL)** 을 올린다. JL이 일정 수치를 넘으면 **다른 직업이 해금**. JP는 직업별로 **분리 누적**되므로, 채용 직후 어떤 직업에 JP를 몰지가 회차 효율을 좌우.
+이 게임의 모든 강캐는 **직업 시스템을 이해한 사람만** 만들 수 있다. 한 줄 요약:
 
-<div class="tip" markdown="1">
-**💡 직업 진행의 황금률**
+> **현재 스탯 = (지금까지 누적된 성장률) × (지금 입고 있는 직업의 멀티플라이어) + 베이스**
 
-1. **초반 5~10 전투에서 한 직업에 JP 몰빵** — 산만하게 바꾸지 말 것
-2. **마법 직업 먼저 → 물리 직업 나중** — 마법 직업은 **MA 성장률**이 좋아 평생 마지막 스탯에 영향
-3. **레벨 다운으로 스탯 부스트** — 시마도사의 *Degenerator* 매트로 LV 다운 → 다시 강한 직업으로 레벨업 = 스탯 폭증 (PSP/PS1 정통 트릭, Enhanced에서도 작동 확인)
-4. **모든 캐릭터에 켐피스트 JL2** 필수 — *Item* 보조 어빌리티가 모든 빌드의 기본
-5. **이동력 부족 직업** = **Move +1/+2 (스콰이어/시프 학습)** 으로 보완
-</div>
+즉 **두 단계**로 결정된다:
 
-## 직업 트리 (Generic 기준)
-
-> ⚠️ Enhanced/Classic 모두 **PS1 베이스** — WotL의 어니언 나이트/다크 나이트는 **없음**.
+1. **성장률 (Raw Growth)**: 레벨업 했을 때 그 시점에 입고 있던 직업의 성장률만 누적됨. **레벨다운으로도 안 빠짐**
+2. **멀티플라이어 (Multiplier)**: 지금 입고 있는 직업이 누적 성장에 곱하는 배율 — **직업 갈아입기만 해도 스탯이 즉시 변함**
 
 <div class="info-card" markdown="1">
 
 <div class="info-card-header">
-  <h3 class="info-card-title">🌳 전체 직업 트리</h3>
+  <h3 class="info-card-title">💡 이 공식에서 따라오는 결론 4가지</h3>
 </div>
 
 <div class="info-card-body" markdown="1">
 
-```
-[기본]
-스콰이어 (Squire) ─┬─→ 나이트 (Squire JL2)
-                  └─→ 아처 (Squire JL2)
-켐피스트 (Chemist) ─┬─→ 백마도사 (Chemist JL2)
-                  └─→ 흑마도사 (Chemist JL2)
+1. **"강한 직업으로 레벨업"** — 닌자/사무라이/마법사 같은 좋은 직업으로 레벨을 올려야 평생 효과
+2. **레벨다운 후 다시 강한 직업으로 올리기** = 스탯 폭증 트릭 (시마도사 *Degenerator* 마법으로 LV ↓)
+3. **마법사로 레벨 올리고 → 닌자로 갈아입기** = MA 성장(닌자에는 없는) + 닌자 멀티플라이어
+4. **스콰이어/켐피스트로 레벨 올리지 말 것** — 모든 스탯 성장률이 평균. **반드시 다른 직업에서 레벨업**
 
-[중급]
-나이트 ──→ 몽크 (Knight JL2)
-백마도사 ─┬─→ 시마도사 (W.Mage JL3 + B.Mage JL3)
-흑마도사 ─┘
-백마도사 ─┬─→ 음양사 (W.Mage JL4 + B.Mage JL4)
-흑마도사 ─┘
-시마도사 ──→ 소환사 (W.Mage JL4 + B.Mage JL4 + Time JL2)
-아처 ──→ 시프 (Archer JL2)
-음양사 ──→ 변사 (Oracle JL2)
+</div>
 
-[고급]
-나이트 + 몽크 ──→ 풍수사 (Knight JL3 + Monk JL3)
-시프 + 풍수사 ──→ 용기사 (Thief JL3 + Geomancer JL3)
-나이트 + 몽크 + 용기사 ──→ 사무라이 (Knight JL4 + Monk JL4 + Dragoon JL2)
-아처 + 시프 + 풍수사 ──→ 닌자 (Archer JL4 + Thief JL3 + Geomancer JL2)
+</div>
 
-[하이엔드]
-백마도사 + 흑마도사 + 시마도사 + 음양사 ──→ 산술사 (계산사)
-   (Priest JL4 + Wizard JL4 + Time JL3 + Oracle JL3)
+## JL ↔ JP 비용 곡선
 
-소환사 + 변사 ──→ 음유시인(♂) (Summoner JL4 + Mediator JL4)
-풍수사 + 용기사 ──→ 무희(♀) (Geomancer JL4 + Dragoon JL4)
+| 다음 JL | 필요 JP | 누적 JP | 평균 전투 수 (Job 30 JP/전투) |
+|---|---|---|---|
+| → JL 2 | 100 | 100 | 4 |
+| → JL 3 | 200 | 300 | 11 |
+| → JL 4 | 400 | 700 | 24 |
+| → JL 5 | 700 | 1,400 | 47 |
+| → JL 6 | 1,100 | 2,500 | 84 |
+| → JL 7 | 1,600 | 4,100 | 137 |
+| → JL 8 | 2,200 | 6,300 | 210 |
 
-[최종 — 모든 직업 고레벨]
-흉내쟁이 (Mime) — 모든 generic 직업 JL4 이상 (Squire/Chemist는 JL8)
-```
+> 한 직업 마스터(JL8)에 **총 6,300 JP**. 정상 전투만으로는 ~210전투 필요. **JP 도장 트릭** 없이는 사실상 불가.
+
+## 직업별 성장률·멀티플라이어 등급표
+
+> 등급: **S+ > S > A > B > C > D > E** (S+가 압도적, E는 거의 영향 없음)
+> ※ 정확한 수치는 PS1 기준. Enhanced에서 동일 — 검증된 자료 기반.
+
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">📊 레벨업 시 누적되는 "성장률"</h3>
+  <div class="info-card-tags">
+    <span class="tag tag-explore">평생 영향 → 신중히</span>
+  </div>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+| 직업 | HP | MP | PA | MA | SP |
+|---|---|---|---|---|---|
+| 스콰이어 | C | D | D | D | D |
+| 켐피스트 | D | D | E | C | D |
+| **나이트** | **A** | E | **B** | E | C |
+| **몽크** | **A** | D | **A** | D | C |
+| 아처 | C | E | C | E | C |
+| **시프** | C | E | C | E | **A** |
+| 백마도사 | E | **A** | E | **A** | D |
+| 흑마도사 | E | **A** | E | **A** | D |
+| 시마도사 | E | **A** | E | **A** | C |
+| 소환사 | E | **A** | E | **A** | D |
+| 음양사 | D | B | E | **A** | D |
+| 변사 | D | C | D | B | D |
+| **풍수사** | B | C | **B** | C | C |
+| **용기사** | **A** | E | **A** | E | C |
+| **사무라이** | **A** | C | **A** | C | C |
+| **닌자** | C | E | **A** | E | **S** |
+| 산술사 | E | **A** | E | **A** | D |
+| 음유시인(♂) | E | **A** | E | **A** | C |
+| 무희(♀) | E | **A** | E | **A** | C |
+| 흉내쟁이 | B | C | C | C | C |
+| **(특수) 미메** | B | C | C | C | C |
+
+> 💡 **닌자의 SP S등급**이 압도적 — 닌자로 만렙 찍은 캐릭은 평생 행동 속도 최강.
+
+</div>
+
+</div>
+
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">📊 직업 갈아입을 때 즉시 변하는 "멀티플라이어"</h3>
+  <div class="info-card-tags">
+    <span class="tag tag-explore">현재 직업이 결정 → 보스전 직전 갈아입기</span>
+  </div>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+| 직업 | HP | MP | PA | MA | SP |
+|---|---|---|---|---|---|
+| 스콰이어 | B | C | B | C | B |
+| 켐피스트 | C | C | C | B | B |
+| **나이트** | **A** | D | **A** | D | B |
+| **몽크** | **A** | C | **S** | C | B |
+| 아처 | B | D | B | D | A |
+| **시프** | B | D | B | D | **A** |
+| 백마도사 | C | **A** | C | **A** | C |
+| 흑마도사 | C | **A** | C | **S** | C |
+| 시마도사 | C | **A** | C | **A** | C |
+| 소환사 | C | **A** | C | **S** | C |
+| 음양사 | C | B | C | **A** | C |
+| 변사 | C | B | C | B | C |
+| 풍수사 | B | C | B | C | B |
+| **용기사** | **A** | D | **A** | D | B |
+| **사무라이** | **A** | C | **A** | C | B |
+| **닌자** | B | D | **A** | D | **S** |
+| 산술사 | C | **A** | C | **A** | C |
+| 음유시인(♂) | C | **A** | C | **A** | C |
+| 무희(♀) | C | **A** | C | **A** | C |
+
+> 💡 **몽크 PA S+** — 맨손 + Two Hands(서브) = PA 멀티가 전투 직전 폭증. 보스전 직전 몽크로 갈아입는 유저 다수.
+
+</div>
+
+</div>
+
+## JP 도장 (JP Boost) — 한 전투에서 수천 JP 작업
+
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">⚡ "Yell 도장" — JP 효율 1순위</h3>
+  <div class="info-card-tags">
+    <span class="tag tag-secret">정공법 vs 도장</span>
+  </div>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+**작동 원리**: 같은 직업의 캐릭터가 행동을 하면 **다른 같은 직업 아군에게도 행동의 1/4 JP 분배**.
+
+**가장 빠른 도장 절차**:
+
+1. **출전 5명 전원을 같은 직업** (예: 모두 켐피스트, 또는 모두 백마도사)
+2. **약한 맵** 선정 (Mandalia Plains, Lenalia Plateau 같은 초반 평원)
+3. 적 1마리만 남기고 다른 적 처치 → 남긴 적은 **Sleep / Don't Move**로 봉인
+4. 본인 행동: **Yell** (스콰이어 학습) — Speed +1, 본인 +50 JP + 다른 4명에게 +12 JP × 4 = **총 +98 JP/턴**
+5. **헤이스트 걸어두고 무한 반복**
+6. 한 전투 30~40분 = **각 캐릭터 2,000~5,000 JP** 누적
+
+**더 효율 좋은 조합**:
+- **음유시인 (♂)**: *Cheer Song* — 매턴 자동 발동 + 도장 효과. 풀파티 음유시인 = 자동 JP 작업
+- **시마도사**: *Quick* — 본인 즉시 행동권 부여 → Yell 2회 = 2배 효율
+
+**주의**:
+- 행동을 한 직업과 **타깃이 된 직업이 같을 때만** JP 분배
+- 그래서 모두가 **같은 직업**이어야 함
+- JP 도장 후에는 **각자 원하는 직업으로 갈아입기**
+
+</div>
+
+</div>
+
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">🗺️ 추천 JP 도장 위치</h3>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+| 챕터 | 위치 | 추천 이유 |
+|---|---|---|
+| **Ch.1 초반** | **Mandalia Plains** (만달리아 평원) | 약한 도적 + 사거리 짧음. 1마리 봉인하기 쉬움 |
+| **Ch.1 후반** | **Lenalia Plateau** | 평탄 지형, 회피 위치 풍부 |
+| **Ch.2** | **Goug 외곽** | 머신리스트 잡 도장 + 무스타디오 합류 직전 |
+| **Ch.3** | **Beoulve 영지 외곽** | 중반 캐릭터의 고급 직업 학습 |
+| **Ch.4** | **Limberry 외곽 / 디프 던전 B1** | 산술사·닌자·사무라이 마무리 작업 |
+
+</div>
+
+</div>
+
+## 직업 트리 — 단계별 해금 (시각화)
+
+> Enhanced/Classic 모두 PS1 베이스. WotL 어니언 나이트/다크 나이트는 **없음**.
+
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">🟢 단계 1 — 시작 직업 (모든 캐릭터)</h3>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+새 캐릭터 채용 시 **스콰이어 + 켐피스트** 자동 보유.
+
+| 직업 | 역할 | 다음 해금 |
+|---|---|---|
+| **스콰이어 (Squire)** | 통과 직업. *Throw Stone* + 보조 어빌리티 학습용 | JL2 → 나이트 + 아처 |
+| **켐피스트 (Chemist)** | 회복 직업. *Item* 보조 어빌리티는 **모든 빌드의 영구 백업** | JL2 → 백마도사 + 흑마도사 |
+
+**진행 권장**: 새 캐릭터 채용 직후 5전투 = 스콰이어 JL2 + 켐피스트 JL2 동시 학습 → 4가지 1차 직업 해금
+
+</div>
+
+</div>
+
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">🟡 단계 2 — 1차 분기 (Squire/Chemist JL2)</h3>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+| 직업 | 해금 조건 | 역할 / 추천 학습 |
+|---|---|---|
+| **나이트 (Knight)** | Squire JL2 | Break 시리즈 (장비 파괴) · *Equip Armor* 보조 |
+| **아처 (Archer)** | Squire JL2 | Charge +N · ⭐ ***Concentrate (S)** 보조 = 회피 무시* |
+| **백마도사 (W.Mage)** | Chemist JL2 | Cure/Raise/Holy · *Magic Attack Up (S)* |
+| **흑마도사 (B.Mage)** | Chemist JL2 | Fire/Ice/Thunder/Flare/Death · *Half MP (S)* |
+
+**진행 권장**: 마법 직업(백/흑) → MA 성장률 A로 평생 누적. **여기서 30~50전투 투자할 가치**가 가장 큼.
+
+</div>
+
+</div>
+
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">🟠 단계 3 — 중급 분기</h3>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+| 직업 | 해금 조건 | 역할 / 핵심 가치 |
+|---|---|---|
+| **몽크 (Monk)** | Knight JL2 | 맨손 자력 회복 · ⭐ **Chakra / Revive** · *Martial Arts (S)* |
+| **시프 (Thief)** | Archer JL2 | Steal 시리즈 · ⭐ ***Move +2 (M)** 평생 활용* |
+| **시마도사 (Time M.)** | W.Mage JL3 + B.Mage JL3 | Haste/Quick/Stop · ⭐ ***Short Charge (S)** 마법 빌드 필수* |
+| **음양사 (Oracle)** | W.Mage JL3 + B.Mage JL3 | 상태이상 마법 · *Defense Up (S)* |
+
+**진행 권장**: 시프 JL3에서 **Move +2** 학습 후 모든 캐릭에 영구 부여. 시마도사 **Short Charge**는 산술사로 가기 전 필수.
+
+</div>
+
+</div>
+
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">🔴 단계 4 — 고급 분기</h3>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+| 직업 | 해금 조건 | 핵심 가치 |
+|---|---|---|
+| **풍수사 (Geomancer)** | Knight JL3 + Monk JL3 | Elemental (MP 무료) · ⭐ ***Attack Up (S)* + *Counter (R)*** 영구 백업 |
+| **소환사 (Summoner)** | W.Mage JL4 + B.Mage JL4 + Time JL2 | 광역 속성 마법 · 바하무트 · 모그리 회복 |
+| **변사 (Mediator)** | Oracle JL2 | ⭐ **Invite** = 희귀 몬스터 영입 · Train |
+| **용기사 (Dragoon)** | Thief JL3 + Geomancer JL3 | Jump (무적 차지) · *Equip Spear (S)* |
+
+**진행 권장**: 풍수사 JL3에서 **Attack Up + Counter** 학습 → 평생 어택커 백업. 변사는 **Invite로 데몬/홀리 드래곤/말보로 잡기**용.
+
+</div>
+
+</div>
+
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">🟣 단계 5 — 하이엔드 / 최종</h3>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+| 직업 | 해금 조건 | 핵심 가치 |
+|---|---|---|
+| **사무라이 (Samurai)** | Knight JL4 + Monk JL4 + Dragoon JL2 | Draw Out (마사무네 = 전체 헤이스트+리젠) · ⭐ ***Blade Grasp (R)*** |
+| **닌자 (Ninja)** | Archer JL4 + Thief JL3 + Geomancer JL2 | 1턴 2회 타격 · ⭐ ***Two Swords (S)*** · *Vanish (R)* |
+| **산술사 / 계산사 (Calculator)** | Priest JL4 + Wizard JL4 + Time JL3 + Oracle JL3 | ⭐ **CT/Lv/Exp/Height + 마법** 즉시 광역. 게임 파괴 |
+| **음유시인 (Bard, ♂)** | Summoner JL4 + Mediator JL4 | Sing — 매턴 풀파티 버프 |
+| **무희 (Dancer, ♀)** | Geomancer JL4 + Dragoon JL4 | Dance — 매턴 적 디버프 |
+| **흉내쟁이 (Mime)** | **모든 generic 직업 JL4+** (Squire/Chemist JL8) | 아군 행동을 무료로 복사 |
+
+**진행 권장 순서** (회차 가성비):
+1. 닌자 = **Two Swords** 학습 후 다른 직업에 부여 → 닌자 본인은 졸업
+2. 사무라이 = **Blade Grasp** + **Two Hands** 학습 후 다른 직업에 부여
+3. 산술사 = 마법 등록 후 **CT 5 Holy / Level 3 Death**로 게임 끝
+4. 흉내쟁이 = 모든 직업 마스터한 회차 마지막 도전
 
 </div>
 
@@ -347,12 +582,11 @@ sources:
 **람자 전용 강화판은 별도** (Ch.1/3/4에서 자동 강화). Generic 스콰이어는 평범하지만 **필수 스킬을 학습하는 통과 직업**.
 
 **필수 스킬**:
-- **Throw Stone**: 사거리 4, 무료 원거리 공격 — 초반 가장 자주 씀
-- **Counter Tackle (R)**: 카운터 발동 — 모든 물리 캐릭에 추천
-- **Move +1 (M)**: 이동력 +1 — **닌자/사무라이 등 후기 빌드의 영구 보조**
-- **JP Boost (S)**: JP 획득량 +50% — 다음 직업으로 넘어가기 전 학습 필수
-
-**키워드**: *Throw Stone, Move +1, JP Boost*
+- **Throw Stone**: 사거리 4, 무료 원거리 공격
+- **Yell**: ⭐ **JP 도장의 핵심**. 본인 SP +1 + 같은 직업 아군에게 JP 분배
+- **Counter Tackle (R)**: 카운터 발동
+- **Move +1 (M)**: 이동력 +1 — 닌자/사무라이 후기 빌드의 영구 보조
+- **JP Boost (S)**: JP 획득량 +50% — **다음 직업으로 넘어가기 전 반드시 학습**
 
 </div>
 
@@ -369,13 +603,10 @@ sources:
 **모든 캐릭터가 거쳐야 하는 직업**. *Item* 보조 어빌리티가 게임 전반의 안전망.
 
 **필수 스킬**:
-- **Item**: 포션/하이 포션/엘릭서/페닉스 다운/안티독 등 전부 사용 — **모든 빌드의 보조 어빌리티 1순위**
-- **Auto Potion (R)**: 피격 시 자동으로 포션 사용 — 닌자/몽크 등 회피 의존 빌드에 필수
+- **Item**: 포션/하이 포션/엘릭서/페닉스 다운/안티독 — **모든 빌드의 보조 어빌리티 1순위**
+- **Auto Potion (R)**: 피격 시 자동 포션 — 닌자/몽크 회피 빌드 필수
 - **Throw Item (M)**: 아이템 사거리 ↑ (인접 → 4~5칸)
-
-**팁**: JL2까지만 빨리 올리고 백마도사/흑마도사로 갈 것. JL5의 *Phoenix Down* 무한 사거리는 매우 강력.
-
-**키워드**: *Item, Auto Potion, Throw Item, Phoenix Down*
+- **Phoenix Down**: JL5 학습 — **무한 사거리 부활**
 
 </div>
 
@@ -391,14 +622,12 @@ sources:
 
 <div class="info-card-body" markdown="1">
 
-검·방패 착용. **장비 파괴 스킬**(Break)이 핵심.
+검·방패. **장비 파괴 (Break)** 핵심.
 
 **필수 스킬**:
-- **Weapon Break / Armor Break / Shield Break**: 적 장비 박살 — 보스에 효과적
-- **Equip Armor (S)**: 다른 직업도 중장갑 장착 — **닌자에 부여하면 생존력 ↑**
+- **Weapon Break / Armor Break / Shield Break**: 보스 장비 박살
+- **Equip Armor (S)**: 다른 직업에 중장갑 → **닌자/계산사 생존력 ↑**
 - **Magic Defend Up (S)**: 마법 데미지 -33%
-
-**키워드**: *Break 시리즈, Equip Armor*
 
 </div>
 
@@ -412,18 +641,14 @@ sources:
 
 <div class="info-card-body" markdown="1">
 
-맨손 강력. **회복 + 자폭급 데미지** 둘 다 가능.
+맨손 강력 (멀티 PA **S+**). **회복 + 폭딜 자급자족**.
 
 **필수 스킬**:
 - **Chakra**: 인접 아군 HP+MP 회복 — **MP 회복 수단 부족한 게임에서 최강**
-- **Revive**: 죽은 아군 즉시 부활 (페닉스 다운 + 부활 효과)
-- **Earth Slash / Wave Fist**: 직선 원거리 공격
-- **Martial Arts (S)**: 맨손 데미지 ×2 — 모든 빌드의 백업
-- **Brawler (S)**: 맨손 시 PA 보정 ↑
-
-**팁**: 약/저장복 없이 자급자족 가능 — **솔로 챌린지 캐릭**.
-
-**키워드**: *Chakra, Revive, Martial Arts*
+- **Revive**: 즉시 부활 (페닉스 다운 + 부활)
+- **Earth Slash / Wave Fist**: 직선 원거리
+- **Martial Arts (S)**: 맨손 데미지 ×2
+- **Brawler (S)**: 맨손 PA 보정 ↑
 
 </div>
 
@@ -437,16 +662,14 @@ sources:
 
 <div class="info-card-body" markdown="1">
 
-활/석궁. **사거리 + 차지 시스템**.
+활/석궁. **사거리 + 차지**.
 
 **필수 스킬**:
-- **Charge +1 ~ +20**: 다음 공격 데미지 +N. **차지 +5**(반드시 학습)가 가성비 최강
-- **Concentrate (S)**: 회피 무시 — **닌자/사무라이가 부여**하면 빗나감 0
-- **Speed Save (R)**: 피격 시 Speed +1 (영구) — 닌자/계산사 빌드에 누적
+- **Charge +1 ~ +20**: 차지 +5가 가성비 최강
+- **Concentrate (S)**: ⭐ **회피 무시** — 닌자/사무라이에 부여하면 빗나감 0
+- **Speed Save (R)**: 피격 시 SP +1 영구 누적
 
-**팁**: 직업 자체는 약하지만 **Concentrate + Speed Save**를 다른 직업에 보내려고 거치는 핵심 정거장.
-
-**키워드**: *Concentrate, Speed Save*
+> 직업 본체는 약하지만 **Concentrate + Speed Save**가 평생 자산.
 
 </div>
 
@@ -463,14 +686,10 @@ sources:
 도둑질 + **이동 보조**.
 
 **필수 스킬**:
-- **Steal Heart**: 차밍 — 적 매료 (Bad 별자리 + 다른 성별에 명중률 ↑)
-- **Steal Gil / Item / Accessory / Weapon / Helmet / Armor / Shield**: 적 장비 강탈 — **루카비 보스에서 전용 무기 확보** 가능 (희귀 무기 ZodiacBrave 등)
-- **Move +2 (M)**: 이동력 +2 — **모든 후기 빌드의 표준**
-- **Move Find Item (M)**: 특정 타일에서 아이템 발견 — 무기/방어구 파밍
-
-**팁**: **Move +2**는 후기까지 핵심. 한 캐릭에 학습시켜두면 평생 사용.
-
-**키워드**: *Steal 시리즈, Move +2, Move Find Item*
+- **Steal Heart**: 매료
+- **Steal Gil / Item / Accessory / Weapon / Helmet / Armor / Shield**: ⭐ **루카비 보스에서 ZodiacBrave 같은 희귀 무기 회수**
+- **Move +2 (M)**: ⭐ **모든 후기 빌드의 표준** — 평생 사용
+- **Move Find Item (M)**: 특정 타일 아이템 발견
 
 </div>
 
@@ -484,16 +703,14 @@ sources:
 
 <div class="info-card-body" markdown="1">
 
-**Jump** — 공중 차지 후 강타. 차지 중 무적.
+**Jump** — 차지 중 무적.
 
 **필수 스킬**:
-- **Jump Lv.1 ~ Lv.8**: 사거리/차지 시간이 다른 점프 — **수직 Jump (보스 위 직강하)** 강력
-- **Equip Spear (S)**: 다른 직업도 창 장착
-- **Dragon Spirit (R)**: 피격 시 자동 Regen — 생존력 ↑
+- **Jump Lv.1 ~ Lv.8**: 수직 Jump (보스 위 직강하) 강력
+- **Equip Spear (S)**: 창 장착 가능
+- **Dragon Spirit (R)**: 자동 Regen
 
-**팁**: PS1 원판에서는 까다로웠지만, **Enhanced의 배속 모드**로 차지 시간 답답함 ↓.
-
-**키워드**: *Jump Lv.8, Equip Spear*
+> Enhanced의 **배속 모드**로 PS1의 차지 답답함 해소.
 
 </div>
 
@@ -507,17 +724,13 @@ sources:
 
 <div class="info-card-body" markdown="1">
 
-**카타나 발도술 (Draw Out)** — 카타나를 소비하지 않고 광역 마법 발동.
+**카타나 발도 (Draw Out)** — 카타나를 소비하지 않고 광역 마법.
 
 **필수 스킬**:
-- **Asura (아수라) / Murasame (무라사메) / Kiyomori (키요모리) / Muramasa (무라마사) / Masamune (마사무네) / Chirijiraden (치리지라덴)**: 모두 강력. 특히 **마사무네**(전체 헤이스트 + 리젠)는 게임 체인저
-- **Two Hands (S)**: 두 손으로 무기 잡기 = 데미지 ×2 — **모든 단검/검/카타나 빌드의 핵심**
-- **Equip Katana (S)**: 다른 직업도 카타나 장착
-- **Blade Grasp (R)**: 검/카타나/창 공격 회피 (브레이브% 확률) — **브레이브 97 캐릭에 부여 = 거의 무적**
-
-**팁**: **블레이드 그래스프 + 브레이브 97** = 보스도 거의 못 때림. **닌자에게 부여**해 풀스펙.
-
-**키워드**: *마사무네, Two Hands, Blade Grasp*
+- **Asura → Murasame → Kiyomori → Muramasa → Masamune → Chirijiraden**: 모두 강력. **마사무네**(전체 헤이스트+리젠)는 게임 체인저
+- **Two Hands (S)**: ⭐ 두 손으로 무기 = 데미지 ×2
+- **Equip Katana (S)**: 카타나 장착
+- **Blade Grasp (R)**: ⭐ **브레이브 97 캐릭에 부여 = 검/카타나/창 회피 97%** — 거의 무적
 
 </div>
 
@@ -526,22 +739,19 @@ sources:
 <div class="info-card" markdown="1">
 
 <div class="info-card-header">
-  <h3 class="info-card-title">닌자 (Ninja) — ★★★★★ (실질 최강 어택커)</h3>
+  <h3 class="info-card-title">닌자 (Ninja) — ★★★★★</h3>
 </div>
 
 <div class="info-card-body" markdown="1">
 
-**Two Swords** — 양손 검 동시 공격으로 1턴 2회 타격.
+**Two Swords + S+ SP** — 1턴 2회 타격 + 가장 빠른 행동권.
 
 **필수 스킬**:
-- **Throw**: 닌자/시노비/카타나/검/창 등 무기 투척 — 원거리 광역 화력
-- **Two Swords (S)**: 닌자의 핵심. 다른 직업에 부여 가능
-- **Vanish (R)**: 피격 시 일정 확률로 사라짐 (회피)
-- **Move +3 (M)** (PSP 한정) — Enhanced 베이스는 PS1이므로 **Move +2**가 한계
+- **Throw**: 닌자/시노비/카타나/검/창 투척 — 원거리 광역 화력
+- **Two Swords (S)**: ⭐ **다른 직업에도 부여 가능** — 닌자보다 사무라이/계산사에 부여하는 게 더 강함
+- **Vanish (R)**: 피격 시 일정 확률 사라짐
 
-**팁**: 닌자 본체보다 **Two Swords를 다른 직업(특히 사무라이/계산사)에 부여**하는 게 더 강력. 닌자 = 보조 어빌리티 공급원.
-
-**키워드**: *Two Swords, Vanish, Throw 시리즈*
+> 닌자 본체보다 **Two Swords를 다른 직업에 부여**하는 게 더 강력.
 
 </div>
 
@@ -555,16 +765,12 @@ sources:
 
 <div class="info-card-body" markdown="1">
 
-**지형에 따른 광역 마법** — MP 무료, 차지 없음.
+**지형 광역 마법** — MP 무료, 차지 없음.
 
 **필수 스킬**:
-- **Elemental**: 풀밭/사막/숲/물 등 발 밑 지형에 따라 다른 마법 자동 시전
-- **Attack Up (S)**: PA +1.5 (백분율 33%) — 모든 물리 빌드의 표준
-- **Counter (R)**: 카운터 — Counter Tackle보다 강함
-
-**팁**: **Attack Up**과 **Counter**가 모두 핵심. 직업 본체는 평범하지만 **백패시브 공급원**.
-
-**키워드**: *Attack Up, Counter*
+- **Elemental**: 풀밭/사막/숲/물 따라 다른 마법 자동 시전
+- **Attack Up (S)**: ⭐ PA +1.5 — 모든 물리 빌드 표준
+- **Counter (R)**: 카운터
 
 </div>
 
@@ -580,17 +786,13 @@ sources:
 
 <div class="info-card-body" markdown="1">
 
-**Cure ~ Curaja, Raise / Raise 2, Esuna, Holy** — 회복 + 단일 신성 데미지.
+**Cure ~ Curaja, Raise / Raise 2, Esuna, Holy** — 회복 + 신성.
 
 **필수 스킬**:
-- **Cure / Cura / Curaga**: 광역 회복 (광역은 Cura부터)
-- **Raise / Arise**: 부활. **Raise 2**는 HP 가득 부활 — 보스전 필수
-- **Holy**: 단일 강력 신성 데미지 — **계산사로 묶을 때 폭딜**
-- **Magic Attack Up (S)**: MA +1.5 — 모든 마법 빌드의 표준
-
-**팁**: 모든 마법 직업의 부모. **Magic Attack Up**은 산술사·소환사에 필수.
-
-**키워드**: *Holy, Raise 2, Magic Attack Up*
+- **Cure / Cura / Curaga**: 광역 회복
+- **Raise / Raise 2**: ⭐ **Raise 2 = HP 풀로 부활** — 보스전 필수
+- **Holy**: 단일 신성 폭딜 — **계산사로 묶을 때 최강**
+- **Magic Attack Up (S)**: ⭐ MA +1.5
 
 </div>
 
@@ -604,17 +806,13 @@ sources:
 
 <div class="info-card-body" markdown="1">
 
-화/빙/뇌 3속성 + **Death / Flare**.
+화/빙/뇌 + **Death / Flare**.
 
 **필수 스킬**:
-- **Fire / Fira / Firaga / Blizzard ~ Thundara ~ -ga 시리즈**: 광역 속성
-- **Flare**: 무속성 단일 폭딜 — 계산사 폭딜용
-- **Death**: 즉사 (확률) — 계산사 묶으면 광역 즉사
-- **Half MP (S)**: MP 소모 절반 — **MP 부족한 게임에서 핵심**
-
-**팁**: **Death + 계산사** = **광역 즉사**로 어떤 적도 일격사.
-
-**키워드**: *Flare, Death, Half MP*
+- **Fire / Fira / Firaga + Blizzard/Thunder 시리즈**
+- **Flare**: 무속성 단일 폭딜
+- **Death**: ⭐ 즉사 (확률) — **계산사 묶으면 광역 즉사**
+- **Half MP (S)**: MP 소모 절반
 
 </div>
 
@@ -631,16 +829,11 @@ sources:
 **시간 조작 마법**.
 
 **필수 스킬**:
-- **Haste / Hasteja**: 행동 속도 ↑ — **시작 직후 전체 헤이스트**가 사기
-- **Slow / Slowja**: 적 행동 속도 ↓
-- **Stop**: 행동 정지 — 보스에 들어가면 게임 끝
-- **Quick**: 1턴 즉시 추가 행동 — **계산사로 묶을 시 무한 행동**
-- **Demi / Demi 2**: 현재 HP의 비율 데미지 (보스에 강함)
-- **Short Charge (S)**: 마법 차지 시간 단축 — **모든 마법 빌드 필수**
-
-**팁**: **Short Charge + 산술사**가 가장 사악한 조합. 헤이스트는 시작과 동시에 풀파티에 걸어둘 것.
-
-**키워드**: *Haste, Quick, Short Charge*
+- **Haste / Hasteja**: ⭐ 시작 직후 전체 헤이스트
+- **Slow / Slowja, Stop**: 보스 봉인
+- **Quick**: ⭐ 1턴 즉시 추가 행동
+- **Demi / Demi 2**: HP 비율 데미지 (보스 강함)
+- **Short Charge (S)**: ⭐ 마법 차지 단축 — 모든 마법 빌드 필수
 
 </div>
 
@@ -654,18 +847,14 @@ sources:
 
 <div class="info-card-body" markdown="1">
 
-**소환수 광역 마법** — 다른 마법보다 사거리/위력 ↑.
+**소환수 광역** — 사거리/위력 ↑.
 
 **필수 스킬**:
-- **모그리 (Moogle)**: 무료 광역 회복
-- **시바 (Shiva) / 이프리트 (Ifrit) / 라무 (Ramuh)**: 속성 광역
-- **타이탄 (Titan)**: 무속성 광역 — 가성비 최강
-- **바하무트 (Bahamut)**: 후반 무속성 최강 단일/광역
-- **류드라 (Lich, FFT명: Lich) / 조디악 (Zodiark)**: 즉사·암속성
-
-**팁**: **MP 소비 큰 단점** → **Half MP + Magic Attack Up**으로 보완.
-
-**키워드**: *바하무트, 타이탄, 모그리*
+- **모그리**: 무료 광역 회복
+- **시바/이프리트/라무**: 속성 광역
+- **타이탄**: 무속성 광역 가성비
+- **바하무트**: 후반 무속성 최강
+- **조디악**: 즉사·암속성
 
 </div>
 
@@ -679,15 +868,13 @@ sources:
 
 <div class="info-card-body" markdown="1">
 
-**상태 이상 마법 전문**.
+**상태 이상 전문**.
 
 **필수 스킬**:
-- **Sleep / Silence / Petrify / Confusion / Toad / Frog / Don't Move / Don't Act**: 다양한 상태 이상
-- **Defense Up (S)**: PA 방어 ↑ — 모든 빌드의 백업 패시브
+- **Sleep / Silence / Petrify / Confusion / Toad / Don't Move / Don't Act**
+- **Defense Up (S)**: PA 방어 ↑
 
-**팁**: 직업 본체는 평범, **계산사 해금용**으로 거쳐가는 직업.
-
-**키워드**: *Petrify, Defense Up*
+> 직업 본체는 평범, **계산사 해금용** 정거장.
 
 </div>
 
@@ -701,16 +888,12 @@ sources:
 
 <div class="info-card-body" markdown="1">
 
-**대화로 적 영입 (Invite)** + 상태 이상.
+**대화 + 영입**.
 
 **필수 스킬**:
-- **Invite (Persuade)**: 적 캐릭터 영입 — **희귀 몬스터 영입의 유일한 수단**
-- **Insult**: 적 Brave/Faith 조절
-- **Train**: 적을 새 직업으로 강제 변경
-
-**팁**: 음유시인/계산사 해금용. **Invite로 데몬·홀리 드래곤·말보로·홀리 미니펜 같은 희귀 몬스터를 잡아 키울 수 있음**.
-
-**키워드**: *Invite, Train*
+- **Invite (Persuade)**: ⭐ **희귀 몬스터 영입** — 데몬, 홀리 드래곤, 말보로, 홀리 미니펜
+- **Insult**: Brave/Faith 조절
+- **Train**: 적 직업 변경
 
 </div>
 
@@ -723,28 +906,26 @@ sources:
 <div class="info-card-header">
   <h3 class="info-card-title">산술사 / 계산사 (Arithmetician / Calculator) — ★★★★★★ (브로큰)</h3>
   <div class="info-card-tags">
-    <span class="tag tag-secret">게임 파괴 직업 #1</span>
+    <span class="tag tag-secret">게임 파괴 #1</span>
   </div>
 </div>
 
 <div class="info-card-body" markdown="1">
 
-**산술(Arithmetic / Math Skill)** — 차지 없이 즉시, MP 없이, **CT/Level/Exp/Height의 배수에 해당하는 모든 적/아군에게 마법 동시 발동**.
+**산술 (Calculate / Math Skill)** — 차지 없이, MP 없이, **CT/Lv/Exp/Height 배수**에 해당하는 모든 유닛에게 등록 마법 발동.
 
 **작동 예시**:
-- **CT 5 + 산술 = Holy** → 현재 CT가 5의 배수인 모든 유닛에게 Holy 발동
-- **Level 3 + 산술 = Death** → 레벨이 3의 배수인 모든 적에게 광역 즉사
-- **Height 4 + 산술 = Flare** → 4의 배수 높이 타일의 적 광역 폭딜
+- **CT 5 + Holy** → 현재 CT가 5의 배수인 모든 유닛
+- **Level 3 + Death** → 레벨이 3의 배수인 모든 적
+- **Height 4 + Flare** → 4의 배수 높이 타일의 적
 
-**필수 스킬**:
-- **Calculate (Math Skill)**: 핵심 액션 어빌리티
-- 등록 마법: **Holy, Flare, Death, Frog, Demi 2, Bio 3** — 백/흑/시/음양에서 학습한 모든 마법이 산술 대상이 됨
+**필수 학습**:
+- **Calculate** (액션) — 핵심
+- 등록 마법: **Holy** (백마도사), **Flare/Death** (흑마도사), **Demi 2** (시마도사), **Frog/Bio 3** (음양사)
 
-**약점**: 직업 본체 스피드/PA 약함 → 어택터로는 부적합. **순수 캐스터**로만 활용.
+**약점**: 본체 PA/SP 낮음 → 어택터로는 부적합. **순수 캐스터**로만.
 
-**팁**: 산술사 1명 + 시마도사(헤이스트 보조) 1명 = 사실상 모든 전투 자동 클리어.
-
-**키워드**: *Calculate, CT5 Holy, Level 5 Death*
+**팁**: 산술사 1 + 시마도사 1 (Haste 보조) = 사실상 전투 자동 클리어.
 
 </div>
 
@@ -761,16 +942,14 @@ sources:
 **노래 (Sing)** — 매턴 자동 아군 버프.
 
 **필수 스킬**:
-- **Angel Song**: 매턴 아군 HP 회복
-- **Life Song**: 자동 부활(데드)
-- **Cheer Song**: 매턴 Speed +
-- **Battle Song**: 매턴 PA + (사실상 영구 강화)
+- **Angel Song**: 매턴 HP 회복
+- **Life Song**: 자동 부활
+- **Cheer Song**: 매턴 SP +
+- **Battle Song**: 매턴 PA + (영구 강화)
 - **Magic Song**: 매턴 MA +
 - **Nameless Song**: 랜덤 좋은 상태이상
 
-**팁**: 보스전에 1명 배치 — 매턴 풀파티 강화. **Magic Song + 계산사** 조합이 사기.
-
-**키워드**: *Battle Song, Cheer Song*
+> 보스전에 1명 배치 = 매턴 풀파티 강화.
 
 </div>
 
@@ -787,14 +966,10 @@ sources:
 **춤 (Dance)** — 매턴 자동 적 디버프.
 
 **필수 스킬**:
-- **Slow Dance**: 매턴 적 전체 Speed -
+- **Slow Dance**: 매턴 적 SP -
 - **Disillusion**: 매턴 적 MP -
+- **Last Dance**: ⭐ 매턴 적 CT 0
 - **Nameless Dance**: 랜덤 나쁜 상태이상
-- **Last Dance**: 매턴 적 CT 0 (강력)
-
-**팁**: 음유시인과 짝지어 양측 풀버프/풀디버프. 단, 적이 슬로우/스톱 면역이면 효과 ↓.
-
-**키워드**: *Last Dance, Slow Dance*
 
 </div>
 
@@ -811,16 +986,512 @@ sources:
 
 <div class="info-card-body" markdown="1">
 
-**아군의 행동을 즉시 복사** — Charge/MP/JP 무료.
+**아군 행동을 즉시 복사** — Charge/MP/JP 무료.
 
-**작동**:
-- 다른 아군이 마법/공격을 하면 **자동으로 같은 마법/공격을 복사 시전**
-- **흉내쟁이 자체는 행동 불가** (Mimic은 R 어빌리티 같은 자동 반응)
-- 장비 거의 못 함 — 방어력 ↓
+- 다른 아군이 마법/공격 → 자동 같은 행동 복사
+- 흉내쟁이 자체는 행동 불가 (Mimic은 자동 반응)
+- 장비 거의 못 함 → 방어력 ↓
 
-**팁**: 산술사 1명 + 흉내쟁이 2명 = **산술 마법이 3번 발동** = 광역 즉사 가능. 하지만 미메는 **모든 직업 JL4+**가 필요해 후반에야 도달.
+> 산술사 1 + 흉내쟁이 2 = 산술 3번 발동 = 광역 즉사. **모든 직업 JL4+** 필요해 후반에야 도달.
 
-**키워드**: *Mimic*
+</div>
+
+</div>
+
+## 🎭 캐릭터별 추천 빌드
+
+> 메인 캐스트는 **전용 직업**이 강력해서 갈아입을 필요가 거의 없다. 다만 **서브 어빌리티(보조) + R/S/M**을 잘 박아야 진가가 나옴.
+
+### 람자 (Ramza, 주인공) — 챕터별 진화
+
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">👤 람자 — 스콰이어 전용 강화판 보유</h3>
+  <div class="info-card-tags">
+    <span class="tag tag-explore">평생 사용 어택커</span>
+  </div>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+람자의 스콰이어는 **챕터 진행에 따라 자동 강화** — Ch.4에서는 *Yell*, *Cheer Up*, *Wish*(아군 HP→자기 HP), *Ultima*(마지막에 학습) 같은 광역 버프/회복/딜 스킬을 보유.
+
+**Ch.1~2 빌드**:
+- **메인**: 스콰이어 또는 나이트
+- **서브**: Item (켐피스트)
+- **R**: Auto Potion
+- **S**: Equip Armor
+- **M**: Move +1
+
+**Ch.3~4 빌드 (성장형)**:
+- **메인**: ⭐ **Holy Sword** (아그리아스에서 학습) — 람자가 Holy Knight 직업을 거쳐 학습. 람자 전용 직업이 아닌 보조 어빌리티로 평생 활용
+- **서브**: Punch Art (몽크) — Chakra 자력 회복
+- **R**: **Blade Grasp** (사무라이) — 브레이브 ↑ 시 회피 ↑
+- **S**: **Two Hands** (사무라이) — 검 데미지 ×2
+- **M**: **Move +2** (시프)
+
+**최종 빌드 (디프 던전 + 알티마)**:
+- **메인**: Calculate (산술사) — Level 3 Death 광역 즉결
+- **서브**: White Magic (Holy + Raise 2)
+- **R**: Blade Grasp / Counter Magic
+- **S**: Magic Attack Up + Short Charge
+- **M**: Move +2
+
+</div>
+
+</div>
+
+### 아그리아스 오크스 (Agrias Oaks)
+
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">⚔️ 아그리아스 — Holy Knight 평생 유지</h3>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+**전용 직업**: Holy Knight (Holy Sword 사용)
+**합류**: Ch.2 자란드 외곽
+**별자리**: 물고기자리 ♀
+
+**Holy Sword의 가치**: 검 사거리 ↑ + 직선 광역 + 보조 효과(스턴/슬립/페트리)
+
+**필수 학습 (Holy Sword 액션)**:
+- **Stasis Sword (Crush Punch)**: 스턴
+- **Split Punch**: 광역
+- **Lightning Stab**: 직선 다단
+- **Holy Explosion**: 후반 강력
+
+**추천 빌드**:
+- **메인**: Holy Sword (Knight 전용 — 평생 유지, 다른 직업 갈아입을 필요 ❌)
+- **서브**: Item (켐피스트 JL5의 Phoenix Down 백업)
+- **R**: ⭐ **Counter** (풍수사) — 카운터 발동
+- **S**: ⭐ **Two Hands** (사무라이) — 검 데미지 ×2
+- **M**: ⭐ **Move +2** (시프)
+
+**JP 도장 추천**: 합류 직후 Ch.2 약한 맵에서 모든 Holy Sword 어빌리티 학습 → Ch.3~4 진가
+
+**별자리 매칭**: 람자(양자리 ♂) ↔ 아그리아스(물고기자리 ♀) = **Bad** → 직접 회복 효율 ↓. 백마도사 별자리는 ♀ 양자리/사자자리로 매칭하면 풀파티 회복 안정.
+
+</div>
+
+</div>
+
+### 무스타디오 부나스 (Mustadio Bunansa)
+
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">🔫 무스타디오 — Machinist 평생 유지</h3>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+**전용 직업**: Machinist (총 사용 + 부위 봉인)
+**합류**: Ch.2 자란드 항구
+**별자리**: 황소자리 ♂
+
+**부위 봉인의 가치**: **보스에게 *Arm Aim* = 행동 불가** — Wiegraf 등 보스를 안전하게 무력화.
+
+**필수 학습 (Snipe 액션)**:
+- **Leg Aim**: 다리 봉인 — 적 *Don't Move*
+- **Arm Aim**: 팔 봉인 — ⭐ **적 *Don't Act* (행동 불가)**
+- **Seal Evil**: 언데드/루카비 봉인 — 후반 강력
+
+**추천 빌드**:
+- **메인**: Snipe (Machinist 전용)
+- **서브**: Item (켐피스트) 또는 White Magic
+- **R**: ⭐ **Concentrate** (아처) — Snipe 명중률 100%
+- **S**: Equip Armor (나이트) — 생존력 ↑
+- **M**: Move +2
+
+**JP 도장 추천**: Goug Machine City 도장. *Arm Aim* + *Leg Aim* + *Seal Evil* 학습 우선.
+
+**Tip**: 보스전 시작 → **Arm Aim 명중 → 보스 무력화 → 풀파티 안전한 딜**.
+
+</div>
+
+</div>
+
+### T.G. 시드 / 시돌푸스 올란도 (T.G. Cid / Cidolfas Orlandeau)
+
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">🗡️ T.G. 시드 — 게임 내 단일 최강 캐릭</h3>
+  <div class="info-card-tags">
+    <span class="tag tag-secret">합류 = 게임 사실상 종료</span>
+  </div>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+**전용 직업**: Sword Saint (모든 검술 동시 사용)
+**합류**: Ch.4 시드 영지 자동
+**별자리**: 천칭자리 ♂
+
+**Sword Saint의 가치**: 합류 시점에 이미 **Holy Sword (아그리아스) + Magic Sword (베오울프) + Dark Sword (메리아돌)** 모두 보유.
+
+**필수 학습 (이미 학습 완료)**:
+- Holy Sword 전체
+- Magic Sword: **Shellbust / Speedbreak / Powerbreak / Magic Break** 등 장비/스탯 파괴
+- Dark Sword: **HP/MP 흡수** — 보스에 영구 흡혈
+
+**추천 빌드**:
+- **메인**: All Sword (전용)
+- **서브**: Item (켐피스트) — 비상 백업
+- **R**: ⭐ **Blade Grasp** (사무라이) — 브레이브 97 = 검 회피 97%
+- **S**: ⭐ **Two Hands** (사무라이) — 데미지 ×2
+- **M**: ⭐ **Move +2** (시프)
+
+**무기**: ⭐ **카오스 블레이드** (Chaos Blade) — 트레저 헌트 회수. 풀 PA 강화.
+
+**별자리 매칭**: 천칭 ♂ ↔ 양자리(람자) = **Worst** ⚠️. 람자의 회복은 다른 캐릭이 담당. 천칭자리는 양자리의 **정반대** 위치.
+
+**최종 평가**: ★★★★★★ — **너무 강해서 1회차에 자제하는 유저 다수**. Tactician 난이도라면 본격 활용.
+
+</div>
+
+</div>
+
+### 메리아돌 틴겔 (Meliadoul Tengille)
+
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">🛡️ 메리아돌 — Divine Knight (장비 파괴 + Dark Sword)</h3>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+**전용 직업**: Divine Knight
+**합류**: Ch.4 자동
+**별자리**: 처녀자리 ♀
+
+**Dark Sword (Holy Explosion 등)**: 보스의 **장비를 즉시 파괴** + 광역 데미지
+
+**필수 학습**:
+- **Crush Helm / Crush Armor / Crush Weapon / Crush Shield**: ⭐ 적 장비 강제 박살 (Break보다 강력 — 회피 X)
+- **Holy Explosion**: 광역 + 신성
+
+**추천 빌드**:
+- **메인**: Mighty Sword (Divine Knight 전용)
+- **서브**: Item (켐피스트)
+- **R**: Counter / Blade Grasp
+- **S**: Two Hands
+- **M**: Move +2
+
+**Tip**: **루카비 보스**의 카오스 블레이드 같은 사도자 무기 + 알티마 같은 보스의 강력한 장비를 **Crush 시리즈로 회피 무시 파괴** → 안정 클리어.
+
+</div>
+
+</div>
+
+### 라파 갈테나 (Rapha Galthena)
+
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">✨ 라파 — Heaven Knight (Skyseer 마법)</h3>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+**전용 직업**: Heaven Knight (Galaxy Stop, Lune)
+**합류**: Ch.4 자동
+**별자리**: 궁수자리 ♀
+
+**Skyseer 마법의 특수성**: **시전 위치에 따라 랜덤 광역**. 명중률 불안하지만 한 번 들어가면 강력.
+
+**필수 학습**:
+- **Heavenly Wrath / Wrath of Heaven**: 광역
+- **Galaxy Stop**: 광역 Stop
+
+**추천 빌드**:
+- **메인**: Skyseer
+- **서브**: White Magic (회복 보조)
+- **R**: ⭐ **Counter Magic** — 마법 카운터 강력
+- **S**: Magic Attack Up
+- **M**: Teleport (시마도사 학습) 또는 Move +2
+
+**Tip**: 명중률이 낮아 **고지 위에서 시전** + **상대가 일렬로 모이는 구간**을 노리기.
+
+</div>
+
+</div>
+
+### 마라크 갈테나 (Marach Galthena)
+
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">🌑 마라크 — Hell Knight (Netherseer 마법)</h3>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+**전용 직업**: Hell Knight (Asura, Hell Ivy)
+**합류**: Ch.4 자동 (라파의 동생)
+**별자리**: 염소자리 ♂
+
+**Netherseer = Skyseer의 흑마법 버전**.
+
+**필수 학습**:
+- **Hell Ivy / Cyclops**: 광역 암속성
+- **Asura**: 광역 (사무라이와 동명이지만 별도)
+
+**추천 빌드**: 라파와 동일 — 라파(천공) + 마라크(지옥) 페어로 양쪽에서 광역 폭딜.
+
+</div>
+
+</div>
+
+### 베오울프 카담스 + 레이스 더림
+
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">⚔️🐉 베오울프 & 레이스 — 페어 영입</h3>
+  <div class="info-card-tags">
+    <span class="tag tag-secret">⚠️ 의뢰 순서 미씨블</span>
+  </div>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+**전용 직업**:
+- **베오울프**: Temple Knight (Magic Sword — 스턴/슬립/페트리)
+- **레이스**: Dragoner(인간) / Holy Dragon(드래곤)
+
+**별자리**: 베오울프 = 물병자리 ♂, 레이스 = 천칭자리 ♀
+
+**필수 학습 (베오울프)**:
+- **Magic Sword (Drain/Shock/Stun/Berserk/Sleep/Silence)**: ⭐ 검술 + 상태이상
+- **Petrify Sword**: ⭐ **즉사급** (석화 = 영구 무력화)
+
+**추천 빌드 (베오울프)**:
+- **메인**: Magic Sword (전용)
+- **서브**: Item
+- **R**: Counter / Blade Grasp
+- **S**: Two Hands + Magic Attack Up
+- **M**: Move +2
+
+**레이스 (Holy Dragon 형태)**:
+- **메인**: 드래곤 전용 스킬 (Ice/Lightning/Fire Breath, Holy Breath)
+- **장비 불가** — 드래곤은 장비 변경 ❌
+- 인간 형태로 돌아오면 Dragoner 전용 직업으로 무기·방어구 사용 가능
+
+**Tip**: 베오울프의 **Petrify Sword**가 들어가면 알티마도 무력화 가능. 사거리 짧지만 한 방 결정.
+
+</div>
+
+</div>
+
+### 클라우드 스트라이프 (Cloud Strife)
+
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">⚔️ 클라우드 — FF7 게스트 (Soul Diver)</h3>
+  <div class="info-card-tags">
+    <span class="tag tag-secret">⚠️ 머티리얼 블레이드 필수</span>
+  </div>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+**전용 직업**: Soul Diver (Limit 스킬)
+**합류**: Ch.4 Goug Machine City + 시간 여행 의뢰 사슬
+**별자리**: 뱀자리 ♂ (모든 다른 별자리와 Bad)
+
+**Limit 스킬의 가치**: **머티리얼 블레이드 (Materia Blade)** 를 장비해야만 사용 가능. 무기 없이 영입하면 **거의 못 쓴다**.
+
+**필수 학습 (Limit)**:
+- **Braver / Cross Slash / Climhazzard / Meteorain**: 단일~광역 폭딜
+- **Finishing Touch**: 광역 (석화 효과)
+- **Omnislash**: ⭐ 사거리 무한 폭딜
+- **Cherry Blossom**: ⭐ 광역 최강
+
+**추천 빌드**:
+- **메인**: Limit (Soul Diver 전용)
+- **서브**: Item 또는 자유
+- **R**: Blade Grasp
+- **S**: Two Hands
+- **M**: Move +2
+
+**무기**: ⭐ **머티리얼 블레이드** — 트레저 헌트(큐큐로스 사원 절벽) 또는 의뢰 회수. **반드시 영입 전 확보**.
+
+**별자리 페널티**: 뱀자리는 12별자리 모두와 Bad. 클라우드는 솔로로 광역 폭딜용 — 회복/지원받기 어려움.
+
+</div>
+
+</div>
+
+### 워커 8 (Worker 8 / Construct 8)
+
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">🤖 워커 8 — 로봇 동료 (Steel Giant)</h3>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+**전용 직업**: Steel Giant
+**합류**: Ch.4 Goug Machine City 의뢰 시리즈
+**별자리**: **없음 (로봇)** — 별자리 매칭 무관
+
+**특이점**:
+- 보조 어빌리티 / R / S / M **모두 부여 불가**
+- 장비 변경 **불가**
+- 레벨업 없음 (고정 스탯)
+- **상태이상 면역** (실드/오로지 데미지로만)
+
+**전용 스킬**:
+- **Compress**: 단일 강력 펀치
+- **Dispose**: 광역 충격파
+- **Crush**: 직선 광역
+
+**추천 활용**:
+- ⭐ **상태이상 면역**으로 **혼란/마비 위주 보스전(알티마, 메리아돌 패밀리)** 에 안정적
+- 별자리 무관 = 모든 별자리 적과 동등
+- 카운터/회피 ❌ → 정직한 화력 + 탱커
+
+</div>
+
+</div>
+
+### 비블로스 (Byblos)
+
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">👹 비블로스 — 마수형 동료</h3>
+  <div class="info-card-tags">
+    <span class="tag tag-secret">⚠️ Ch.3 단 1회 영입</span>
+  </div>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+**전용 직업**: Byblos (몬스터 직업)
+**합류**: Ch.3 — Goug Machine City **사이드 룸 1회 출현**
+**별자리**: 쌍둥이자리 ♂
+
+**비블로스 전용 스킬**:
+- **Drain Touch**: HP 흡수
+- **Mind Drain**: MP 흡수
+- **Hurricane**: 광역 풍속성
+
+**추천 활용**:
+- **무한 회복** (HP/MP 흡수)
+- **MP 안정 공급원** — 산술사/소환사 후방에서 MP 회복 도우미
+- 후반 산술사 어시스트로 가치 ↑
+
+</div>
+
+</div>
+
+### Generic Calculator 빌드 (커스텀 캐릭)
+
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">🔢 Generic 산술사 (계산사) — 마법 등록 최적</h3>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+**작성 순서**:
+
+1. **채용 화면**: 별자리 무관, **Faith ≥ 70**, MA 성장 좋은 캐릭 우선
+2. **JP 진행**: Squire JL2 → Chemist JL2 → 백마도사 JL4 (Holy 학습) → 흑마도사 JL4 (Flare + Death) → 시마도사 JL3 (Short Charge) → 음양사 JL3 (Frog/Bio 3) → 산술사 해금
+
+**필수 학습**:
+- 액션 마법 등록: **Holy, Flare, Death, Frog, Bio 3**
+- 산술사 본인: **Calculate (액션)**
+
+**추천 빌드**:
+- **메인**: Calculate (산술사 전용)
+- **서브**: White Magic (Cure/Raise 2/Holy) — 직접 시전 백업
+- **R**: ⭐ Counter Magic
+- **S**: ⭐ **Magic Attack Up** + **Short Charge**
+- **M**: Move +2 (Find Item)
+
+**보스전 진행**:
+1. 첫 턴: Level X (적 LV의 공통 배수) + Death → 광역 즉사 시도
+2. 안 통하면: CT 5 + Holy / Flare → 광역 폭딜
+3. 산술사 본체는 SP 낮으므로 시마도사 Haste 보조
+
+</div>
+
+</div>
+
+### Generic Ninja 빌드 (커스텀 캐릭)
+
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">🥷 Generic 닌자 — 양수검 어택커</h3>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+**작성 순서**:
+
+1. **채용 화면**: SP 성장 좋은 캐릭, Brave 70+
+2. **JP 진행**: Squire JL2 → Chemist JL2 → 아처 JL4 (Concentrate) → 시프 JL3 (Move +2) → 풍수사 JL2 → 닌자 해금
+
+**필수 학습**:
+- **Throw** (액션): 시노비도/카타나/검 무기 투척
+- **Two Swords (S)** — 닌자 학습
+
+**추천 빌드**:
+- **메인**: Throw 또는 자유 (Holy Sword 등 다른 액션)
+- **서브**: Punch Art (몽크 Chakra) 또는 Item
+- **R**: ⭐ **Concentrate** (회피 무시) 또는 **Counter**
+- **S**: ⭐ **Two Swords** — **양손 1턴 2회 타격**
+- **M**: ⭐ Move +2
+
+**무기**: **유 가르탄 (Yagyu Darkblade) + 마사무네** 또는 **카오스 블레이드 + 사도자 카타나**
+
+**보스전 진행**: 1턴 4회 타격(2회 × 2손) → 보스 1턴 마무리.
+
+</div>
+
+</div>
+
+### Generic Samurai 빌드 (커스텀 캐릭)
+
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">🗡️ Generic 사무라이 — 마사무네 발도 탱커</h3>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+**작성 순서**:
+
+1. **채용 화면**: HP/PA 성장 좋은 캐릭, **Brave ≥ 97** (Blade Grasp 풀활용)
+2. **JP 진행**: Squire → Chemist → 나이트 JL4 → 몽크 JL4 → 용기사 JL2 → 사무라이 해금
+
+**필수 학습**:
+- **Draw Out** 전체 (마사무네까지)
+- **Blade Grasp (R)** — 본인의 백업
+
+**추천 빌드**:
+- **메인**: Draw Out (사무라이 전용)
+- **서브**: White Magic 또는 Item
+- **R**: ⭐ **Blade Grasp** — Brave 97 = 검/카타나/창 회피 97%
+- **S**: ⭐ **Equip Heavy Armor** (나이트) + **Two Hands** (사무라이)
+- **M**: Move +1 또는 Move +2
+
+**무기**: ⭐ **카오스 블레이드** + 사도자 카타나(잔수아간자 등) 다수
+
+**전투 진행**: 시작 직후 **마사무네 발도** = 풀파티 헤이스트 + 리젠 → 본인 양수 검 탱커.
 
 </div>
 
@@ -830,119 +1501,242 @@ sources:
 
 ## 챕터 1 ─ The Meager (가난한 자)
 
-> 람자의 청년 시절. **이그로스 학원 → 오차드 마을 → 자루기아 요새 → 마그식 가문**. 사자 전쟁의 시작.
+> 람자의 청년 시절. **이그로스 학원 → 자루기아 요새 → 마그식 가**. 도적단 추적의 외피지만 실제로는 **딜리터 이탈과 람자 가족 비극의 서장**.
+
+### 권장 파티 (Ch.1 종료 시점)
+
+| 슬롯 | 캐릭터 | 직업 | JP 목표 |
+|---|---|---|---|
+| 1 | 람자 | 스콰이어 (전용) | 스킬 학습 + 나이트 JL2 |
+| 2 | Generic ♂ | Knight | JL3 + Monk JL1 |
+| 3 | Generic ♀ | Chemist → 백마도사 | 백마도사 JL2 (Cure) |
+| 4 | Generic ♂ | Chemist → 흑마도사 | 흑마도사 JL2 (Fire) |
+| 5 | Generic 자유 | 아처 → 시프 트리 | 시프 JL2 (Move +2 학습 시작) |
+
+**핵심 목표 (챕터 1 종료 전)**:
+- 람자: **Yell** + **JP Boost (S)** + **Move +1 (M)** 학습
+- 모든 캐릭: **켐피스트 JL2** = *Item* 보조 어빌리티 영구 확보
+- 회복: **백마도사 1명 Cure 학습 = 챕터 2 진입 안전 보장**
 
 ### 핵심 전투
 
 | # | 위치 | 적 | 메모 |
 |---|---|---|---|
-| 1 | **이그로스 학원** (튜토리얼) | 마그식 도적단 | 람자 + 딜리터 + 알가스 |
-| 2 | 오차드 마을 외곽 | 도적단 | 학원 동기들 합류 |
-| 3 | **마그식 토벌전** | 마그식 미라우드 + 도적 | 첫 의미 있는 전투 |
-| 4 | **자루기아 요새 옥상** | **★보스: 발플레아 (Wiegraf)** | 첫 보스. 풍수사 학습 권장 |
-| 5 | 펀드 산기슭 | 도적 | |
-| 6 | **마그식 미라우드 일전** | **★보스: 알가스 + 마그식** | 챕터 1 클라이맥스. **딜리터 이탈 트리거** |
-| 7 | **자르가 묘지** | 발플레아 재등장 | Ch.1 종결 |
+| 1 | **이그로스 학원** (튜토리얼) | 마그식 도적단 | 람자 + 딜리터 + 알가스 게스트 |
+| 2 | **오차드 마을 외곽** | 도적 4 + 야수 | 학원 동기 합류 |
+| 3 | **마그식 토벌전 1차** | 마그식 미라우드 + 도적 | 첫 의미 있는 전투 |
+| 4 | **자루기아 요새 옥상** | ⭐ **보스: 발플레아 (1차)** + 부하 4 | 첫 보스 |
+| 5 | **펀드 산기슭** | 도적 다수 | 산악 지형 |
+| 6 | **마그식 미라우드 일전** | ⭐ **알가스 + 마그식** | **딜리터 이탈 트리거** — 알마 등장 |
+| 7 | **자르가 묘지** | 발플레아 잔당 | Ch.1 종결 |
 
 <div class="boss-card" markdown="1">
 
 <div class="boss-card-header">
   <span class="boss-icon">⚔️</span>
-  <h4 class="boss-name">Ch.1 보스 ─ 발플레아 폴레스 (Wiegraf Folles)</h4>
+  <h4 class="boss-name">Ch.1 보스 ─ 발플레아 폴레스 (Wiegraf Folles, 1차)</h4>
 </div>
 
 <div class="boss-card-body" markdown="1">
 
-도적단 두목 + **나이트 클래스**. Ch.3에서 **루카비화**해서 재등장 — Ch.1 발플레아는 약하지만 **Ch.3의 발플레아 1대1 전이 진짜 함정**.
+도적단 두목 + 나이트. **Ch.3에서 루카비화 재등장** — 1차전은 약함.
 
-**Ch.1 공략**:
-- 발플레아의 **검 데미지**가 람자에게 100~150 들어감
-- **궁수로 멀리서 차징** + **켐피스트 포션** 백업
-- 부하 우선 정리 후 발플레아만 남기면 안정
+**적 구성**: 발플레아 + 도적 4 + 궁수 1
 
-**필수 준비**:
-- 람자 = 스콰이어 (자동 강화)
-- 켐피스트 1명, 백마도사 1명, 나이트/몽크 2명
-- **별자리 ♂♀ 섞기** — 회복 효율 ↑
+**맵 분석**: 자루기아 요새 옥상 — **계단식 지형**, 발플레아는 위쪽 모서리. 람자 일행은 아래에서 등반.
+
+**진행 순서**:
+1. **부하부터 정리** — 발플레아 본체는 회피 좋음
+2. **궁수**(가장 멀리)는 백마도사 Cure 사거리 밖에 있으므로 우선
+3. 발플레아 1대1 정리 — **검 데미지 100~150**. 켐피스트 Item으로 풀헬스 유지
+4. 발플레아의 *Crush Punch*는 1.5배 데미지 — **Knight Equip Armor**로 줄이기
+
+**팁**:
+- **별자리 매칭**: 람자(양자리 ♂) ↔ 발플레아(게자리 ♂) = **Bad** → 람자 공격 데미지 ↓. **궁수/마법사로 외부 화력** 강화
+- **알가스 게스트** 활용 — Ch.1만 같이 싸움. 적의 공격을 끌어내는 미끼로
 
 </div>
 
+</div>
+
+### 챕터 1 JP 작업 추천
+
+<div class="tip" markdown="1">
+**💡 Mandalia Plains (만달리아 평원) — 도적단 약체 맵**
+
+Ch.1 후반에 자유롭게 재방문 가능. **모든 캐릭이 같은 직업**으로 출전 → Yell 도장 → 1~2시간이면 **챕터 2 마법 직업 트리** 사전 작업 완료.
+
+**도장 후 추천 직업 분포**:
+- 람자: 스콰이어 JL3 → 나이트 JL3 → 몽크 JL2
+- 메인 어택커: 나이트 JL3 → 몽크 JL2
+- 마법 캐스터: 백마도사 JL3 (Cure 광역)
+- 백업: 흑마도사 JL3 (Fire 광역)
+- 유틸: 시프 JL3 (Move +2 학습)
 </div>
 
 <div class="warn" markdown="1">
 **⚠️ Ch.1 미씨블/필수**
 
-- **알가스(Argath/Algus)**는 **챕터 1 마지막 전투에서 적**으로 등장 — 캐릭터로 안 남음. 그가 사용하는 **궁수 공식 검**은 그가 죽을 때 드롭 가능 (낮은 확률) → Steal로 회수 시도
-- **딜리터는 챕터 1 마지막에 이탈** — 영구. Ch.4까지 돌아오지 않음
-- 챕터 종료 전 **JP 작업** 권장. 람자/알마/잡 캐릭에 켐피스트 → 백/흑마도사 JL2 확보
+- **알가스(Argath)**: 챕터 1 마지막 전투에서 **적**으로 등장 — 캐릭터로 영입 불가. 그가 사용하는 **공식 검**은 Steal로 회수 시도 (낮은 확률)
+- **딜리터**: 챕터 1 마지막에 이탈, Ch.4까지 돌아오지 않음. 그가 가진 무기는 일부 보유 가능
+- **챕터 종료 전 JP**: 람자/알마/잡 캐릭에 **켐피스트 JL2 + 마법사 트리 시작**
 </div>
+
+---
 
 ## 챕터 2 ─ The Manipulator and the Subservient (조종자와 충복)
 
-> **오베리아 공주 호위** + **무스타디오 합류** + **베스라/박사 가문 음모**. 글라바도스 교회와 북천국·남천국 갈등의 외면이 드러난다.
+> **오베리아 공주 호위** + **무스타디오 합류** + **베스라 박사 사건**. 글라바도스 교회의 음모가 표면화되며, 람자는 **십자가 너머에 있는 진실**의 단편을 보게 된다.
+
+### 권장 파티 (Ch.2 종료 시점)
+
+| 슬롯 | 캐릭터 | 직업 | JP 목표 |
+|---|---|---|---|
+| 1 | 람자 | 나이트 또는 몽크 | Holy Sword 학습 시작 (아그리아스 페어로) |
+| 2 | ⭐ **아그리아스** | Holy Knight (전용) | Stasis Sword + Lightning Stab |
+| 3 | ⭐ **무스타디오** | Machinist (전용) | Arm Aim + Leg Aim 학습 |
+| 4 | Generic ♀ | 백마도사 JL4 | Holy + Cura |
+| 5 | Generic ♂ | 흑마도사 JL4 → 시마도사 시작 | Flare + Haste 학습 |
+
+**핵심 목표**:
+- 아그리아스: ⭐ **Stasis Sword** + **Split Punch** + **Lightning Stab** 학습 — Ch.3~4 주력
+- 무스타디오: ⭐ **Arm Aim** + **Leg Aim** + **Seal Evil** 학습 — 보스 봉인용
+- 람자: **나이트 JL4** → 몽크 JL4 → 사무라이 트리 시작
+- 마법: 백/흑마도사 JL4 동시 진행 → **시마도사 해금**
 
 ### 핵심 전투
 
 | # | 위치 | 적 | 메모 |
 |---|---|---|---|
 | 1 | **돌보단 묘지** | 람자 부활전 | 챕터 2 시작 |
-| 2 | **자란드 시 외곽** | **오베리아 공주 호위전** | **아그리아스 합류** |
-| 3 | 자란드 거리 | 도적단 | |
-| 4 | **자란드 항구** | 골고라드 + 도적 | **무스타디오 합류** |
-| 5 | 자란드 박사 가문 | 박사 가문 미라우드 | 무스타디오 부친 베스라 사건 |
-| 6 | **고그 머신 시티** | 머신리스트 + 비블로스(선택) | Ch.3 진입 전 마지막 분기 |
+| 2 | **자란드 시 외곽** | 나이트 + 궁수 + 마법사 + ⭐ **오베리아 게스트** | ⭐ **아그리아스 합류** |
+| 3 | **자란드 거리** | 도적단 | 시가지 좁은 골목 |
+| 4 | **자란드 항구** | 골고라드 + 도적 + 머신리스트 | ⭐ **무스타디오 합류** |
+| 5 | **자란드 박사 가문** | 박사 가문 미라우드 | 베스라 사건 컷씬 트리거 |
+| 6 | **고그 머신 시티** | 머신리스트 + 강력 적 | Ch.3 진입 직전 분기 |
 
 <div class="boss-card" markdown="1">
 
 <div class="boss-card-header">
-  <span class="boss-icon">⚔️</span>
-  <h4 class="boss-name">Ch.2 핵심 전투 ─ 오베리아 호위전</h4>
+  <span class="boss-icon">🛡️</span>
+  <h4 class="boss-name">Ch.2 핵심 전투 ─ 오베리아 호위전 (자란드 외곽)</h4>
 </div>
 
 <div class="boss-card-body" markdown="1">
 
-**자란드 시 외곽** — 적은 **나이트 + 궁수 + 마법사 혼합**. 오베리아는 NPC라 자동 행동하니 **보호 우선**.
+**적 구성**: 나이트 2 + 궁수 1 + 마법사 1 + 도적 2 (총 6)
 
-**공략**:
-- 오베리아 옆에 **방패형 캐릭(나이트) 배치** + 백마도사 즉시 회복
-- 적이 오베리아를 노릴 때 **아그리아스의 Holy Sword**(자동 발동)에 의존
-- 아그리아스는 **Stasis Sword / Split Punch / Lightning Stab** 학습 — Ch.4까지 주력 어택커
+**맵 분석**: 자란드 시 외곽 — **평탄 + 분수대 중앙**. 오베리아는 NPC라 자동 행동 → **보호 최우선**.
+
+**진행 순서**:
+1. **첫 턴**: 백마도사 Haste 또는 Cure 광역
+2. **아그리아스 합류 즉시 활용** — Holy Sword 사거리로 원거리 강타
+3. **오베리아 옆에 나이트 배치** → 적이 오베리아 향해 오면 차단
+4. **마법사 우선 정리** — 광역 마법 차단 (Don't Move / Silence)
+5. 적 정리 후 **오베리아 보호** 끝까지
+
+**오베리아 게스트 활용**:
+- 자동 행동 = 백마도사 Cure 자동 시전 (NPC 백마도사 동작)
+- 오베리아 옆에 어택커 배치 = 게스트가 데미지 ↑
+
+**팁**: 아그리아스의 별자리(물고기 ♀)는 람자(양자리 ♂)와 **Bad**. 그러나 그녀의 Holy Sword는 별자리 무관(보스 외 잡몹에 강력).
 
 </div>
 
 </div>
+
+<div class="boss-card" markdown="1">
+
+<div class="boss-card-header">
+  <span class="boss-icon">🔫</span>
+  <h4 class="boss-name">Ch.2 후반 ─ 자란드 항구 (무스타디오 합류)</h4>
+</div>
+
+<div class="boss-card-body" markdown="1">
+
+**적 구성**: 골고라드 두목 + 도적 3 + 머신리스트(NPC 게스트로 무스타디오)
+
+**맵 분석**: 자란드 항구 — **창고 + 부두 + 좁은 통로**. 무스타디오는 게스트로 시작, 보호 + 영입 트리거.
+
+**진행 순서**:
+1. **첫 턴**: 무스타디오 우선 사거리 확보 (Arm Aim/Leg Aim 사거리)
+2. 골고라드 두목에게 **Arm Aim** → 행동 불가
+3. **도적부터 정리** → 두목 마무리
+4. 무스타디오가 죽으면 영입 ❌ → **포션/페닉스 다운** 백업
+
+**Tip**: 두목의 검 데미지 강력 → **백마도사 Cure 매턴**. 무스타디오는 별자리(황소자리 ♂), 람자(양자리 ♂)와 **Neutral**.
+
+</div>
+
+</div>
+
+### 챕터 2 JP 작업 추천
 
 <div class="tip" markdown="1">
-**💡 Ch.2 진행 팁**
+**💡 Goug Machine City 외곽 — 무스타디오 합류 직후**
 
-- **아그리아스의 Holy Sword 스킬 학습** = Ch.2 최우선 — 람자/그녀 모두에게 영구 자산
-- **무스타디오**는 합류 직후 **머신리스트 전용 스킬(Leg Aim, Arm Aim, Seal Evil)** 학습 권장
-- **고그 머신 시티 진입** — Ch.4의 **워커8/클라우드 의뢰 사슬**의 출발점. 챕터 2에 한 번 방문 + Ch.4에 다시 방문해야 함
-- 챕터 2 종료 전 **JP**: 람자/알마 → 산술사 트리(백/흑/시/음양 동시 진행) 시작 권장
+머신리스트 + 도적이 약함. **무스타디오의 Snipe 액션 학습** + **아그리아스의 Holy Sword 학습** 동시에 진행.
+
+**Holy Sword 학습 우선순위**:
+1. **Stasis Sword** (스턴) — 보스에 즉시 유효
+2. **Split Punch** (광역) — 잡몹 청소
+3. **Lightning Stab** (다단) — 후반 메인 화력
+4. **Holy Explosion** (광역 신성) — 디프 던전 / 알티마
+
+**Snipe 학습 우선순위**:
+1. ⭐ **Arm Aim** (Don't Act 봉인) — 보스 1대1
+2. **Leg Aim** (Don't Move) — 차징 적 무력화
+3. **Seal Evil** — 언데드/루카비
 </div>
+
+<div class="warn" markdown="1">
+**⚠️ Ch.2 미씨블/필수**
+
+- **고그 머신 시티 진입** — Ch.4의 **워커8/클라우드 의뢰 사슬**의 출발점. 챕터 2 끝나기 전 한 번 방문
+- 챕터 2 종료 전 **JP 작업**: 람자/알마 → 산술사 트리 시작 (백/흑/시/음양 동시 진행)
+- **고그에서 비블로스 출현 확인** — Ch.3에서 본격 영입 시 트리거 조건
+</div>
+
+---
 
 ## 챕터 3 ─ The Valiant (용맹한 자)
 
-> **딜리터 재등장 (적측)** + **알마 납치** + **벨리아스 루카비 첫 등장**. 람자가 **추격자**에서 **추적당하는 자**로 위치 역전.
+> **딜리터 재등장 (적측)** + **알마 납치** + **벨리아스 루카비 첫 등장**. 람자가 **추격자에서 추적당하는 자**로 위치 역전.
+
+### 권장 파티 (Ch.3 종료 시점)
+
+| 슬롯 | 캐릭터 | 직업 | JP 목표 |
+|---|---|---|---|
+| 1 | 람자 | 몽크 또는 산술사 진입 | Holy Sword + Punch Art |
+| 2 | 아그리아스 | Holy Knight | Holy Sword 전체 마스터 |
+| 3 | 무스타디오 | Machinist | Snipe 전체 마스터 + Concentrate |
+| 4 | Generic 마법 | ⭐ **산술사 진입 직전** | 시마도사 + 음양사 학습 |
+| 5 | Generic ♀ | 시마도사 + 백마도사 | Haste/Cura/Raise 2 |
+
+**핵심 목표**:
+- ⭐ **산술사 해금** (백/흑 JL4 + 시마 JL3 + 음양 JL3) — Ch.3 후반까지 도달
+- **시마도사 Short Charge (S)** 학습 = 모든 마법 빌드 필수
+- **시프 Move +2 (M)** 전 캐릭에 부여
+- **풍수사 Attack Up (S) + Counter (R)** 학습 → 어택커 백업
 
 ### 핵심 전투
 
 | # | 위치 | 적 | 메모 |
 |---|---|---|---|
-| 1 | **고그 머신 시티** (사이드) | 비블로스 영입전 | ★ **비블로스 영입 — 1회만** |
-| 2 | **자란드 외부** | 도적단 + 골고라드 잔당 | |
+| 1 | **고그 머신 시티** (사이드) | 비블로스 영입전 | ⭐ **비블로스 영입 — 1회만** |
+| 2 | **자란드 외부** | 도적단 + 골고라드 잔당 | 회복 작업 가능 맵 |
 | 3 | **레아 몬블랑크 호수** | 발플레아 군 | 발플레아 2차전 (단체) |
-| 4 | **그록 산도 협곡** | 발플레아 군 추격 | |
-| 5 | **리오반즈 성 입구** | 정문 돌파전 | |
-| 6 | **★ 리오반즈 성 — 발플레아 1대1** | **★보스: 루카비화 발플레아** | **이 게임 최대 함정 전투 #1** |
-| 7 | **리오반즈 성 옥상** | **★보스: 벨리아스 (Belias)** | 첫 루카비 보스 |
-| 8 | **리오반즈 성 후처리** | 발메리아 + 알마 납치 컷씬 | Ch.4 트리거 |
+| 4 | **그록 산도 협곡** | 발플레아 군 추격 | 산악 지형 |
+| 5 | **리오반즈 성 입구** | 정문 돌파 | 게스트 캐릭터 NPC 다수 |
+| 6 | ⭐ **리오반즈 성 — 발플레아 1대1** | ⭐⭐⭐ **루카비화 발플레아** | ⚠️ **이 게임 최대 함정 #1** |
+| 7 | **리오반즈 성 옥상** | ⭐ **벨리아스 (첫 루카비)** | |
+| 8 | **리오반즈 후처리** | 발메리아 + 알마 납치 컷씬 | Ch.4 트리거 |
 
 <div class="boss-card" markdown="1">
 
 <div class="boss-card-header">
   <span class="boss-icon">💀</span>
-  <h4 class="boss-name">⚠️ Ch.3 최악의 함정 ─ 발플레아 1대1 전</h4>
+  <h4 class="boss-name">⚠️ Ch.3 최악의 함정 ─ 발플레아 1대1 (리오반즈 성)</h4>
   <div class="info-card-tags">
     <span class="tag tag-secret">진행 막힘 빈도 #1</span>
   </div>
@@ -950,25 +1744,49 @@ sources:
 
 <div class="boss-card-body" markdown="1">
 
-**리오반즈 성 진입 직후, 람자 단독으로 발플레아와 1대1**. 발플레아는 **루카비화 + 매턴 풀 회복** 패턴 사용.
+**리오반즈 성 진입 직후 람자 단독으로 발플레아와 1대1**. 발플레아는 **루카비화 + 매턴 풀 회복** 패턴.
 
-**준비 (이 전투 전까지 학습해 둘 것)**:
-- 람자 **JP 풀투자 + 액션 어빌리티 Holy Sword 또는 Punch Art**
-- **Auto Potion (R)** 필수 — 자동 회복 백업
-- **Move +2 (M)** — 발플레아 도주 추격
-- 람자 **장비**: 최고급 검 + 방패 + 체인 메일 등
-- **별도 세이브 슬롯 보존** — 직전 마을에서 분기 세이브 필수
+### 진입 전 준비 (이전 마을에서)
 
-**전투 공략**:
-1. **발플레아가 1턴 행동 후 변신** → 본 모드는 **루카비 형태**
-2. 차지 시간이 긴 마법 사용 → **차지 중 근접해서 컷딜** + 포션 자동
-3. **Holy Sword (Stasis Sword / Lightning Stab)** 가 가장 유효
-4. **시간 끌수록 불리** — 빠른 결판
+**람자 빌드**:
+- **메인**: Holy Sword (아그리아스에서 학습) 또는 Punch Art (몽크)
+- **서브**: ⭐ **Item** (켐피스트 JL5 — Phoenix Down 백업)
+- **R**: ⭐ **Auto Potion** — 피격 시 자동 회복
+- **S**: **Equip Armor** (나이트) — 중장갑
+- **M**: ⭐ **Move +2** (시프) — 추격용
 
-**막힐 때 대응**:
-- 별도 슬롯에서 **JP 추가 작업** 후 재도전
-- **Squire 난이도로 일시 변경** (Enhanced 한정)
-- 클래식 시절 *"리오반즈를 못 깨서 게임을 접었다"* 사례 다수 — Enhanced의 **되감기**도 1대1 전 안에서 작동하니 적극 활용
+**람자 장비**:
+- 최고급 검 (Excalibur 또는 그 시점 최강)
+- 방패 (Aegis Shield 등)
+- Chain Mail / Diamond Helm / Diamond Armlet
+- **하이 포션 + Phoenix Down 풀 인벤토리**
+
+**JP 작업 추천 시점**: 리오반즈 직전 마을에서 별도 슬롯 → Mandalia로 가서 람자 JP 풀충전 → 학습 안 된 스킬 모두 학습 후 진입
+
+### 전투 공략
+
+**페이즈 1 — 발플레아 인간 형태**:
+- 1턴 발플레아 행동 → 변신 트리거 (체력 50% 이하)
+- 이 페이즈는 검 평타 위주 → **Holy Sword Stasis Sword** 스턴 빈도 ↑
+
+**페이즈 2 — 루카비 변신**:
+- ⚠️ **매턴 풀 회복 (자체 Heal)** — 시간 끌면 무한히 살아남음
+- 차지 마법 시전 시간이 길음 → **차지 중에 컷딜**
+- **Holy Sword (Lightning Stab)** — 다단 + 광역으로 매턴 큰 데미지
+
+**진행 순서**:
+1. 첫 턴 즉시 **Auto Potion 활성화** + Stasis Sword 명중
+2. 변신 트리거 직후 **Lightning Stab 풀딜**
+3. 차지 마법 시전 시 **인접 → Holy Sword 컷딜 + 페닉스 다운 백업**
+4. **시간이 길어지면 패배** — 짧고 굵게
+
+### 막힐 때 대응
+
+- ⭐ **Squire 난이도로 일시 변경** (Enhanced) — 적 HP -30%
+- ⭐ **되감기(Undo)** — 직전 행동 취소
+- ⭐ **재시도** — 배치부터 다시
+- 별도 슬롯에서 추가 JP 작업 → 람자 산술사 트리 진입 후 재도전
+- ⚠️ **클래식 시절 게임 접은 유저 다수** — Enhanced에서는 위 옵션 적극 활용
 
 </div>
 
@@ -978,18 +1796,26 @@ sources:
 
 <div class="boss-card-header">
   <span class="boss-icon">🔥</span>
-  <h4 class="boss-name">Ch.3 옥상 보스 ─ 벨리아스 (Belias / 第1ルカヴィ)</h4>
+  <h4 class="boss-name">Ch.3 옥상 보스 ─ 벨리아스 (Belias, 첫 루카비)</h4>
 </div>
 
 <div class="boss-card-body" markdown="1">
 
-발플레아의 루카비 형태와는 별개의 **거대 루카비**. 시간 마법 + 광역 공격.
+**적 구성**: 벨리아스 + 부하 잡몹 4
+
+**맵 분석**: 리오반즈 성 옥상 — **개방된 사각 평면**. 회피/이동 자유로움.
 
 **공략**:
+- **상태이상 면역** — 즉사/페트리/슬립 불가
+- **광역 시간 마법** — Slow/Stop으로 풀파티 무력화 시도
 - **Holy** (백마도사) / **Flare** (흑마도사) 강력
-- **산술사 해금돼 있다면 CT 5 Holy**로 광역 폭딜
-- **부하 잡몹 우선 정리** 후 본체 집중
-- **상태이상 면역** — 즉사/페트리는 안 통함
+- ⭐ **산술사 해금돼 있다면 CT 5 Holy** — 광역 폭딜로 부하까지 정리
+
+**진행 순서**:
+1. **부하 잡몹 우선 정리** — Time Magic 시전자 차단
+2. **시마도사 Haste** → 풀파티
+3. **벨리아스 단일 폭딜**: Holy + Lightning Stab + Charge +20
+4. ⭐ **무스타디오 Seal Evil** — 루카비 봉인 (일정 확률)
 
 </div>
 
@@ -998,30 +1824,49 @@ sources:
 <div class="warn" markdown="1">
 **⚠️ Ch.3 미씨블/필수**
 
-- **비블로스 영입** — Ch.3 초반 고그 머신 시티에서 **사이드 룸 1회 출현**. 놓치면 Ch.4 합류 불가.
-- **알마는 Ch.3 끝에 납치** — Ch.4 후반까지 사용 불가
-- 챕터 3 진행 중 **자란드 묘지 / 자루기아** 등 **백트래킹 의뢰 활성화** 가능 → 의뢰 클리어로 JP/Gil 보충
+- **비블로스 영입**: Ch.3 초반 **고그 머신 시티 사이드 룸** 1회 출현. 이때 영입 안 하면 Ch.4 합류 불가
+- **알마는 Ch.3 끝에 납치**: Ch.4 후반까지 사용 불가
+- **챕터 3 백트래킹 가능**: 자란드/자루기아 등 옛 맵 의뢰 활성화 → JP/Gil 보충
+- ⭐ **별도 슬롯 보존**: 리오반즈 직전, 발플레아 1대1 직전 — 두 번 슬롯 분기 권장
 </div>
+
+---
 
 ## 챕터 4 ─ Somebody to Love (사랑할 누군가)
 
-> **진실 공개 (글라바도스 교회의 음모, 세인트 아조라 부활 계획)** + **루카비 7체 전부 등장** + **올란도/메리아돌/라파/마라크 합류** + **최종 결전**.
+> **진실 공개 (글라바도스 교회 음모, 세인트 아조라 부활 계획)** + **루카비 7체 등장** + **올란도/메리아돌/라파/마라크 합류** + **최종 결전**.
+
+### 권장 파티 (최종 보스 직전)
+
+| 슬롯 | 캐릭터 | 직업 | 빌드 |
+|---|---|---|---|
+| 1 | 람자 | 산술사 또는 닌자 | Calculate 등록 / Two Swords |
+| 2 | ⭐ **T.G. 시드** | Sword Saint | All Sword + Blade Grasp + Two Hands |
+| 3 | 아그리아스 | Holy Knight | Holy Sword 풀세팅 |
+| 4 | 메리아돌 | Divine Knight | Crush 시리즈 + Holy Explosion |
+| 5 | Generic ♀ | 시마도사 + 백마도사 | Haste + Raise 2 + Cura |
+
+**보충 옵션**:
+- **베오울프**: Petrify Sword로 알티마 봉인
+- **무스타디오**: Seal Evil + Arm Aim (보스 봉인 백업)
+- **클라우드**: Cherry Blossom (광역 폭딜)
+- **워커 8**: 상태이상 면역 탱커
 
 ### 핵심 전투 흐름
 
 | # | 위치 | 적 | 메모 |
 |---|---|---|---|
-| 1 | **돌보단 묘지** (재방문) | 메리아돌 합류전 | |
-| 2 | **시드 영지** | T.G. **시드 (올란도) 합류전** | **최강 캐릭 영입** |
+| 1 | **돌보단 묘지** (재방문) | 메리아돌 합류전 | ⭐ **메리아돌 합류** |
+| 2 | **시드 영지** | ⭐⭐⭐ **T.G. 시드 합류전** | ⭐⭐⭐ **최강 캐릭 영입** |
 | 3 | **그록 산** | 라무자 추격 | |
-| 4 | **림베리 사원** | **★보스: 자르겔로프 (Zalera) 루카비** | |
-| 5 | **자란드 도시** | 라파/마라크 + 한 명 잃음 | 분기 — **두 자매 모두 살리려면 특정 순서** |
-| 6 | **버바니아 분묘** | **★보스: 에이드라말렉 (Adrammelech) 루카비** | |
-| 7 | **이고로스 / 머다지오** | **★보스: 큐큐로스 (Cuchulainn) 루카비** | |
-| 8 | **★ 골고라드 사원** | **★보스: 발멜리아 (Vormav/Folmarv)** | 발메리아 + 가족 |
-| 9 | **던시아 강변** | **★보스: 라마샨토 (Rofel/Lamandu) 루카비** | |
-| 10 | **신성 알마 구출** | **★보스: 한카브 (Hashmal) 루카비** | |
-| 11 | **★ 무라몬드 사원 최하층** | **★최종 보스: 아조라 (Ajora) / 알티마 (Altima)** | 진엔딩 진입 |
+| 4 | **림베리 사원** | ⭐ **자르겔로프 (Zalera) 루카비** | |
+| 5 | **자란드 도시** | 라파/마라크 + 한 명 잃음 | ⚠️ **분기 — 두 자매 모두 살리려면 특정 순서** |
+| 6 | **버바니아 분묘** | ⭐ **에이드라말렉 (Adrammelech)** | |
+| 7 | **이고로스 / 머다지오** | ⭐ **큐큐로스 (Cuchulainn)** | |
+| 8 | ⭐ **골고라드 사원** | ⭐ **발멜리아 (Vormav) + 가족** | |
+| 9 | **던시아 강변** | ⭐ **라마샨토 (Rofel)** | |
+| 10 | **신성 알마 구출** | ⭐ **한카브 (Hashmal)** | |
+| 11 | ⭐⭐ **무라몬드 사원 최하층** | ⭐⭐⭐ **알티마 (Altima)** | 진엔딩 |
 
 <div class="boss-card" markdown="1">
 
@@ -1032,16 +1877,25 @@ sources:
 
 <div class="boss-card-body" markdown="1">
 
-**소드 세인트 (Sword Saint)** 전용 직업. **모든 검술(아그리아스/베오울프/메리아돌/마라크/라파의 검술)을 동시에 사용 가능**.
+**Sword Saint 전용 — 게임 내 단일 최강**
 
-**합류**: Ch.4 초반 시드 영지 자동 이벤트
-**별자리**: 천칭자리 ♂
-**평가**: ★★★★★★ — **게임 내 단일 최강 캐릭터**
+**합류 시점**: Ch.4 초반 시드 영지 자동 이벤트
 
-**필수 학습**:
-- All Sword 어빌리티 — 자동 학습 상태로 합류
-- **Two Hands**(사무라이) 부여 → **데미지 ×2**
-- **Move +2** + **Counter** + **Auto Potion** 부여
+**합류 시 보유 스킬** (이미 학습 완료):
+- Holy Sword 전체 (아그리아스의 검술)
+- Magic Sword: **Shellbust / Speedbreak / Powerbreak / Magic Break** (장비·스탯 파괴)
+- Dark Sword: **HP/MP 흡수**
+
+**즉시 추천 빌드**:
+- **메인**: All Sword (변경 ❌)
+- **서브**: Item
+- **R**: Blade Grasp (Brave ↑로 회피)
+- **S**: Two Hands (사무라이에서 학습 필요)
+- **M**: Move +2
+
+**무기**: **카오스 블레이드** (트레저 헌트 회수)
+
+**평가**: 시드 합류 시점부터 게임은 사실상 끝남. **Tactician 도전이라면 본격 활용**, 1회차는 자제 가능.
 
 </div>
 
@@ -1051,39 +1905,77 @@ sources:
 
 <div class="boss-card-header">
   <span class="boss-icon">👹</span>
-  <h4 class="boss-name">★최종 보스 ─ 아조라 / 알티마 (Ajora / Altima)</h4>
+  <h4 class="boss-name">⭐⭐⭐ 최종 보스 ─ 알티마 (Altima, 2페이즈)</h4>
 </div>
 
 <div class="boss-card-body" markdown="1">
 
-**알마의 몸을 빌려 부활한 세인트 아조라**의 진짜 정체 = **루카비 알티마**. **2페이즈** + **광역 멸절 마법**.
+**알마의 몸을 빌려 부활한 세인트 아조라 = 루카비 알티마**. 2페이즈 + **광역 멸절 마법**.
 
-**페이즈 1 — 알티마 천사형**:
-- **Ulma / Grand Cross** — 광역 + 상태이상 다수
-- **All-Ultima**: 풀파티 즉사급 공격
-- **백마도사 풀버프 + 시마도사 헤이스트 → 산술 폭딜**
+### 페이즈 1 — 알티마 천사형
 
-**페이즈 2 — 알티마 악마형**:
-- **All-Ultima 빈도 ↑**
-- **Holy Sword 시드 + 산술 Holy 람자** 양수 협공
+**적 구성**: 알티마 + 큐레우스 4
 
-**준비**:
-- **마사무네 카타나** (시드/람자 장비) — 발도 마사무네 = 풀파티 헤이스트 + 리젠
-- **올란도/람자/메리아돌/베오울프** 메인 어택커
-- **계산사 1명 + 백마도사 1명**으로 캐스터 라인
-- **부활 약(Phoenix Down) 6개 이상**
+**핵심 패턴**:
+- **Ulma / Grand Cross**: 광역 + 상태이상 다수
+- **All-Ultima**: 풀파티 즉사급
+- 시전 시간 길음 → **차지 중 컷딜 / 봉인**
+
+**진행 순서**:
+1. **첫 턴 즉시**: 마사무네 발도 (사무라이/시드) → 풀파티 헤이스트 + 리젠
+2. 시마도사 Haste 백업 → 행동권 확보
+3. **큐레우스 우선 정리** — 광역 마법 시전자 차단
+4. **알티마 단일 폭딜**:
+   - 시드 Holy Sword (Lightning Stab)
+   - 산술사 CT 5 Holy
+   - 아그리아스 Stasis Sword (스턴 시도)
+5. **베오울프 Petrify Sword** → 봉인 시도 (석화 = 무력화)
+
+### 페이즈 2 — 알티마 악마형
+
+체력 50% 이하 → **변신 + 광역 빈도 ↑**.
+
+**진행 순서**:
+1. **All-Ultima 빈도 ↑** → 매턴 백마도사 Raise 2 백업
+2. **메리아돌 Crush Helm** → 알티마의 강력 장비 파괴
+3. **클라우드 Cherry Blossom** (있다면) → 광역 폭딜
+4. **시드 + 람자(닌자/산술사) 양수 협공** → 1턴 정리
+
+### 준비 물품
+
+- **마사무네 카타나** (시드/람자 장비) — 발도 풀파티 헤이스트+리젠
+- **카오스 블레이드** (시드 무기)
+- **머티리얼 블레이드** (클라우드 필수)
+- **Phoenix Down 10개 이상**
+- **Hi-Ether 5개 이상** (캐스터 MP 백업)
 
 </div>
 
+</div>
+
+### 챕터 4 JP 작업 추천
+
+<div class="tip" markdown="1">
+**💡 Limberry 외곽 / 디프 던전 B1 — 마무리 작업**
+
+Ch.4 후반에 접근 가능한 약한 맵. **산술사/닌자/사무라이 마지막 마무리**.
+
+**필수 마무리 학습**:
+- **산술사**: 마법 등록 5종 (Holy/Flare/Death/Frog/Bio 3) — JL5+ 필요
+- **사무라이**: Blade Grasp + Two Hands + Equip Katana
+- **닌자**: Two Swords 학습 후 사무라이/계산사에 부여
+- **시프**: Move +2 모든 캐릭에 부여 완료
+
+**별자리 매칭 마지막 점검**: 백마도사(회복 담당)의 별자리를 Best 매칭으로 채용 화면 재출력 권장 → 알티마전 안정성 ↑
 </div>
 
 <div class="warn" markdown="1">
-**⚠️ Ch.4 마지막 의뢰 마감**
+**⚠️ Ch.4 마지막 의뢰 마감 (Point of No Return)**
 
-- **베오울프 → 레이스** 영입 연쇄 의뢰는 **최종 전투 진입 전까지** 마감
-- **클라우드 / 워커8 / 비블로스 / 레이스** 모두 Ch.4에서만 영입 — 최종전 직전 마지막 기회
-- **알마 구출 후의 분기점** = Point of No Return 직전. 모든 사이드 마감 후 진입
-- ⚠️ Enhanced의 **NG+로 미씨블 회수 가능 여부**는 v1.5.0 패치 노트 확인 필요. 안전하게 **1회차 완전 클리어** 권장.
+- **베오울프 → 레이스** 영입 연쇄 의뢰: 최종 보스 전까지 마감
+- **클라우드 / 워커8 / 비블로스 / 레이스** 모두 Ch.4에서만 영입
+- **알마 구출 후의 분기점** = Point of No Return 직전. **모든 사이드 마감 후 진입**
+- ⚠️ Enhanced의 **NG+로 미씨블 회수 가능 여부**는 v1.5.0 패치 노트 확인 필요. 안전하게 **1회차 완전 클리어** 권장
 </div>
 
 <!-- tab:히든 -->
