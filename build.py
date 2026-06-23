@@ -137,10 +137,13 @@ def split_into_tabs(body):
     return tabs
 
 
-def add_chapter_features(html, tab_slug):
-    """챕터 탭에서 챕터 점프 네비 + 책갈피 + sub-router (인덱스 ↔ 챕터 상세)."""
+def add_chapter_features(html, tab_slug, fm=None):
+    """챕터 탭에서 챕터 점프 네비 + 책갈피 + sub-router (인덱스 ↔ 챕터 상세).
+    fm: 프론트매터(dict). fm['chapter_descs']에 {'1': '설명...', '2': '...'} 형태로
+    챕터별 부제목을 줄 수 있음. 챕터 제목은 H2 텍스트("챕터 N ─ Title")에서 자동 파싱."""
     if "chapter" not in tab_slug.lower():
         return html, []
+    fm = fm or {}
     # h3 추출 (책갈피용)
     h3_pattern = re.compile(r'<h3([^>]*)>(.*?)</h3>', re.DOTALL)
     chapters = []
@@ -170,15 +173,26 @@ def add_chapter_features(html, tab_slug):
     if not matches:
         return html, chapters
 
-    # 챕터 인덱스 메타
-    ch_meta = {
-        '1': ('태양광 발전소', '튜토리얼 + 첫 보스(섹터 가드)'),
-        '2': ('대규모 출력 실험장', '다이애나 정화 파워 해금 · 크리에이터 보스'),
-        '3': ('테라돔', '에이트 조우 · 가든 키퍼 보스 · 메인 목표 공개'),
-        '4': ('루넘 채굴장', '루나 디거 보스 · 메인 프레임 결전지'),
-        '5': ('센트럴 포트', '데드 필라멘트 정화 + 키네틱 그래플'),
-        '6': ('섹터 9 궤도 엘리베이터', '⚠️ Point of No Return · 최종 보스'),
-    }
+    # 챕터 메타: H2 텍스트에서 챕터 제목 자동 파싱 + 프론트매터 chapter_descs 우선
+    # H2 형태: "챕터 1 ─ The Meager (가난한 자)" → title = "The Meager (가난한 자)"
+    # 프론트매터 chapter_descs: {1: "설명", 2: "설명"} 형태로 부제목 지정 가능
+    fm_descs = fm.get('chapter_descs') or {}
+    fm_descs = {str(k): v for k, v in fm_descs.items()}
+    ch_meta = {}
+    for m in matches:
+        num = m.group(4)
+        full_text = m.group(3).strip()
+        title = full_text
+        for sep in ['─', '—', '–', ':', '-']:
+            if sep in full_text:
+                title = full_text.split(sep, 1)[1].strip()
+                break
+        if title == full_text:
+            chnum_re = re.match(r'챕터\s*\d+\s*', full_text)
+            if chnum_re:
+                title = full_text[chnum_re.end():].strip() or full_text
+        desc = fm_descs.get(num, '')
+        ch_meta[num] = (title, desc)
 
     # 챕터 인트로 부분 (첫 챕터 헤더 전 — 영상 가이드 카드 등) 그대로 + 인덱스 카드 + 챕터 sections
     intro_part = html[:matches[0].start()]
@@ -2051,7 +2065,7 @@ def render_index(games, config, base, user, author):
 
 def render_tab_panel(tab, fm):
     html_body = md_to_html(tab["body"])
-    html_body, chapters = add_chapter_features(html_body, tab["slug"])
+    html_body, chapters = add_chapter_features(html_body, tab["slug"], fm)
     extras = ""
     if chapters:
         # 책갈피 패널만 유지 (chapter-nav는 sub-router로 대체됨)
