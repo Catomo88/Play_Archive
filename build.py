@@ -1032,6 +1032,64 @@ blockquote.quote::before {
   .step-list > li::before { width: 1.7rem; height: 1.7rem; font-size: 0.8rem; left: 0.5rem; }
 }
 
+/* ===== 모바일 밀도 강화 (스크롤 단축) ===== */
+@media (max-width: 768px) {
+  body { font-size: 15px; line-height: 1.55; }
+  .site-main { padding: 1rem 0.85rem 2.5rem; }
+  .tab-content h2 { font-size: 1.15rem; margin: 1.2rem 0 0.6rem; }
+  .tab-content h3 { font-size: 0.98rem; margin: 1rem 0 0.45rem; }
+  .tab-content h4 { font-size: 0.92rem; margin: 0.7rem 0 0.35rem; }
+  .tab-content p { margin: 0.5rem 0; }
+  .tab-content ul, .tab-content ol { margin: 0.45rem 0; padding-left: 1.2rem; }
+  .tab-content li { margin: 0.25rem 0; }
+  .tab-content table { font-size: 0.82rem; margin: 0.6rem 0; }
+  .tab-content th, .tab-content td { padding: 0.35rem 0.5rem; }
+  .info-card { margin: 0.9rem 0 1.1rem; padding: 0.8rem 0.9rem; border-radius: 11px; }
+  .info-card-header { margin-bottom: 0.4rem; }
+  .info-card-title { font-size: 0.92rem; padding-left: 0.5rem; }
+  .info-card-body { font-size: 0.92rem; }
+  .info-card-body > *:first-child { margin-top: 0; }
+  .info-card-body > *:last-child { margin-bottom: 0; }
+  .boss-card { margin: 0.9rem 0 1.1rem; padding: 0.8rem 0.9rem; }
+  .boss-card-header { margin-bottom: 0.4rem; }
+  .boss-name { font-size: 0.95rem; }
+  .boss-card-body { font-size: 0.9rem; }
+  .tip, .warn, .secret, .boss {
+    padding: 0.7rem 0.85rem; margin: 0.8rem 0;
+    font-size: 0.9rem; border-radius: 10px;
+  }
+  blockquote { padding: 0.55rem 0.9rem; margin: 0.7rem 0; font-size: 0.9rem; }
+  .chapter-card { padding: 0.85rem 1rem; }
+  .chapter-card-num { font-size: 0.72rem; }
+  .chapter-card-title { font-size: 1rem; margin: 0.2rem 0; }
+  .chapter-card-desc { font-size: 0.82rem; }
+  .chapter-hero { padding: 1.2rem 1rem 0.9rem; margin-bottom: 0.8rem; }
+  .chapter-hero-num { font-size: 0.72rem; }
+  .chapter-hero-title { font-size: 1.3rem; }
+  .chapter-hero-desc { font-size: 0.88rem; }
+}
+
+/* ===== 등급 배지 (S+/S/A/B/C/D/E 시각화) ===== */
+.grade-legend {
+  display: flex; flex-wrap: wrap; gap: 0.4rem;
+  margin: 0.6rem 0;
+}
+.grade-legend > span {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  padding: 0.18rem 0.5rem;
+  font-size: 0.78rem;
+  border-radius: 999px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+}
+.grade-legend .g-sp { color: #ffd166; border-color: rgba(255,209,102,0.5); }
+.grade-legend .g-s  { color: #ffb800; border-color: rgba(255,184,0,0.4); }
+.grade-legend .g-a  { color: #06d6ff; border-color: rgba(6,214,255,0.4); }
+.grade-legend .g-b  { color: #22c55e; border-color: rgba(34,197,94,0.4); }
+.grade-legend .g-c  { color: #a0a0b8; }
+.grade-legend .g-d  { color: #6a6a82; }
+.grade-legend .g-e  { color: #4a4a5e; }
+
 
 /* ===== YouTube 임베드 (lite-youtube facade) ===== */
 .yt-facade {
