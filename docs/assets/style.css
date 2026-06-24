@@ -833,6 +833,44 @@ blockquote.quote::before {
   .chapter-hero-desc { font-size: 0.88rem; }
 }
 
+/* ===== 캐릭터 서브탭 (캐릭터별 빌드 토글) ===== */
+.char-builds { margin: 1rem 0; }
+.char-subtabs {
+  display: flex; flex-wrap: wrap; gap: 0.4rem;
+  padding: 0.7rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  position: sticky; top: 60px; z-index: 5;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.char-subtab {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  padding: 0.35rem 0.8rem;
+  font-size: 0.86rem;
+  font-family: var(--font-body);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.char-subtab:hover { color: var(--text-primary); border-color: var(--border-strong); }
+.char-subtab.active {
+  background: var(--accent-cyan); color: #001017;
+  border-color: var(--accent-cyan);
+  font-weight: 700;
+}
+.char-build-panel { margin-top: 1rem; }
+.char-build-panel[hidden] { display: none; }
+
+@media (max-width: 600px) {
+  .char-subtabs { padding: 0.5rem; gap: 0.3rem; top: 56px; }
+  .char-subtab { font-size: 0.78rem; padding: 0.3rem 0.65rem; }
+}
+
 /* ===== 직업 스탯 카드 그리드 ===== */
 .job-stats {
   display: grid;

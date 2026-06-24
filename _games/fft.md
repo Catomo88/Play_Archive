@@ -266,7 +266,7 @@ sources:
 
 > 챕터별 상세 공략과 보스 전략은 **챕터 탭**에서 확인.
 
-<!-- tab:캐릭터 -->
+<!-- tab:직업 -->
 
 ## 직업 시스템 핵심 — 스탯이 결정되는 공식
 
@@ -1035,9 +1035,29 @@ sources:
 
 </div>
 
+<!-- tab:캐릭터 -->
+
 ## 🎭 캐릭터별 추천 빌드
 
 > 메인 캐스트는 **전용 직업**이 강력해서 갈아입을 필요가 거의 없다. 다만 **서브 어빌리티(보조) + R/S/M**을 잘 박아야 진가가 나옴.
+
+<div class="char-builds">
+
+<nav class="char-subtabs" aria-label="캐릭터 선택">
+<button class="char-subtab active" data-char="ramza" type="button">람자</button>
+<button class="char-subtab" data-char="agrias" type="button">아그리아스</button>
+<button class="char-subtab" data-char="mustadio" type="button">무스타디오</button>
+<button class="char-subtab" data-char="tgcid" type="button">T.G. 시드</button>
+<button class="char-subtab" data-char="meliadoul" type="button">메리아돌</button>
+<button class="char-subtab" data-char="twin" type="button">라파/마라크</button>
+<button class="char-subtab" data-char="beowulf" type="button">베오울프/레이스</button>
+<button class="char-subtab" data-char="cloud" type="button">클라우드</button>
+<button class="char-subtab" data-char="worker" type="button">워커 8</button>
+<button class="char-subtab" data-char="byblos" type="button">비블로스</button>
+<button class="char-subtab" data-char="generic" type="button">Generic 빌드</button>
+</nav>
+
+<div class="char-build-panel" data-char="ramza" markdown="1">
 
 ### 람자 (Ramza, 주인공) — 챕터별 진화
 
@@ -1079,6 +1099,10 @@ sources:
 
 </div>
 
+</div>
+
+<div class="char-build-panel" data-char="agrias" hidden markdown="1">
+
 ### 아그리아스 오크스 (Agrias Oaks)
 
 <div class="info-card" markdown="1">
@@ -1116,6 +1140,10 @@ sources:
 
 </div>
 
+</div>
+
+<div class="char-build-panel" data-char="mustadio" hidden markdown="1">
+
 ### 무스타디오 부나스 (Mustadio Bunansa)
 
 <div class="info-card" markdown="1">
@@ -1151,6 +1179,10 @@ sources:
 </div>
 
 </div>
+
+</div>
+
+<div class="char-build-panel" data-char="tgcid" hidden markdown="1">
 
 ### T.G. 시드 / 시돌푸스 올란도 (T.G. Cid / Cidolfas Orlandeau)
 
@@ -1193,6 +1225,10 @@ sources:
 
 </div>
 
+</div>
+
+<div class="char-build-panel" data-char="meliadoul" hidden markdown="1">
+
 ### 메리아돌 틴겔 (Meliadoul Tengille)
 
 <div class="info-card" markdown="1">
@@ -1225,6 +1261,10 @@ sources:
 </div>
 
 </div>
+
+</div>
+
+<div class="char-build-panel" data-char="twin" hidden markdown="1">
 
 ### 라파 갈테나 (Rapha Galthena)
 
@@ -1285,6 +1325,10 @@ sources:
 
 </div>
 
+</div>
+
+<div class="char-build-panel" data-char="beowulf" hidden markdown="1">
+
 ### 베오울프 카담스 + 레이스 더림
 
 <div class="info-card" markdown="1">
@@ -1326,6 +1370,10 @@ sources:
 
 </div>
 
+</div>
+
+<div class="char-build-panel" data-char="cloud" hidden markdown="1">
+
 ### 클라우드 스트라이프 (Cloud Strife)
 
 <div class="info-card" markdown="1">
@@ -1366,6 +1414,10 @@ sources:
 
 </div>
 
+</div>
+
+<div class="char-build-panel" data-char="worker" hidden markdown="1">
+
 ### 워커 8 (Worker 8 / Construct 8)
 
 <div class="info-card" markdown="1">
@@ -1400,6 +1452,10 @@ sources:
 
 </div>
 
+</div>
+
+<div class="char-build-panel" data-char="byblos" hidden markdown="1">
+
 ### 비블로스 (Byblos)
 
 <div class="info-card" markdown="1">
@@ -1430,6 +1486,10 @@ sources:
 </div>
 
 </div>
+
+</div>
+
+<div class="char-build-panel" data-char="generic" hidden markdown="1">
 
 ### Generic Calculator 빌드 (커스텀 캐릭)
 
@@ -1533,6 +1593,11 @@ sources:
 </div>
 
 </div>
+
+</div>
+
+</div>
+
 
 <!-- tab:챕터 -->
 

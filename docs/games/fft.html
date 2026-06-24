@@ -45,6 +45,7 @@
   <div class="menu-section">
     <div class="menu-section-title">카테고리</div>
     <button class="menu-item menu-item-tab" data-tab="overview" type="button"><span class="icon">▸</span><span class="label">개요</span></button>
+<button class="menu-item menu-item-tab" data-tab="직업" type="button"><span class="icon">▸</span><span class="label">직업</span></button>
 <button class="menu-item menu-item-tab" data-tab="캐릭터" type="button"><span class="icon">▸</span><span class="label">캐릭터</span></button>
 <button class="menu-item menu-item-tab" data-tab="chapters" type="button"><span class="icon">▸</span><span class="label">챕터</span></button>
 <button class="menu-item menu-item-tab" data-tab="hidden" type="button"><span class="icon">▸</span><span class="label">히든</span></button>
@@ -553,7 +554,7 @@
 <blockquote>
 <p>챕터별 상세 공략과 보스 전략은 <strong>챕터 탭</strong>에서 확인.</p>
 </blockquote></div>
-<div class="tab-panel tab-content" data-tab="캐릭터"><h2 id="_1">직업 시스템 핵심 — 스탯이 결정되는 공식</h2>
+<div class="tab-panel tab-content" data-tab="직업"><h2 id="_1">직업 시스템 핵심 — 스탯이 결정되는 공식</h2>
 <p>이 게임의 모든 강캐는 <strong>직업 시스템을 이해한 사람만</strong> 만들 수 있다. 한 줄 요약:</p>
 <blockquote>
 <p><strong>현재 스탯 = (지금까지 누적된 성장률) × (지금 입고 있는 직업의 멀티플라이어) + 베이스</strong></p>
@@ -1655,354 +1656,566 @@
 <p>산술사 1 + 흉내쟁이 2 = 산술 3번 발동 = 광역 즉사. <strong>모든 직업 JL4+</strong> 필요해 후반에야 도달.</p>
 </blockquote>
 </div>
-</div>
-<h2 id="_12">🎭 캐릭터별 추천 빌드</h2>
+</div></div>
+<div class="tab-panel tab-content" data-tab="캐릭터"><h2 id="_1">🎭 캐릭터별 추천 빌드</h2>
 <blockquote>
 <p>메인 캐스트는 <strong>전용 직업</strong>이 강력해서 갈아입을 필요가 거의 없다. 다만 <strong>서브 어빌리티(보조) + R/S/M</strong>을 잘 박아야 진가가 나옴.</p>
 </blockquote>
-<h3 id="ramza">람자 (Ramza, 주인공) — 챕터별 진화</h3>
-<div class="info-card">
+<div class="char-builds">
+
+<nav class="char-subtabs" aria-label="캐릭터 선택">
+<button class="char-subtab active" data-char="ramza" type="button">람자</button>
+<button class="char-subtab" data-char="agrias" type="button">아그리아스</button>
+<button class="char-subtab" data-char="mustadio" type="button">무스타디오</button>
+<button class="char-subtab" data-char="tgcid" type="button">T.G. 시드</button>
+<button class="char-subtab" data-char="meliadoul" type="button">메리아돌</button>
+<button class="char-subtab" data-char="twin" type="button">라파/마라크</button>
+<button class="char-subtab" data-char="beowulf" type="button">베오울프/레이스</button>
+<button class="char-subtab" data-char="cloud" type="button">클라우드</button>
+<button class="char-subtab" data-char="worker" type="button">워커 8</button>
+<button class="char-subtab" data-char="byblos" type="button">비블로스</button>
+<button class="char-subtab" data-char="generic" type="button">Generic 빌드</button>
+</nav>
+
+<div class="char-build-panel" data-char="ramza" markdown="1">
+
+### 람자 (Ramza, 주인공) — 챕터별 진화
+
+<div class="info-card" markdown="1">
+
 <div class="info-card-header">
-<h3 class="info-card-title" id="_13">👤 람자 — 스콰이어 전용 강화판 보유</h3>
-<div class="info-card-tags">
+  <h3 class="info-card-title">👤 람자 — 스콰이어 전용 강화판 보유</h3>
+  <div class="info-card-tags">
     <span class="tag tag-explore">평생 사용 어택커</span>
   </div>
 </div>
-<div class="info-card-body">
-<p>람자의 스콰이어는 <strong>챕터 진행에 따라 자동 강화</strong> — Ch.4에서는 <em>Yell</em>, <em>Cheer Up</em>, <em>Wish</em>(아군 HP→자기 HP), <em>Ultima</em>(마지막에 학습) 같은 광역 버프/회복/딜 스킬을 보유.</p>
-<p><strong>Ch.1~2 빌드</strong>:
-- <strong>메인</strong>: 스콰이어 또는 나이트
-- <strong>서브</strong>: Item (켐피스트)
-- <strong>R</strong>: Auto Potion
-- <strong>S</strong>: Equip Armor
-- <strong>M</strong>: Move +1</p>
-<p><strong>Ch.3~4 빌드 (성장형)</strong>:
-- <strong>메인</strong>: ⭐ <strong>Holy Sword</strong> (아그리아스에서 학습) — 람자가 Holy Knight 직업을 거쳐 학습. 람자 전용 직업이 아닌 보조 어빌리티로 평생 활용
-- <strong>서브</strong>: Punch Art (몽크) — Chakra 자력 회복
-- <strong>R</strong>: <strong>Blade Grasp</strong> (사무라이) — 브레이브 ↑ 시 회피 ↑
-- <strong>S</strong>: <strong>Two Hands</strong> (사무라이) — 검 데미지 ×2
-- <strong>M</strong>: <strong>Move +2</strong> (시프)</p>
-<p><strong>최종 빌드 (디프 던전 + 알티마)</strong>:
-- <strong>메인</strong>: Calculate (산술사) — Level 3 Death 광역 즉결
-- <strong>서브</strong>: White Magic (Holy + Raise 2)
-- <strong>R</strong>: Blade Grasp / Counter Magic
-- <strong>S</strong>: Magic Attack Up + Short Charge
-- <strong>M</strong>: Move +2</p>
+
+<div class="info-card-body" markdown="1">
+
+람자의 스콰이어는 **챕터 진행에 따라 자동 강화** — Ch.4에서는 *Yell*, *Cheer Up*, *Wish*(아군 HP→자기 HP), *Ultima*(마지막에 학습) 같은 광역 버프/회복/딜 스킬을 보유.
+
+**Ch.1~2 빌드**:
+- **메인**: 스콰이어 또는 나이트
+- **서브**: Item (켐피스트)
+- **R**: Auto Potion
+- **S**: Equip Armor
+- **M**: Move +1
+
+**Ch.3~4 빌드 (성장형)**:
+- **메인**: ⭐ **Holy Sword** (아그리아스에서 학습) — 람자가 Holy Knight 직업을 거쳐 학습. 람자 전용 직업이 아닌 보조 어빌리티로 평생 활용
+- **서브**: Punch Art (몽크) — Chakra 자력 회복
+- **R**: **Blade Grasp** (사무라이) — 브레이브 ↑ 시 회피 ↑
+- **S**: **Two Hands** (사무라이) — 검 데미지 ×2
+- **M**: **Move +2** (시프)
+
+**최종 빌드 (디프 던전 + 알티마)**:
+- **메인**: Calculate (산술사) — Level 3 Death 광역 즉결
+- **서브**: White Magic (Holy + Raise 2)
+- **R**: Blade Grasp / Counter Magic
+- **S**: Magic Attack Up + Short Charge
+- **M**: Move +2
+
 </div>
+
 </div>
-<h3 id="agrias-oaks">아그리아스 오크스 (Agrias Oaks)</h3>
-<div class="info-card">
+
+</div>
+
+<div class="char-build-panel" data-char="agrias" hidden markdown="1">
+
+### 아그리아스 오크스 (Agrias Oaks)
+
+<div class="info-card" markdown="1">
+
 <div class="info-card-header">
-<h3 class="info-card-title" id="holy-knight">⚔️ 아그리아스 — Holy Knight 평생 유지</h3>
+  <h3 class="info-card-title">⚔️ 아그리아스 — Holy Knight 평생 유지</h3>
 </div>
-<div class="info-card-body">
-<p><strong>전용 직업</strong>: Holy Knight (Holy Sword 사용)
-<strong>합류</strong>: Ch.2 자란드 외곽
-<strong>별자리</strong>: 물고기자리 ♀</p>
-<p><strong>Holy Sword의 가치</strong>: 검 사거리 ↑ + 직선 광역 + 보조 효과(스턴/슬립/페트리)</p>
-<p><strong>필수 학습 (Holy Sword 액션)</strong>:
-- <strong>Stasis Sword (Crush Punch)</strong>: 스턴
-- <strong>Split Punch</strong>: 광역
-- <strong>Lightning Stab</strong>: 직선 다단
-- <strong>Holy Explosion</strong>: 후반 강력</p>
-<p><strong>추천 빌드</strong>:
-- <strong>메인</strong>: Holy Sword (Knight 전용 — 평생 유지, 다른 직업 갈아입을 필요 ❌)
-- <strong>서브</strong>: Item (켐피스트 JL5의 Phoenix Down 백업)
-- <strong>R</strong>: ⭐ <strong>Counter</strong> (풍수사) — 카운터 발동
-- <strong>S</strong>: ⭐ <strong>Two Hands</strong> (사무라이) — 검 데미지 ×2
-- <strong>M</strong>: ⭐ <strong>Move +2</strong> (시프)</p>
-<p><strong>JP 도장 추천</strong>: 합류 직후 Ch.2 약한 맵에서 모든 Holy Sword 어빌리티 학습 → Ch.3~4 진가</p>
-<p><strong>별자리 매칭</strong>: 람자(양자리 ♂) ↔ 아그리아스(물고기자리 ♀) = <strong>Bad</strong> → 직접 회복 효율 ↓. 백마도사 별자리는 ♀ 양자리/사자자리로 매칭하면 풀파티 회복 안정.</p>
+
+<div class="info-card-body" markdown="1">
+
+**전용 직업**: Holy Knight (Holy Sword 사용)
+**합류**: Ch.2 자란드 외곽
+**별자리**: 물고기자리 ♀
+
+**Holy Sword의 가치**: 검 사거리 ↑ + 직선 광역 + 보조 효과(스턴/슬립/페트리)
+
+**필수 학습 (Holy Sword 액션)**:
+- **Stasis Sword (Crush Punch)**: 스턴
+- **Split Punch**: 광역
+- **Lightning Stab**: 직선 다단
+- **Holy Explosion**: 후반 강력
+
+**추천 빌드**:
+- **메인**: Holy Sword (Knight 전용 — 평생 유지, 다른 직업 갈아입을 필요 ❌)
+- **서브**: Item (켐피스트 JL5의 Phoenix Down 백업)
+- **R**: ⭐ **Counter** (풍수사) — 카운터 발동
+- **S**: ⭐ **Two Hands** (사무라이) — 검 데미지 ×2
+- **M**: ⭐ **Move +2** (시프)
+
+**JP 도장 추천**: 합류 직후 Ch.2 약한 맵에서 모든 Holy Sword 어빌리티 학습 → Ch.3~4 진가
+
+**별자리 매칭**: 람자(양자리 ♂) ↔ 아그리아스(물고기자리 ♀) = **Bad** → 직접 회복 효율 ↓. 백마도사 별자리는 ♀ 양자리/사자자리로 매칭하면 풀파티 회복 안정.
+
 </div>
+
 </div>
-<h3 id="mustadio-bunansa">무스타디오 부나스 (Mustadio Bunansa)</h3>
-<div class="info-card">
+
+</div>
+
+<div class="char-build-panel" data-char="mustadio" hidden markdown="1">
+
+### 무스타디오 부나스 (Mustadio Bunansa)
+
+<div class="info-card" markdown="1">
+
 <div class="info-card-header">
-<h3 class="info-card-title" id="machinist">🔫 무스타디오 — Machinist 평생 유지</h3>
+  <h3 class="info-card-title">🔫 무스타디오 — Machinist 평생 유지</h3>
 </div>
-<div class="info-card-body">
-<p><strong>전용 직업</strong>: Machinist (총 사용 + 부위 봉인)
-<strong>합류</strong>: Ch.2 자란드 항구
-<strong>별자리</strong>: 황소자리 ♂</p>
-<p><strong>부위 봉인의 가치</strong>: <strong>보스에게 <em>Arm Aim</em> = 행동 불가</strong> — Wiegraf 등 보스를 안전하게 무력화.</p>
-<p><strong>필수 학습 (Snipe 액션)</strong>:
-- <strong>Leg Aim</strong>: 다리 봉인 — 적 <em>Don't Move</em>
-- <strong>Arm Aim</strong>: 팔 봉인 — ⭐ <strong>적 <em>Don't Act</em> (행동 불가)</strong>
-- <strong>Seal Evil</strong>: 언데드/루카비 봉인 — 후반 강력</p>
-<p><strong>추천 빌드</strong>:
-- <strong>메인</strong>: Snipe (Machinist 전용)
-- <strong>서브</strong>: Item (켐피스트) 또는 White Magic
-- <strong>R</strong>: ⭐ <strong>Concentrate</strong> (아처) — Snipe 명중률 100%
-- <strong>S</strong>: Equip Armor (나이트) — 생존력 ↑
-- <strong>M</strong>: Move +2</p>
-<p><strong>JP 도장 추천</strong>: Goug Machine City 도장. <em>Arm Aim</em> + <em>Leg Aim</em> + <em>Seal Evil</em> 학습 우선.</p>
-<p><strong>Tip</strong>: 보스전 시작 → <strong>Arm Aim 명중 → 보스 무력화 → 풀파티 안전한 딜</strong>.</p>
+
+<div class="info-card-body" markdown="1">
+
+**전용 직업**: Machinist (총 사용 + 부위 봉인)
+**합류**: Ch.2 자란드 항구
+**별자리**: 황소자리 ♂
+
+**부위 봉인의 가치**: **보스에게 *Arm Aim* = 행동 불가** — Wiegraf 등 보스를 안전하게 무력화.
+
+**필수 학습 (Snipe 액션)**:
+- **Leg Aim**: 다리 봉인 — 적 *Don't Move*
+- **Arm Aim**: 팔 봉인 — ⭐ **적 *Don't Act* (행동 불가)**
+- **Seal Evil**: 언데드/루카비 봉인 — 후반 강력
+
+**추천 빌드**:
+- **메인**: Snipe (Machinist 전용)
+- **서브**: Item (켐피스트) 또는 White Magic
+- **R**: ⭐ **Concentrate** (아처) — Snipe 명중률 100%
+- **S**: Equip Armor (나이트) — 생존력 ↑
+- **M**: Move +2
+
+**JP 도장 추천**: Goug Machine City 도장. *Arm Aim* + *Leg Aim* + *Seal Evil* 학습 우선.
+
+**Tip**: 보스전 시작 → **Arm Aim 명중 → 보스 무력화 → 풀파티 안전한 딜**.
+
 </div>
+
 </div>
-<h3 id="tg-tg-cid-cidolfas-orlandeau">T.G. 시드 / 시돌푸스 올란도 (T.G. Cid / Cidolfas Orlandeau)</h3>
-<div class="info-card">
+
+</div>
+
+<div class="char-build-panel" data-char="tgcid" hidden markdown="1">
+
+### T.G. 시드 / 시돌푸스 올란도 (T.G. Cid / Cidolfas Orlandeau)
+
+<div class="info-card" markdown="1">
+
 <div class="info-card-header">
-<h3 class="info-card-title" id="tg">🗡️ T.G. 시드 — 게임 내 단일 최강 캐릭</h3>
-<div class="info-card-tags">
+  <h3 class="info-card-title">🗡️ T.G. 시드 — 게임 내 단일 최강 캐릭</h3>
+  <div class="info-card-tags">
     <span class="tag tag-secret">합류 = 게임 사실상 종료</span>
   </div>
 </div>
-<div class="info-card-body">
-<p><strong>전용 직업</strong>: Sword Saint (모든 검술 동시 사용)
-<strong>합류</strong>: Ch.4 시드 영지 자동
-<strong>별자리</strong>: 천칭자리 ♂</p>
-<p><strong>Sword Saint의 가치</strong>: 합류 시점에 이미 <strong>Holy Sword (아그리아스) + Magic Sword (베오울프) + Dark Sword (메리아돌)</strong> 모두 보유.</p>
-<p><strong>필수 학습 (이미 학습 완료)</strong>:
+
+<div class="info-card-body" markdown="1">
+
+**전용 직업**: Sword Saint (모든 검술 동시 사용)
+**합류**: Ch.4 시드 영지 자동
+**별자리**: 천칭자리 ♂
+
+**Sword Saint의 가치**: 합류 시점에 이미 **Holy Sword (아그리아스) + Magic Sword (베오울프) + Dark Sword (메리아돌)** 모두 보유.
+
+**필수 학습 (이미 학습 완료)**:
 - Holy Sword 전체
-- Magic Sword: <strong>Shellbust / Speedbreak / Powerbreak / Magic Break</strong> 등 장비/스탯 파괴
-- Dark Sword: <strong>HP/MP 흡수</strong> — 보스에 영구 흡혈</p>
-<p><strong>추천 빌드</strong>:
-- <strong>메인</strong>: All Sword (전용)
-- <strong>서브</strong>: Item (켐피스트) — 비상 백업
-- <strong>R</strong>: ⭐ <strong>Blade Grasp</strong> (사무라이) — 브레이브 97 = 검 회피 97%
-- <strong>S</strong>: ⭐ <strong>Two Hands</strong> (사무라이) — 데미지 ×2
-- <strong>M</strong>: ⭐ <strong>Move +2</strong> (시프)</p>
-<p><strong>무기</strong>: ⭐ <strong>카오스 블레이드</strong> (Chaos Blade) — 트레저 헌트 회수. 풀 PA 강화.</p>
-<p><strong>별자리 매칭</strong>: 천칭 ♂ ↔ 양자리(람자) = <strong>Worst</strong> ⚠️. 람자의 회복은 다른 캐릭이 담당. 천칭자리는 양자리의 <strong>정반대</strong> 위치.</p>
-<p><strong>최종 평가</strong>: ★★★★★★ — <strong>너무 강해서 1회차에 자제하는 유저 다수</strong>. Tactician 난이도라면 본격 활용.</p>
+- Magic Sword: **Shellbust / Speedbreak / Powerbreak / Magic Break** 등 장비/스탯 파괴
+- Dark Sword: **HP/MP 흡수** — 보스에 영구 흡혈
+
+**추천 빌드**:
+- **메인**: All Sword (전용)
+- **서브**: Item (켐피스트) — 비상 백업
+- **R**: ⭐ **Blade Grasp** (사무라이) — 브레이브 97 = 검 회피 97%
+- **S**: ⭐ **Two Hands** (사무라이) — 데미지 ×2
+- **M**: ⭐ **Move +2** (시프)
+
+**무기**: ⭐ **카오스 블레이드** (Chaos Blade) — 트레저 헌트 회수. 풀 PA 강화.
+
+**별자리 매칭**: 천칭 ♂ ↔ 양자리(람자) = **Worst** ⚠️. 람자의 회복은 다른 캐릭이 담당. 천칭자리는 양자리의 **정반대** 위치.
+
+**최종 평가**: ★★★★★★ — **너무 강해서 1회차에 자제하는 유저 다수**. Tactician 난이도라면 본격 활용.
+
 </div>
+
 </div>
-<h3 id="meliadoul-tengille">메리아돌 틴겔 (Meliadoul Tengille)</h3>
-<div class="info-card">
+
+</div>
+
+<div class="char-build-panel" data-char="meliadoul" hidden markdown="1">
+
+### 메리아돌 틴겔 (Meliadoul Tengille)
+
+<div class="info-card" markdown="1">
+
 <div class="info-card-header">
-<h3 class="info-card-title" id="divine-knight-dark-sword">🛡️ 메리아돌 — Divine Knight (장비 파괴 + Dark Sword)</h3>
+  <h3 class="info-card-title">🛡️ 메리아돌 — Divine Knight (장비 파괴 + Dark Sword)</h3>
 </div>
-<div class="info-card-body">
-<p><strong>전용 직업</strong>: Divine Knight
-<strong>합류</strong>: Ch.4 자동
-<strong>별자리</strong>: 처녀자리 ♀</p>
-<p><strong>Dark Sword (Holy Explosion 등)</strong>: 보스의 <strong>장비를 즉시 파괴</strong> + 광역 데미지</p>
-<p><strong>필수 학습</strong>:
-- <strong>Crush Helm / Crush Armor / Crush Weapon / Crush Shield</strong>: ⭐ 적 장비 강제 박살 (Break보다 강력 — 회피 X)
-- <strong>Holy Explosion</strong>: 광역 + 신성</p>
-<p><strong>추천 빌드</strong>:
-- <strong>메인</strong>: Mighty Sword (Divine Knight 전용)
-- <strong>서브</strong>: Item (켐피스트)
-- <strong>R</strong>: Counter / Blade Grasp
-- <strong>S</strong>: Two Hands
-- <strong>M</strong>: Move +2</p>
-<p><strong>Tip</strong>: <strong>루카비 보스</strong>의 카오스 블레이드 같은 사도자 무기 + 알티마 같은 보스의 강력한 장비를 <strong>Crush 시리즈로 회피 무시 파괴</strong> → 안정 클리어.</p>
+
+<div class="info-card-body" markdown="1">
+
+**전용 직업**: Divine Knight
+**합류**: Ch.4 자동
+**별자리**: 처녀자리 ♀
+
+**Dark Sword (Holy Explosion 등)**: 보스의 **장비를 즉시 파괴** + 광역 데미지
+
+**필수 학습**:
+- **Crush Helm / Crush Armor / Crush Weapon / Crush Shield**: ⭐ 적 장비 강제 박살 (Break보다 강력 — 회피 X)
+- **Holy Explosion**: 광역 + 신성
+
+**추천 빌드**:
+- **메인**: Mighty Sword (Divine Knight 전용)
+- **서브**: Item (켐피스트)
+- **R**: Counter / Blade Grasp
+- **S**: Two Hands
+- **M**: Move +2
+
+**Tip**: **루카비 보스**의 카오스 블레이드 같은 사도자 무기 + 알티마 같은 보스의 강력한 장비를 **Crush 시리즈로 회피 무시 파괴** → 안정 클리어.
+
 </div>
+
 </div>
-<h3 id="rapha-galthena">라파 갈테나 (Rapha Galthena)</h3>
-<div class="info-card">
+
+</div>
+
+<div class="char-build-panel" data-char="twin" hidden markdown="1">
+
+### 라파 갈테나 (Rapha Galthena)
+
+<div class="info-card" markdown="1">
+
 <div class="info-card-header">
-<h3 class="info-card-title" id="heaven-knight-skyseer">✨ 라파 — Heaven Knight (Skyseer 마법)</h3>
+  <h3 class="info-card-title">✨ 라파 — Heaven Knight (Skyseer 마법)</h3>
 </div>
-<div class="info-card-body">
-<p><strong>전용 직업</strong>: Heaven Knight (Galaxy Stop, Lune)
-<strong>합류</strong>: Ch.4 자동
-<strong>별자리</strong>: 궁수자리 ♀</p>
-<p><strong>Skyseer 마법의 특수성</strong>: <strong>시전 위치에 따라 랜덤 광역</strong>. 명중률 불안하지만 한 번 들어가면 강력.</p>
-<p><strong>필수 학습</strong>:
-- <strong>Heavenly Wrath / Wrath of Heaven</strong>: 광역
-- <strong>Galaxy Stop</strong>: 광역 Stop</p>
-<p><strong>추천 빌드</strong>:
-- <strong>메인</strong>: Skyseer
-- <strong>서브</strong>: White Magic (회복 보조)
-- <strong>R</strong>: ⭐ <strong>Counter Magic</strong> — 마법 카운터 강력
-- <strong>S</strong>: Magic Attack Up
-- <strong>M</strong>: Teleport (시마도사 학습) 또는 Move +2</p>
-<p><strong>Tip</strong>: 명중률이 낮아 <strong>고지 위에서 시전</strong> + <strong>상대가 일렬로 모이는 구간</strong>을 노리기.</p>
+
+<div class="info-card-body" markdown="1">
+
+**전용 직업**: Heaven Knight (Galaxy Stop, Lune)
+**합류**: Ch.4 자동
+**별자리**: 궁수자리 ♀
+
+**Skyseer 마법의 특수성**: **시전 위치에 따라 랜덤 광역**. 명중률 불안하지만 한 번 들어가면 강력.
+
+**필수 학습**:
+- **Heavenly Wrath / Wrath of Heaven**: 광역
+- **Galaxy Stop**: 광역 Stop
+
+**추천 빌드**:
+- **메인**: Skyseer
+- **서브**: White Magic (회복 보조)
+- **R**: ⭐ **Counter Magic** — 마법 카운터 강력
+- **S**: Magic Attack Up
+- **M**: Teleport (시마도사 학습) 또는 Move +2
+
+**Tip**: 명중률이 낮아 **고지 위에서 시전** + **상대가 일렬로 모이는 구간**을 노리기.
+
 </div>
+
 </div>
-<h3 id="marach-galthena">마라크 갈테나 (Marach Galthena)</h3>
-<div class="info-card">
+
+### 마라크 갈테나 (Marach Galthena)
+
+<div class="info-card" markdown="1">
+
 <div class="info-card-header">
-<h3 class="info-card-title" id="hell-knight-netherseer">🌑 마라크 — Hell Knight (Netherseer 마법)</h3>
+  <h3 class="info-card-title">🌑 마라크 — Hell Knight (Netherseer 마법)</h3>
 </div>
-<div class="info-card-body">
-<p><strong>전용 직업</strong>: Hell Knight (Asura, Hell Ivy)
-<strong>합류</strong>: Ch.4 자동 (라파의 동생)
-<strong>별자리</strong>: 염소자리 ♂</p>
-<p><strong>Netherseer = Skyseer의 흑마법 버전</strong>.</p>
-<p><strong>필수 학습</strong>:
-- <strong>Hell Ivy / Cyclops</strong>: 광역 암속성
-- <strong>Asura</strong>: 광역 (사무라이와 동명이지만 별도)</p>
-<p><strong>추천 빌드</strong>: 라파와 동일 — 라파(천공) + 마라크(지옥) 페어로 양쪽에서 광역 폭딜.</p>
+
+<div class="info-card-body" markdown="1">
+
+**전용 직업**: Hell Knight (Asura, Hell Ivy)
+**합류**: Ch.4 자동 (라파의 동생)
+**별자리**: 염소자리 ♂
+
+**Netherseer = Skyseer의 흑마법 버전**.
+
+**필수 학습**:
+- **Hell Ivy / Cyclops**: 광역 암속성
+- **Asura**: 광역 (사무라이와 동명이지만 별도)
+
+**추천 빌드**: 라파와 동일 — 라파(천공) + 마라크(지옥) 페어로 양쪽에서 광역 폭딜.
+
 </div>
+
 </div>
-<h3 id="_14">베오울프 카담스 + 레이스 더림</h3>
-<div class="info-card">
+
+</div>
+
+<div class="char-build-panel" data-char="beowulf" hidden markdown="1">
+
+### 베오울프 카담스 + 레이스 더림
+
+<div class="info-card" markdown="1">
+
 <div class="info-card-header">
-<h3 class="info-card-title" id="_15">⚔️🐉 베오울프 &amp; 레이스 — 페어 영입</h3>
-<div class="info-card-tags">
+  <h3 class="info-card-title">⚔️🐉 베오울프 & 레이스 — 페어 영입</h3>
+  <div class="info-card-tags">
     <span class="tag tag-secret">⚠️ 의뢰 순서 미씨블</span>
   </div>
 </div>
-<div class="info-card-body">
-<p><strong>전용 직업</strong>:
-- <strong>베오울프</strong>: Temple Knight (Magic Sword — 스턴/슬립/페트리)
-- <strong>레이스</strong>: Dragoner(인간) / Holy Dragon(드래곤)</p>
-<p><strong>별자리</strong>: 베오울프 = 물병자리 ♂, 레이스 = 천칭자리 ♀</p>
-<p><strong>필수 학습 (베오울프)</strong>:
-- <strong>Magic Sword (Drain/Shock/Stun/Berserk/Sleep/Silence)</strong>: ⭐ 검술 + 상태이상
-- <strong>Petrify Sword</strong>: ⭐ <strong>즉사급</strong> (석화 = 영구 무력화)</p>
-<p><strong>추천 빌드 (베오울프)</strong>:
-- <strong>메인</strong>: Magic Sword (전용)
-- <strong>서브</strong>: Item
-- <strong>R</strong>: Counter / Blade Grasp
-- <strong>S</strong>: Two Hands + Magic Attack Up
-- <strong>M</strong>: Move +2</p>
-<p><strong>레이스 (Holy Dragon 형태)</strong>:
-- <strong>메인</strong>: 드래곤 전용 스킬 (Ice/Lightning/Fire Breath, Holy Breath)
-- <strong>장비 불가</strong> — 드래곤은 장비 변경 ❌
-- 인간 형태로 돌아오면 Dragoner 전용 직업으로 무기·방어구 사용 가능</p>
-<p><strong>Tip</strong>: 베오울프의 <strong>Petrify Sword</strong>가 들어가면 알티마도 무력화 가능. 사거리 짧지만 한 방 결정.</p>
+
+<div class="info-card-body" markdown="1">
+
+**전용 직업**:
+- **베오울프**: Temple Knight (Magic Sword — 스턴/슬립/페트리)
+- **레이스**: Dragoner(인간) / Holy Dragon(드래곤)
+
+**별자리**: 베오울프 = 물병자리 ♂, 레이스 = 천칭자리 ♀
+
+**필수 학습 (베오울프)**:
+- **Magic Sword (Drain/Shock/Stun/Berserk/Sleep/Silence)**: ⭐ 검술 + 상태이상
+- **Petrify Sword**: ⭐ **즉사급** (석화 = 영구 무력화)
+
+**추천 빌드 (베오울프)**:
+- **메인**: Magic Sword (전용)
+- **서브**: Item
+- **R**: Counter / Blade Grasp
+- **S**: Two Hands + Magic Attack Up
+- **M**: Move +2
+
+**레이스 (Holy Dragon 형태)**:
+- **메인**: 드래곤 전용 스킬 (Ice/Lightning/Fire Breath, Holy Breath)
+- **장비 불가** — 드래곤은 장비 변경 ❌
+- 인간 형태로 돌아오면 Dragoner 전용 직업으로 무기·방어구 사용 가능
+
+**Tip**: 베오울프의 **Petrify Sword**가 들어가면 알티마도 무력화 가능. 사거리 짧지만 한 방 결정.
+
 </div>
+
 </div>
-<h3 id="cloud-strife">클라우드 스트라이프 (Cloud Strife)</h3>
-<div class="info-card">
+
+</div>
+
+<div class="char-build-panel" data-char="cloud" hidden markdown="1">
+
+### 클라우드 스트라이프 (Cloud Strife)
+
+<div class="info-card" markdown="1">
+
 <div class="info-card-header">
-<h3 class="info-card-title" id="ff7-soul-diver">⚔️ 클라우드 — FF7 게스트 (Soul Diver)</h3>
-<div class="info-card-tags">
+  <h3 class="info-card-title">⚔️ 클라우드 — FF7 게스트 (Soul Diver)</h3>
+  <div class="info-card-tags">
     <span class="tag tag-secret">⚠️ 머티리얼 블레이드 필수</span>
   </div>
 </div>
-<div class="info-card-body">
-<p><strong>전용 직업</strong>: Soul Diver (Limit 스킬)
-<strong>합류</strong>: Ch.4 Goug Machine City + 시간 여행 의뢰 사슬
-<strong>별자리</strong>: 뱀자리 ♂ (모든 다른 별자리와 Bad)</p>
-<p><strong>Limit 스킬의 가치</strong>: <strong>머티리얼 블레이드 (Materia Blade)</strong> 를 장비해야만 사용 가능. 무기 없이 영입하면 <strong>거의 못 쓴다</strong>.</p>
-<p><strong>필수 학습 (Limit)</strong>:
-- <strong>Braver / Cross Slash / Climhazzard / Meteorain</strong>: 단일~광역 폭딜
-- <strong>Finishing Touch</strong>: 광역 (석화 효과)
-- <strong>Omnislash</strong>: ⭐ 사거리 무한 폭딜
-- <strong>Cherry Blossom</strong>: ⭐ 광역 최강</p>
-<p><strong>추천 빌드</strong>:
-- <strong>메인</strong>: Limit (Soul Diver 전용)
-- <strong>서브</strong>: Item 또는 자유
-- <strong>R</strong>: Blade Grasp
-- <strong>S</strong>: Two Hands
-- <strong>M</strong>: Move +2</p>
-<p><strong>무기</strong>: ⭐ <strong>머티리얼 블레이드</strong> — 트레저 헌트(큐큐로스 사원 절벽) 또는 의뢰 회수. <strong>반드시 영입 전 확보</strong>.</p>
-<p><strong>별자리 페널티</strong>: 뱀자리는 12별자리 모두와 Bad. 클라우드는 솔로로 광역 폭딜용 — 회복/지원받기 어려움.</p>
+
+<div class="info-card-body" markdown="1">
+
+**전용 직업**: Soul Diver (Limit 스킬)
+**합류**: Ch.4 Goug Machine City + 시간 여행 의뢰 사슬
+**별자리**: 뱀자리 ♂ (모든 다른 별자리와 Bad)
+
+**Limit 스킬의 가치**: **머티리얼 블레이드 (Materia Blade)** 를 장비해야만 사용 가능. 무기 없이 영입하면 **거의 못 쓴다**.
+
+**필수 학습 (Limit)**:
+- **Braver / Cross Slash / Climhazzard / Meteorain**: 단일~광역 폭딜
+- **Finishing Touch**: 광역 (석화 효과)
+- **Omnislash**: ⭐ 사거리 무한 폭딜
+- **Cherry Blossom**: ⭐ 광역 최강
+
+**추천 빌드**:
+- **메인**: Limit (Soul Diver 전용)
+- **서브**: Item 또는 자유
+- **R**: Blade Grasp
+- **S**: Two Hands
+- **M**: Move +2
+
+**무기**: ⭐ **머티리얼 블레이드** — 트레저 헌트(큐큐로스 사원 절벽) 또는 의뢰 회수. **반드시 영입 전 확보**.
+
+**별자리 페널티**: 뱀자리는 12별자리 모두와 Bad. 클라우드는 솔로로 광역 폭딜용 — 회복/지원받기 어려움.
+
 </div>
+
 </div>
-<h3 id="8-worker-8-construct-8">워커 8 (Worker 8 / Construct 8)</h3>
-<div class="info-card">
+
+</div>
+
+<div class="char-build-panel" data-char="worker" hidden markdown="1">
+
+### 워커 8 (Worker 8 / Construct 8)
+
+<div class="info-card" markdown="1">
+
 <div class="info-card-header">
-<h3 class="info-card-title" id="8-steel-giant">🤖 워커 8 — 로봇 동료 (Steel Giant)</h3>
+  <h3 class="info-card-title">🤖 워커 8 — 로봇 동료 (Steel Giant)</h3>
 </div>
-<div class="info-card-body">
-<p><strong>전용 직업</strong>: Steel Giant
-<strong>합류</strong>: Ch.4 Goug Machine City 의뢰 시리즈
-<strong>별자리</strong>: <strong>없음 (로봇)</strong> — 별자리 매칭 무관</p>
-<p><strong>특이점</strong>:
-- 보조 어빌리티 / R / S / M <strong>모두 부여 불가</strong>
-- 장비 변경 <strong>불가</strong>
+
+<div class="info-card-body" markdown="1">
+
+**전용 직업**: Steel Giant
+**합류**: Ch.4 Goug Machine City 의뢰 시리즈
+**별자리**: **없음 (로봇)** — 별자리 매칭 무관
+
+**특이점**:
+- 보조 어빌리티 / R / S / M **모두 부여 불가**
+- 장비 변경 **불가**
 - 레벨업 없음 (고정 스탯)
-- <strong>상태이상 면역</strong> (실드/오로지 데미지로만)</p>
-<p><strong>전용 스킬</strong>:
-- <strong>Compress</strong>: 단일 강력 펀치
-- <strong>Dispose</strong>: 광역 충격파
-- <strong>Crush</strong>: 직선 광역</p>
-<p><strong>추천 활용</strong>:
-- ⭐ <strong>상태이상 면역</strong>으로 <strong>혼란/마비 위주 보스전(알티마, 메리아돌 패밀리)</strong> 에 안정적
+- **상태이상 면역** (실드/오로지 데미지로만)
+
+**전용 스킬**:
+- **Compress**: 단일 강력 펀치
+- **Dispose**: 광역 충격파
+- **Crush**: 직선 광역
+
+**추천 활용**:
+- ⭐ **상태이상 면역**으로 **혼란/마비 위주 보스전(알티마, 메리아돌 패밀리)** 에 안정적
 - 별자리 무관 = 모든 별자리 적과 동등
-- 카운터/회피 ❌ → 정직한 화력 + 탱커</p>
+- 카운터/회피 ❌ → 정직한 화력 + 탱커
+
 </div>
+
 </div>
-<h3 id="byblos">비블로스 (Byblos)</h3>
-<div class="info-card">
+
+</div>
+
+<div class="char-build-panel" data-char="byblos" hidden markdown="1">
+
+### 비블로스 (Byblos)
+
+<div class="info-card" markdown="1">
+
 <div class="info-card-header">
-<h3 class="info-card-title" id="_16">👹 비블로스 — 마수형 동료</h3>
-<div class="info-card-tags">
+  <h3 class="info-card-title">👹 비블로스 — 마수형 동료</h3>
+  <div class="info-card-tags">
     <span class="tag tag-secret">⚠️ Ch.3 단 1회 영입</span>
   </div>
 </div>
-<div class="info-card-body">
-<p><strong>전용 직업</strong>: Byblos (몬스터 직업)
-<strong>합류</strong>: Ch.3 — Goug Machine City <strong>사이드 룸 1회 출현</strong>
-<strong>별자리</strong>: 쌍둥이자리 ♂</p>
-<p><strong>비블로스 전용 스킬</strong>:
-- <strong>Drain Touch</strong>: HP 흡수
-- <strong>Mind Drain</strong>: MP 흡수
-- <strong>Hurricane</strong>: 광역 풍속성</p>
-<p><strong>추천 활용</strong>:
-- <strong>무한 회복</strong> (HP/MP 흡수)
-- <strong>MP 안정 공급원</strong> — 산술사/소환사 후방에서 MP 회복 도우미
-- 후반 산술사 어시스트로 가치 ↑</p>
+
+<div class="info-card-body" markdown="1">
+
+**전용 직업**: Byblos (몬스터 직업)
+**합류**: Ch.3 — Goug Machine City **사이드 룸 1회 출현**
+**별자리**: 쌍둥이자리 ♂
+
+**비블로스 전용 스킬**:
+- **Drain Touch**: HP 흡수
+- **Mind Drain**: MP 흡수
+- **Hurricane**: 광역 풍속성
+
+**추천 활용**:
+- **무한 회복** (HP/MP 흡수)
+- **MP 안정 공급원** — 산술사/소환사 후방에서 MP 회복 도우미
+- 후반 산술사 어시스트로 가치 ↑
+
 </div>
+
 </div>
-<h3 id="generic-calculator">Generic Calculator 빌드 (커스텀 캐릭)</h3>
-<div class="info-card">
+
+</div>
+
+<div class="char-build-panel" data-char="generic" hidden markdown="1">
+
+### Generic Calculator 빌드 (커스텀 캐릭)
+
+<div class="info-card" markdown="1">
+
 <div class="info-card-header">
-<h3 class="info-card-title" id="generic">🔢 Generic 산술사 (계산사) — 마법 등록 최적</h3>
+  <h3 class="info-card-title">🔢 Generic 산술사 (계산사) — 마법 등록 최적</h3>
 </div>
-<div class="info-card-body">
-<p><strong>작성 순서</strong>:</p>
-<ol>
-<li><strong>채용 화면</strong>: 별자리 무관, <strong>Faith ≥ 70</strong>, MA 성장 좋은 캐릭 우선</li>
-<li><strong>JP 진행</strong>: Squire JL2 → Chemist JL2 → 백마도사 JL4 (Holy 학습) → 흑마도사 JL4 (Flare + Death) → 시마도사 JL3 (Short Charge) → 음양사 JL3 (Frog/Bio 3) → 산술사 해금</li>
-</ol>
-<p><strong>필수 학습</strong>:
-- 액션 마법 등록: <strong>Holy, Flare, Death, Frog, Bio 3</strong>
-- 산술사 본인: <strong>Calculate (액션)</strong></p>
-<p><strong>추천 빌드</strong>:
-- <strong>메인</strong>: Calculate (산술사 전용)
-- <strong>서브</strong>: White Magic (Cure/Raise 2/Holy) — 직접 시전 백업
-- <strong>R</strong>: ⭐ Counter Magic
-- <strong>S</strong>: ⭐ <strong>Magic Attack Up</strong> + <strong>Short Charge</strong>
-- <strong>M</strong>: Move +2 (Find Item)</p>
-<p><strong>보스전 진행</strong>:
+
+<div class="info-card-body" markdown="1">
+
+**작성 순서**:
+
+1. **채용 화면**: 별자리 무관, **Faith ≥ 70**, MA 성장 좋은 캐릭 우선
+2. **JP 진행**: Squire JL2 → Chemist JL2 → 백마도사 JL4 (Holy 학습) → 흑마도사 JL4 (Flare + Death) → 시마도사 JL3 (Short Charge) → 음양사 JL3 (Frog/Bio 3) → 산술사 해금
+
+**필수 학습**:
+- 액션 마법 등록: **Holy, Flare, Death, Frog, Bio 3**
+- 산술사 본인: **Calculate (액션)**
+
+**추천 빌드**:
+- **메인**: Calculate (산술사 전용)
+- **서브**: White Magic (Cure/Raise 2/Holy) — 직접 시전 백업
+- **R**: ⭐ Counter Magic
+- **S**: ⭐ **Magic Attack Up** + **Short Charge**
+- **M**: Move +2 (Find Item)
+
+**보스전 진행**:
 1. 첫 턴: Level X (적 LV의 공통 배수) + Death → 광역 즉사 시도
 2. 안 통하면: CT 5 + Holy / Flare → 광역 폭딜
-3. 산술사 본체는 SP 낮으므로 시마도사 Haste 보조</p>
+3. 산술사 본체는 SP 낮으므로 시마도사 Haste 보조
+
 </div>
+
 </div>
-<h3 id="generic-ninja">Generic Ninja 빌드 (커스텀 캐릭)</h3>
-<div class="info-card">
+
+### Generic Ninja 빌드 (커스텀 캐릭)
+
+<div class="info-card" markdown="1">
+
 <div class="info-card-header">
-<h3 class="info-card-title" id="generic_1">🥷 Generic 닌자 — 양수검 어택커</h3>
+  <h3 class="info-card-title">🥷 Generic 닌자 — 양수검 어택커</h3>
 </div>
-<div class="info-card-body">
-<p><strong>작성 순서</strong>:</p>
-<ol>
-<li><strong>채용 화면</strong>: SP 성장 좋은 캐릭, Brave 70+</li>
-<li><strong>JP 진행</strong>: Squire JL2 → Chemist JL2 → 아처 JL4 (Concentrate) → 시프 JL3 (Move +2) → 풍수사 JL2 → 닌자 해금</li>
-</ol>
-<p><strong>필수 학습</strong>:
-- <strong>Throw</strong> (액션): 시노비도/카타나/검 무기 투척
-- <strong>Two Swords (S)</strong> — 닌자 학습</p>
-<p><strong>추천 빌드</strong>:
-- <strong>메인</strong>: Throw 또는 자유 (Holy Sword 등 다른 액션)
-- <strong>서브</strong>: Punch Art (몽크 Chakra) 또는 Item
-- <strong>R</strong>: ⭐ <strong>Concentrate</strong> (회피 무시) 또는 <strong>Counter</strong>
-- <strong>S</strong>: ⭐ <strong>Two Swords</strong> — <strong>양손 1턴 2회 타격</strong>
-- <strong>M</strong>: ⭐ Move +2</p>
-<p><strong>무기</strong>: <strong>유 가르탄 (Yagyu Darkblade) + 마사무네</strong> 또는 <strong>카오스 블레이드 + 사도자 카타나</strong></p>
-<p><strong>보스전 진행</strong>: 1턴 4회 타격(2회 × 2손) → 보스 1턴 마무리.</p>
+
+<div class="info-card-body" markdown="1">
+
+**작성 순서**:
+
+1. **채용 화면**: SP 성장 좋은 캐릭, Brave 70+
+2. **JP 진행**: Squire JL2 → Chemist JL2 → 아처 JL4 (Concentrate) → 시프 JL3 (Move +2) → 풍수사 JL2 → 닌자 해금
+
+**필수 학습**:
+- **Throw** (액션): 시노비도/카타나/검 무기 투척
+- **Two Swords (S)** — 닌자 학습
+
+**추천 빌드**:
+- **메인**: Throw 또는 자유 (Holy Sword 등 다른 액션)
+- **서브**: Punch Art (몽크 Chakra) 또는 Item
+- **R**: ⭐ **Concentrate** (회피 무시) 또는 **Counter**
+- **S**: ⭐ **Two Swords** — **양손 1턴 2회 타격**
+- **M**: ⭐ Move +2
+
+**무기**: **유 가르탄 (Yagyu Darkblade) + 마사무네** 또는 **카오스 블레이드 + 사도자 카타나**
+
+**보스전 진행**: 1턴 4회 타격(2회 × 2손) → 보스 1턴 마무리.
+
 </div>
+
 </div>
-<h3 id="generic-samurai">Generic Samurai 빌드 (커스텀 캐릭)</h3>
-<div class="info-card">
+
+### Generic Samurai 빌드 (커스텀 캐릭)
+
+<div class="info-card" markdown="1">
+
 <div class="info-card-header">
-<h3 class="info-card-title" id="generic_2">🗡️ Generic 사무라이 — 마사무네 발도 탱커</h3>
+  <h3 class="info-card-title">🗡️ Generic 사무라이 — 마사무네 발도 탱커</h3>
 </div>
-<div class="info-card-body">
-<p><strong>작성 순서</strong>:</p>
-<ol>
-<li><strong>채용 화면</strong>: HP/PA 성장 좋은 캐릭, <strong>Brave ≥ 97</strong> (Blade Grasp 풀활용)</li>
-<li><strong>JP 진행</strong>: Squire → Chemist → 나이트 JL4 → 몽크 JL4 → 용기사 JL2 → 사무라이 해금</li>
-</ol>
-<p><strong>필수 학습</strong>:
-- <strong>Draw Out</strong> 전체 (마사무네까지)
-- <strong>Blade Grasp (R)</strong> — 본인의 백업</p>
-<p><strong>추천 빌드</strong>:
-- <strong>메인</strong>: Draw Out (사무라이 전용)
-- <strong>서브</strong>: White Magic 또는 Item
-- <strong>R</strong>: ⭐ <strong>Blade Grasp</strong> — Brave 97 = 검/카타나/창 회피 97%
-- <strong>S</strong>: ⭐ <strong>Equip Heavy Armor</strong> (나이트) + <strong>Two Hands</strong> (사무라이)
-- <strong>M</strong>: Move +1 또는 Move +2</p>
-<p><strong>무기</strong>: ⭐ <strong>카오스 블레이드</strong> + 사도자 카타나(잔수아간자 등) 다수</p>
-<p><strong>전투 진행</strong>: 시작 직후 <strong>마사무네 발도</strong> = 풀파티 헤이스트 + 리젠 → 본인 양수 검 탱커.</p>
+
+<div class="info-card-body" markdown="1">
+
+**작성 순서**:
+
+1. **채용 화면**: HP/PA 성장 좋은 캐릭, **Brave ≥ 97** (Blade Grasp 풀활용)
+2. **JP 진행**: Squire → Chemist → 나이트 JL4 → 몽크 JL4 → 용기사 JL2 → 사무라이 해금
+
+**필수 학습**:
+- **Draw Out** 전체 (마사무네까지)
+- **Blade Grasp (R)** — 본인의 백업
+
+**추천 빌드**:
+- **메인**: Draw Out (사무라이 전용)
+- **서브**: White Magic 또는 Item
+- **R**: ⭐ **Blade Grasp** — Brave 97 = 검/카타나/창 회피 97%
+- **S**: ⭐ **Equip Heavy Armor** (나이트) + **Two Hands** (사무라이)
+- **M**: Move +1 또는 Move +2
+
+**무기**: ⭐ **카오스 블레이드** + 사도자 카타나(잔수아간자 등) 다수
+
+**전투 진행**: 시작 직후 **마사무네 발도** = 풀파티 헤이스트 + 리젠 → 본인 양수 검 탱커.
+
 </div>
+
+</div>
+
+</div>
+
 </div></div>
 <div class="tab-panel tab-content" data-tab="chapters"><div id="bookmarks-panel" class="bookmarks-panel empty"><div class="bookmarks-panel-title">📌 책갈피</div><div class="bookmarks-list"></div></div><div class="chapter-index-view" id="chapter-index-view"><div class="chapter-index-intro">📚 챕터 카드를 선택하면 해당 챕터로 들어갑니다. ESC 또는 ← 챕터 인덱스 버튼으로 복귀.</div><div class="chapter-index"><a class="chapter-card" data-ch="1" href="#tab=chapters&ch=1"><div class="chapter-card-num">CH.1</div><h3 class="chapter-card-title">The Meager (가난한 자)</h3><p class="chapter-card-desc">람자의 청년 시절 · 첫 보스 발플레아</p></a>
 <a class="chapter-card" data-ch="2" href="#tab=chapters&ch=2"><div class="chapter-card-num">CH.2</div><h3 class="chapter-card-title">The Manipulator and the Subservient (조종자와 충복)</h3><p class="chapter-card-desc">오베리아 호위 · 아그리아스/무스타디오 합류</p></a>

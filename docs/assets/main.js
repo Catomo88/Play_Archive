@@ -1,4 +1,18 @@
 
+// ===== 캐릭터 서브탭 (캐릭터별 빌드 토글) =====
+document.querySelectorAll('.char-builds').forEach(container => {
+  const tabs = container.querySelectorAll('.char-subtab');
+  const panels = container.querySelectorAll('.char-build-panel');
+  tabs.forEach(t => {
+    t.addEventListener('click', () => {
+      const target = t.dataset.char;
+      tabs.forEach(b => b.classList.toggle('active', b === t));
+      panels.forEach(p => p.hidden = p.dataset.char !== target);
+      t.scrollIntoView({block: 'nearest', inline: 'center', behavior: 'smooth'});
+    });
+  });
+});
+
 // ===== 게임 카드 검색 =====
 const search = document.getElementById('game-search');
 const grid = document.getElementById('games-grid');
