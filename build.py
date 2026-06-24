@@ -2394,11 +2394,26 @@ def main():
     user = config.get("github_username", "")
     author = config.get("author", "")
 
-    if OUT_DIR.exists():
-        shutil.rmtree(OUT_DIR)
-    OUT_DIR.mkdir(parents=True)
-    OUT_GAMES.mkdir(parents=True)
-    OUT_ASSETS.mkdir(parents=True)
+    # docs/ 전체를 wipe하지 않고 빌드가 관리하는 파일만 지움.
+    # → 수동 추가 자료(fft-scan.html, assets/scan/ 등)는 보존됨.
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    OUT_ASSETS.mkdir(parents=True, exist_ok=True)
+    OUT_GAMES.mkdir(parents=True, exist_ok=True)
+    # 관리 파일만 정리
+    for managed_file in (OUT_DIR / "index.html",
+                         OUT_ASSETS / "style.css",
+                         OUT_ASSETS / "main.js"):
+        if managed_file.exists():
+            managed_file.unlink()
+    # _games/*.md 슬러그에 해당하는 게임 HTML만 정리. 수동 추가 *.html은 보존.
+    md_slugs = {p.stem for p in GAMES_DIR.glob("*.md") if not p.name.startswith("_")}
+    for f in OUT_GAMES.glob("*.html"):
+        if f.stem in md_slugs:
+            f.unlink()
+    # assets/images는 build가 다시 복사하므로 비움
+    img_out = OUT_ASSETS / "images"
+    if img_out.exists():
+        shutil.rmtree(img_out)
 
     games = []
     for md_file in sorted(GAMES_DIR.glob("*.md")):

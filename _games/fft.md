@@ -41,6 +41,31 @@ sources:
 
 <!-- tab:개요 -->
 
+<div class="info-card" markdown="1">
+
+<div class="info-card-header">
+  <h3 class="info-card-title">📖 한국어 공식 공략집 스캔 (141p)</h3>
+  <div class="info-card-tags">
+    <span class="tag tag-secret">자료실</span>
+  </div>
+</div>
+
+<div class="info-card-body" markdown="1">
+
+PS1 원작 시절의 **한국어 공식 공략집 스캔본** — 책 형태로 페이지를 넘기며 볼 수 있습니다.
+
+- **본편 공략 (94p)** — 캐릭터 일러스트, 챕터별 가이드
+- **부록 (14p)** — 추가 데이터
+- **직업/스킬표 (33p)** — 모든 직업 어빌리티 한눈에
+
+조작: PC는 **← →** 키 / 모바일은 **좌우 스와이프**. 이미지를 탭하면 **확대**.
+
+🔗 [📖 공략집 뷰어 열기](fft-scan.html){:.tag .tag-explore}
+
+</div>
+
+</div>
+
 ## 게임 개요
 
 **파이널 판타지 택틱스 - The Ivalice Chronicles**는 1997년 PS1 명작 SRPG의 28년 만의 정식 리메이크. 2025년 9월 30일 영어/일본어 더빙 + 영문 자막으로 글로벌 발매, **2026년 6월 17일 v1.5.0 업데이트로 한국어 자막 추가 + 한국 정식 패키지** 발매.
@@ -2401,17 +2426,4 @@ PSP/WotL 시스템 그대로. **마을에서 캐릭터를 의뢰에 파견**해 
 
 ## Enhanced 특화 팁
 
-<div class="tip" markdown="1">
-**💡 Enhanced QoL 활용**
-
-- **자동 세이브 + 되감기**: Tactician에서 한 턴 실수 즉시 복구 → 무리한 시도 가능
-- **배속 ×4**: 적 턴 / 차지 마법 대기 단축 — 디프 던전 같은 장기전에서 시간 절약
-- **재시도**: 보스 패배 즉시 재도전 (배치부터) — 운빨 보스(Wiegraf, Altima)에 핵심
-- **난이도 즉시 변경**: 막힌 전투만 Squire로 낮춰 통과 후 다시 Tactician로 복귀
-- **한국어 자막 v1.5.0+**: 직업/스킬명이 영어와 다를 수 있음 — 본 가이드의 한국어 표기는 일반적 번역에 기반. 게임 내 공식 표기와 차이가 있으면 게임 내가 우선
-</div>
-
-## 자주 묻는 질문
-
-**Q. Classic vs Enhanced, 뭐로 시작?**
-A. **Enhanc
+<

@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0">
+<title>FFT 공식 공략집 스캔 — PLAY ARCHIVE</title>
+<meta name="description" content="파이널 판타지 택틱스 한국어 공식 공략집 스캔 — 책 형태로 페이지 넘기기">
+<link rel="icon" type="image/svg+xml" href="/Play_Archive/assets/icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/Play_Archive/assets/icon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/Play_Archive/assets/icon-180.png">
+<meta name="theme-color" content="#141c5a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root {
+  --bg-base: #0a0a0f;
+  --bg-card: #14141c;
+  --bg-elevated: #1a1a25;
+  --text-primary: #e6e6f0;
+  --text-secondary: #a0a0b8;
+  --text-muted: #6a6a82;
+  --accent-cyan: #00f0ff;
+  --accent-magenta: #ff00aa;
+  --border-subtle: rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.16);
+  --font-display: 'Orbitron', system-ui, sans-serif;
+  --font-body: 'Pretendard', -apple-system, system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+body {
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.scan-app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* 상단 헤더 */
+.scan-header {
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.55rem 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  z-index: 10;
+}
+.scan-header a.back {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.88rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+}
+.scan-header a.back:hover { color: var(--text-primary); }
+.scan-title {
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  letter-spacing: 0.05em;
+  color: var(--accent-cyan);
+  margin: 0;
+  flex: 1 1 auto;
+}
+.vol-switcher {
+  display: flex; gap: 0.3rem;
+}
+.vol-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  padding: 0.3rem 0.65rem;
+  font-size: 0.78rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+.vol-btn.active {
+  background: var(--accent-cyan);
+  color: #001017;
+  border-color: var(--accent-cyan);
+  font-weight: 700;
+}
+
+/* 메인 페이지 영역 */
+.scan-stage {
+  flex: 1 1 auto;
+  position: relative;
+  overflow: hidden;
+  background: #050508;
+  touch-action: pan-y pinch-zoom;
+}
+.scan-image-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  transition: transform 0.25s ease;
+}
+.scan-image-wrap img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  border-radius: 4px;
+  transition: opacity 0.18s;
+  background: #2a2a35;
+  cursor: zoom-in;
+}
+.scan-image-wrap img.zoomed {
+  cursor: zoom-out;
+  transform: scale(1.8);
+  max-width: none;
+  max-height: none;
+}
+
+/* 좌우 화살표 (PC) */
+.scan-nav-btn {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px;
+  background: rgba(20,20,28,0.75);
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
+  font-size: 1.4rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 5;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.scan-nav-btn:hover { background: rgba(0,240,255,0.2); border-color: var(--accent-cyan); }
+.scan-nav-btn.prev { left: 1rem; }
+.scan-nav-btn.next { right: 1rem; }
+.scan-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+@media (max-width: 700px) {
+  .scan-nav-btn { width: 36px; height: 36px; font-size: 1.1rem; }
+  .scan-nav-btn.prev { left: 0.4rem; }
+  .scan-nav-btn.next { right: 0.4rem; }
+}
+
+/* 하단 컨트롤 */
+.scan-footer {
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--border-subtle);
+  padding: 0.55rem 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  z-index: 10;
+}
+.page-counter {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.page-counter .current { color: var(--accent-cyan); font-weight: 700; }
+.page-input-wrap {
+  display: flex; gap: 0.3rem;
+  align-items: center;
+}
+.page-input {
+  width: 50px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  padding: 0.25rem 0.4rem;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  text-align: center;
+  font-family: inherit;
+}
+.page-input:focus { outline: none; border-color: var(--accent-cyan); }
+.thumb-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  padding: 0.3rem 0.55rem;
+  font-size: 0.78rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: auto;
+}
+.thumb-btn:hover { color: var(--text-primary); border-color: var(--border-strong); }
+
+/* 진행 표시 바 */
+.progress {
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 2px;
+  background: var(--accent-cyan);
+  transition: width 0.25s;
+}
+
+/* 썸네일 그리드 모달 */
+.thumb-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(5,5,8,0.95);
+  z-index: 100;
+  display: none;
+  flex-direction: column;
+}
+.thumb-modal.open { display: flex; }
+.thumb-modal-header {
+  padding: 0.7rem 1rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.thumb-modal-title {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  color: var(--accent-cyan);
+  flex: 1;
+}
+.close-thumb {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.thumb-grid {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.8rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 0.6rem;
+}
+.thumb-item {
+  cursor: pointer;
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  aspect-ratio: 800 / 1170;
+  transition: transform 0.15s;
+}
+.thumb-item:hover { transform: scale(1.04); border-color: var(--accent-cyan); }
+.thumb-item.current { border-color: var(--accent-cyan); box-shadow: 0 0 0 2px var(--accent-cyan); }
+.thumb-item img { width: 100%; height: 100%; object-fit: cover; }
+.thumb-num {
+  position: absolute; top: 4px; left: 4px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  font-size: 0.65rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-family: var(--font-display);
+}
+@media (max-width: 480px) {
+  .thumb-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 0.4rem; padding: 0.5rem; }
+}
+
+/* 사용법 힌트 (첫 진입 시) */
+.hint-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 20;
+  padding: 1rem;
+}
+.hint-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  padding: 1.2rem 1.4rem;
+  max-width: 360px;
+  text-align: center;
+}
+.hint-box h3 {
+  margin: 0 0 0.6rem;
+  font-family: var(--font-display);
+  color: var(--accent-cyan);
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+}
+.hint-box p { margin: 0.4rem 0; font-size: 0.88rem; color: var(--text-secondary); }
+.hint-box button {
+  margin-top: 0.8rem;
+  background: var(--accent-cyan);
+  color: #001017;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+}
+</style>
+</head>
+<body>
+<div class="scan-app">
+
+  <!-- 헤더 -->
+  <header class="scan-header">
+    <a class="back" href="/Play_Archive/games/fft.html" aria-label="FFT 가이드로">← 가이드</a>
+    <h1 class="scan-title">📖 FFT 공식 공략집</h1>
+    <div class="vol-switcher" id="volSwitcher"></div>
+  </header>
+
+  <!-- 메인 스테이지 -->
+  <div class="scan-stage" id="stage">
+    <div class="scan-image-wrap" id="imageWrap">
+      <img id="scanImage" alt="공략집 페이지" loading="eager">
+    </div>
+    <button class="scan-nav-btn prev" id="prevBtn" aria-label="이전">‹</button>
+    <button class="scan-nav-btn next" id="nextBtn" aria-label="다음">›</button>
+    <div class="progress" id="progress"></div>
+  </div>
+
+  <!-- 푸터 -->
+  <footer class="scan-footer">
+    <div class="page-counter">
+      <span class="current" id="currentPage">1</span>
+      <span> / </span>
+      <span id="totalPages">0</span>
+    </div>
+    <div class="page-input-wrap">
+      <input type="number" class="page-input" id="pageInput" min="1" placeholder="번호">
+      <button class="vol-btn" id="goBtn" type="button">이동</button>
+    </div>
+    <button class="thumb-btn" id="openThumbBtn" type="button">목록</button>
+  </footer>
+
+  <!-- 썸네일 모달 -->
+  <div class="thumb-modal" id="thumbModal">
+    <div class="thumb-modal-header">
+      <div class="thumb-modal-title" id="thumbTitle">페이지 목록</div>
+      <button class="close-thumb" id="closeThumbBtn" aria-label="닫기">×</button>
+    </div>
+    <div class="thumb-grid" id="thumbGrid"></div>
+  </div>
+
+</div>
+
+<script>
+const VOLUMES = {
+  tactic: {
+    label: '본편 공략',
+    pages: ["tactic01","tactic02","tactic03","tactic04","tactic05","tactic06","tactic07","tactic08","tactic09","tactic10","tactic11","tactic12","tactic14","tactic15","tactic16","tactic17","tactic18","tactic19","tactic20","tactic22","tactic23","tactic24","tactic25","tactic26","tactic27","tactic29","tactic30","tactic31","tactic32","tactic33","tactic34","tactic35","tactic36","tactic37","tactic38","tactic39","tactic40","tactic41","tactic42","tactic43","tactic44","tactic45","tactic46","tactic47","tactic48","tactic49","tactic50","tactic51","tactic52","tactic53","tactic55","tactic56","tactic57","tactic58","tactic59","tactic60","tactic61","tactic62","tactic63","tactic64","tactic65","tactic66","tactic67","tactic68","tactic69","tactic71","tactic72","tactic73","tactic74","tactic75","tactic76","tactic77","tactic78","tactic79","tactic80","tactic81","tactic82","tactic83","tactic84","tactic85","tactic86","tactic87","tactic88","tactic89","tactic90","tactic91","tactic92","tactic93","tactic94","tactic95","tactic96","tactic97","tactic98","tactic99"]
+  },
+  tacticd: {
+    label: '부록',
+    pages: ["tacticd100","tacticd101","tacticd102","tacticd103","tacticd104","tacticd105","tacticd106","tacticd107","tacticd108","tacticd109","tacticd110","tacticd111","tacticd112","tacticd113"]
+  },
+  utacti: {
+    label: '직업/스킬표',
+    pages: ["utacti13","utacti14","utacti16","utacti17","utacti18","utacti19","utacti20","utacti21","utacti22","utacti23","utacti24","utacti25","utacti26","utacti27","utacti28","utacti29","utacti30","utacti31","utacti32","utacti33","utacti34","utacti35","utacti36","utacti37","utacti38","utacti39","utacti40","utacti41","utacti42","utacti43","utacti44","utacti45","utacti46"]
+  }
+};
+
+const BASE = '/Play_Archive/assets/scan/fft/';
+const LS_KEY = 'fft-scan-position-v1';
+
+let currentVol = 'tactic';
+let currentIdx = 0;
+
+const $stage = document.getElementById('stage');
+const $img = document.getElementById('scanImage');
+const $imgWrap = document.getElementById('imageWrap');
+const $cur = document.getElementById('currentPage');
+const $total = document.getElementById('totalPages');
+const $input = document.getElementById('pageInput');
+const $progress = document.getElementById('progress');
+const $volSwitcher = document.getElementById('volSwitcher');
+const $thumbGrid = document.getElementById('thumbGrid');
+const $thumbModal = document.getElementById('thumbModal');
+const $thumbTitle = document.getElementById('thumbTitle');
+
+function pages() { return VOLUMES[currentVol].pages; }
+function getUrl(name) { return BASE + name + '.jpg'; }
+
+function saveState() {
+  try { localStorage.setItem(LS_KEY, JSON.stringify({ vol: currentVol, idx: currentIdx })); } catch (e) {}
+}
+function loadState() {
+  try {
+    const s = JSON.parse(localStorage.getItem(LS_KEY) || 'null');
+    if (s && VOLUMES[s.vol]) {
+      currentVol = s.vol;
+      currentIdx = Math.min(s.idx || 0, VOLUMES[s.vol].pages.length - 1);
+    }
+  } catch (e) {}
+}
+
+function render() {
+  const ps = pages();
+  const name = ps[currentIdx];
+  $img.src = getUrl(name);
+  $img.classList.remove('zoomed');
+  $cur.textContent = currentIdx + 1;
+  $total.textContent = ps.length;
+  $input.value = '';
+  $input.placeholder = (currentIdx + 1).toString();
+  $progress.style.width = (((currentIdx + 1) / ps.length) * 100) + '%';
+  // 인접 페이지 prefetch
+  for (const off of [1, -1, 2]) {
+    const ni = currentIdx + off;
+    if (ni >= 0 && ni < ps.length) {
+      const link = new Image();
+      link.src = getUrl(ps[ni]);
+    }
+  }
+  document.getElementById('prevBtn').disabled = currentIdx === 0;
+  document.getElementById('nextBtn').disabled = currentIdx === ps.length - 1;
+  saveState();
+}
+
+function go(delta) {
+  const ps = pages();
+  const ni = Math.max(0, Math.min(ps.length - 1, currentIdx + delta));
+  if (ni !== currentIdx) {
+    currentIdx = ni;
+    render();
+  }
+}
+
+function jumpTo(n) {
+  const ps = pages();
+  const idx = Math.max(0, Math.min(ps.length - 1, n - 1));
+  currentIdx = idx;
+  render();
+}
+
+function setVolume(vol) {
+  if (!VOLUMES[vol]) return;
+  currentVol = vol;
+  currentIdx = 0;
+  document.querySelectorAll('.vol-btn').forEach(b => b.classList.toggle('active', b.dataset.vol === vol));
+  render();
+}
+
+// 볼륨 버튼 빌드
+Object.entries(VOLUMES).forEach(([k, v]) => {
+  const b = document.createElement('button');
+  b.className = 'vol-btn' + (k === currentVol ? ' active' : '');
+  b.dataset.vol = k;
+  b.type = 'button';
+  b.textContent = `${v.label} (${v.pages.length})`;
+  b.addEventListener('click', () => setVolume(k));
+  $volSwitcher.appendChild(b);
+});
+
+// 좌우 버튼
+document.getElementById('prevBtn').addEventListener('click', () => go(-1));
+document.getElementById('nextBtn').addEventListener('click', () => go(1));
+
+// 키보드
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT') return;
+  if (e.key === 'ArrowLeft') go(-1);
+  if (e.key === 'ArrowRight') go(1);
+  if (e.key === 'Home') jumpTo(1);
+  if (e.key === 'End') jumpTo(pages().length);
+});
+
+// 페이지 점프
+function doJump() {
+  const v = parseInt($input.value, 10);
+  if (!isNaN(v)) jumpTo(v);
+  $input.blur();
+}
+document.getElementById('goBtn').addEventListener('click', doJump);
+$input.addEventListener('keydown', e => { if (e.key === 'Enter') doJump(); });
+
+// 이미지 클릭/탭으로 줌
+$img.addEventListener('click', () => {
+  $img.classList.toggle('zoomed');
+});
+
+// 터치 스와이프
+let touchStartX = null;
+let touchStartY = null;
+let touchStartT = 0;
+$stage.addEventListener('touchstart', e => {
+  if ($img.classList.contains('zoomed')) return;
+  if (e.touches.length !== 1) return;
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+  touchStartT = Date.now();
+}, { passive: true });
+$stage.addEventListener('touchend', e => {
+  if (touchStartX == null) return;
+  const dt = Date.now() - touchStartT;
+  const t = e.changedTouches[0];
+  const dx = t.clientX - touchStartX;
+  const dy = t.clientY - touchStartY;
+  touchStartX = null;
+  if (dt > 600) return;
+  if (Math.abs(dx) > Math.abs(dy) * 1.2 && Math.abs(dx) > 40) {
+    if (dx > 0) go(-1);
+    else go(1);
+  }
+}, { passive: true });
+
+// 썸네일 그리드
+function openThumbs() {
+  $thumbGrid.innerHTML = '';
+  const ps = pages();
+  $thumbTitle.textContent = `${VOLUMES[currentVol].label} — ${ps.length}p`;
+  ps.forEach((name, i) => {
+    const item = document.createElement('div');
+    item.className = 'thumb-item' + (i === currentIdx ? ' current' : '');
+    item.innerHTML = `<img loading="lazy" src="${getUrl(name)}" alt=""><div class="thumb-num">${i + 1}</div>`;
+    item.addEventListener('click', () => {
+      currentIdx = i;
+      render();
+      closeThumbs();
+    });
+    $thumbGrid.appendChild(item);
+  });
+  $thumbModal.classList.add('open');
+}
+function closeThumbs() { $thumbModal.classList.remove('open'); }
+document.getElementById('openThumbBtn').addEventListener('click', openThumbs);
+document.getElementById('closeThumbBtn').addEventListener('click', closeThumbs);
+$thumbModal.addEventListener('click', e => { if (e.target === $thumbModal) closeThumbs(); });
+
+// 초기 렌더
+loadState();
+document.querySelectorAll('.vol-btn').forEach(b => b.classList.toggle('active', b.dataset.vol === currentVol));
+render();
+</script>
+</body>
+</html>
