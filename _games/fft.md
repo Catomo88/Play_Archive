@@ -317,10 +317,22 @@ sources:
 <div class="info-card" markdown="1">
 
 <div class="info-card-header">
-  <h3 class="info-card-title">📖 등급 읽는 법</h3>
+  <h3 class="info-card-title">📖 표 보는 법 — 가로(스탯) × 세로(등급)</h3>
 </div>
 
 <div class="info-card-body" markdown="1">
+
+**가로 헤더 = 5대 스탯 (영어 약어)**
+
+| 약어 | 풀네임 | 한국어 | 영향 |
+|---|---|---|---|
+| **HP** | Hit Points | **체력** | 죽으면 끝. 높을수록 생존력 ↑ |
+| **MP** | Magic Points | **마나** | 마법 발동 비용. 마법사·산술사 필수 |
+| **PA** | Physical Attack | **물리 공격력** | 검·총·맨손 데미지. 어택커의 핵심 |
+| **MA** | Magic Attack | **마법 공격력** | 마법 데미지. 캐스터·산술사의 핵심 |
+| **SP** | Speed | **행동 속도** | 턴 차례. 높을수록 더 자주 행동 — **사실상 가장 강력한 스탯** |
+
+**세로 셀 = 등급 (S+가 최고, E가 최하)**
 
 <div class="grade-legend">
 <span class="g-sp">🌟 S+ 최강 (압도적)</span>
@@ -331,6 +343,8 @@ sources:
 <span class="g-d">· D 중하 (큰 영향 X)</span>
 <span class="g-e">· E 거의 없음</span>
 </div>
+
+> **예시 읽기**: `| 닌자 | C | E | ✨A | E | ⭐S |` → 닌자의 HP=평균, MP=거의 없음, **PA(물공)=상급, SP(속도)=최상**. 즉 닌자로 레벨업하면 **물리 공격력과 행동 속도가 평생 폭증**.
 
 - **성장률**(다음 표): 그 직업으로 **레벨업했을 때 누적**되는 값. **평생 영향**. S+/S/A 위주로 작업.
 - **멀티플라이어**(그 다음 표): 그 직업으로 **갈아입었을 때 즉시 적용**. 보스전 직전 갈아입기 메타.
@@ -351,7 +365,7 @@ sources:
 
 <div class="info-card-body" markdown="1">
 
-| 직업 | HP | MP | PA | MA | SP |
+| 직업 | HP<br>체력 | MP<br>마나 | PA<br>물공 | MA<br>마공 | SP<br>속도 |
 |---|---|---|---|---|---|
 | 스콰이어 | C | D | D | D | D |
 | 켐피스트 | D | D | E | C | D |
@@ -392,7 +406,7 @@ sources:
 
 <div class="info-card-body" markdown="1">
 
-| 직업 | HP | MP | PA | MA | SP |
+| 직업 | HP<br>체력 | MP<br>마나 | PA<br>물공 | MA<br>마공 | SP<br>속도 |
 |---|---|---|---|---|---|
 | 스콰이어 | B | C | B | C | B |
 | 켐피스트 | C | C | C | B | B |
@@ -2335,19 +2349,4 @@ PSP/WotL 시스템 그대로. **마을에서 캐릭터를 의뢰에 파견**해 
 ## 자주 묻는 질문
 
 **Q. Classic vs Enhanced, 뭐로 시작?**
-A. **Enhanced 강력 권장**. 한국어 자막, 풀더빙, 자동 세이브, 되감기 모두 Enhanced에만. Classic은 PS1 원본 향수용.
-
-**Q. 어니언 나이트/다크 나이트 있어?**
-A. **없음**. PS1 베이스라 WotL의 추가 직업/캐릭터는 미수록. Square Enix가 향후 DLC로 추가할 가능성은 불명.
-
-**Q. 발티에 / 루소는?**
-A. **없음** (위와 동일).
-
-**Q. 발플레아 1대1을 못 깨겠어요.**
-A. (1) **Squire 난이도로 낮추기** (2) **되감기로 시행착오** (3) 직전 마을에서 별도 슬롯 → **JP 추가 작업** → Holy Sword + Auto Potion + Move +2 람자 준비. 
-
-**Q. 산술사가 너무 강한데, 사용해도 됨?**
-A. **밸런스 의식하면 자제**. 모든 전투 즉결되므로 1회차에는 의도적으로 봉인하는 유저도 다수. Tactician 도전 시에는 거의 필수.
-
-**Q. 한국어 자막 못 찾는데?**
-A. **v1.5.0 이상** 필요 (2026-06-1
+A. **Enhanced

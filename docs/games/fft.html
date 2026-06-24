@@ -640,9 +640,53 @@
 </blockquote>
 <div class="info-card">
 <div class="info-card-header">
-<h3 class="info-card-title" id="_3">📖 등급 읽는 법</h3>
+<h3 class="info-card-title" id="_3">📖 표 보는 법 — 가로(스탯) × 세로(등급)</h3>
 </div>
 <div class="info-card-body">
+<p><strong>가로 헤더 = 5대 스탯 (영어 약어)</strong></p>
+<table>
+<thead>
+<tr>
+<th>약어</th>
+<th>풀네임</th>
+<th>한국어</th>
+<th>영향</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>HP</strong></td>
+<td>Hit Points</td>
+<td><strong>체력</strong></td>
+<td>죽으면 끝. 높을수록 생존력 ↑</td>
+</tr>
+<tr>
+<td><strong>MP</strong></td>
+<td>Magic Points</td>
+<td><strong>마나</strong></td>
+<td>마법 발동 비용. 마법사·산술사 필수</td>
+</tr>
+<tr>
+<td><strong>PA</strong></td>
+<td>Physical Attack</td>
+<td><strong>물리 공격력</strong></td>
+<td>검·총·맨손 데미지. 어택커의 핵심</td>
+</tr>
+<tr>
+<td><strong>MA</strong></td>
+<td>Magic Attack</td>
+<td><strong>마법 공격력</strong></td>
+<td>마법 데미지. 캐스터·산술사의 핵심</td>
+</tr>
+<tr>
+<td><strong>SP</strong></td>
+<td>Speed</td>
+<td><strong>행동 속도</strong></td>
+<td>턴 차례. 높을수록 더 자주 행동 — <strong>사실상 가장 강력한 스탯</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>세로 셀 = 등급 (S+가 최고, E가 최하)</strong></p>
 <div class="grade-legend">
 <span class="g-sp">🌟 S+ 최강 (압도적)</span>
 <span class="g-s">⭐ S 최상</span>
@@ -652,6 +696,9 @@
 <span class="g-d">· D 중하 (큰 영향 X)</span>
 <span class="g-e">· E 거의 없음</span>
 </div>
+<blockquote>
+<p><strong>예시 읽기</strong>: <code>| 닌자 | C | E | ✨A | E | ⭐S |</code> → 닌자의 HP=평균, MP=거의 없음, <strong>PA(물공)=상급, SP(속도)=최상</strong>. 즉 닌자로 레벨업하면 <strong>물리 공격력과 행동 속도가 평생 폭증</strong>.</p>
+</blockquote>
 <ul>
 <li><strong>성장률</strong>(다음 표): 그 직업으로 <strong>레벨업했을 때 누적</strong>되는 값. <strong>평생 영향</strong>. S+/S/A 위주로 작업.</li>
 <li><strong>멀티플라이어</strong>(그 다음 표): 그 직업으로 <strong>갈아입었을 때 즉시 적용</strong>. 보스전 직전 갈아입기 메타.</li>
@@ -671,11 +718,11 @@
 <thead>
 <tr>
 <th>직업</th>
-<th>HP</th>
-<th>MP</th>
-<th>PA</th>
-<th>MA</th>
-<th>SP</th>
+<th>HP<br>체력</th>
+<th>MP<br>마나</th>
+<th>PA<br>물공</th>
+<th>MA<br>마공</th>
+<th>SP<br>속도</th>
 </tr>
 </thead>
 <tbody>
@@ -866,11 +913,11 @@
 <thead>
 <tr>
 <th>직업</th>
-<th>HP</th>
-<th>MP</th>
-<th>PA</th>
-<th>MA</th>
-<th>SP</th>
+<th>HP<br>체력</th>
+<th>MP<br>마나</th>
+<th>PA<br>물공</th>
+<th>MA<br>마공</th>
+<th>SP<br>속도</th>
 </tr>
 </thead>
 <tbody>
@@ -3121,17 +3168,7 @@
 </div>
 <h2 id="_3">자주 묻는 질문</h2>
 <p><strong>Q. Classic vs Enhanced, 뭐로 시작?</strong>
-A. <strong>Enhanced 강력 권장</strong>. 한국어 자막, 풀더빙, 자동 세이브, 되감기 모두 Enhanced에만. Classic은 PS1 원본 향수용.</p>
-<p><strong>Q. 어니언 나이트/다크 나이트 있어?</strong>
-A. <strong>없음</strong>. PS1 베이스라 WotL의 추가 직업/캐릭터는 미수록. Square Enix가 향후 DLC로 추가할 가능성은 불명.</p>
-<p><strong>Q. 발티에 / 루소는?</strong>
-A. <strong>없음</strong> (위와 동일).</p>
-<p><strong>Q. 발플레아 1대1을 못 깨겠어요.</strong>
-A. (1) <strong>Squire 난이도로 낮추기</strong> (2) <strong>되감기로 시행착오</strong> (3) 직전 마을에서 별도 슬롯 → <strong>JP 추가 작업</strong> → Holy Sword + Auto Potion + Move +2 람자 준비. </p>
-<p><strong>Q. 산술사가 너무 강한데, 사용해도 됨?</strong>
-A. <strong>밸런스 의식하면 자제</strong>. 모든 전투 즉결되므로 1회차에는 의도적으로 봉인하는 유저도 다수. Tactician 도전 시에는 거의 필수.</p>
-<p><strong>Q. 한국어 자막 못 찾는데?</strong>
-A. <strong>v1.5.0 이상</strong> 필요 (2026-06-1</p></div>
+A. **Enhanced</p></div>
     </div>
     <section class="sources"><h2>출처</h2><ul class="sources-list"><li><a href="https://namu.wiki/w/파이널%20판타지%20택틱스%20-%20이발리스%20크로니클즈" target="_blank" rel="noopener noreferrer">나무위키 - 파이널 판타지 택틱스 이발리스 크로니클즈</a></li>
 <li><a href="https://finalfantasy.fandom.com/wiki/Final_Fantasy_Tactics:_The_Ivalice_Chronicles" target="_blank" rel="noopener noreferrer">Final Fantasy Wiki - The Ivalice Chronicles</a></li>
