@@ -1069,6 +1069,74 @@ blockquote.quote::before {
   .chapter-hero-desc { font-size: 0.88rem; }
 }
 
+/* ===== 직업 스탯 카드 그리드 ===== */
+.job-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.55rem;
+  margin: 0.7rem 0 1.1rem;
+}
+.job-stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 0.6rem 0.75rem;
+  position: relative;
+}
+.job-stat-card .job-name {
+  font-weight: 700;
+  font-size: 0.92rem;
+  margin-bottom: 0.4rem;
+  color: var(--text-primary);
+}
+.job-stat-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.25rem;
+}
+.job-stat-row .stat {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.12rem;
+}
+.stat-label {
+  font-size: 0.66rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.stat-grade {
+  font-weight: 700;
+  font-size: 0.92rem;
+  line-height: 1;
+}
+.stat-grade.g-sp { color: #ffd166; text-shadow: 0 0 6px rgba(255,209,102,0.4); }
+.stat-grade.g-s  { color: #ffb800; }
+.stat-grade.g-a  { color: #06d6ff; }
+.stat-grade.g-b  { color: #22c55e; }
+.stat-grade.g-c  { color: #a0a0b8; }
+.stat-grade.g-d  { color: #6a6a82; }
+.stat-grade.g-e  { color: #4a4a5e; }
+/* 카드 강조: S+/S/A 보유 시 */
+.job-stat-card.highlight {
+  border-color: rgba(255, 184, 0, 0.35);
+  background: linear-gradient(135deg, rgba(255,184,0,0.05), var(--bg-card) 50%);
+}
+.job-stat-card.highlight .job-name { color: #ffd47a; }
+
+@media (max-width: 600px) {
+  .job-stats { grid-template-columns: 1fr 1fr; gap: 0.4rem; }
+  .job-stat-card { padding: 0.45rem 0.55rem; }
+  .job-stat-card .job-name { font-size: 0.82rem; margin-bottom: 0.3rem; }
+  .stat-label { font-size: 0.6rem; }
+  .stat-grade { font-size: 0.84rem; }
+}
+@media (max-width: 380px) {
+  .job-stats { grid-template-columns: 1fr; }
+}
+
 /* ===== 등급 배지 (S+/S/A/B/C/D/E 시각화) ===== */
 .grade-legend {
   display: flex; flex-wrap: wrap; gap: 0.4rem;
