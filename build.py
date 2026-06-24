@@ -1380,51 +1380,9 @@ blockquote.quote::before {
   background: transparent;
 }
 
-/* 4. 모바일 표 → 카드 리스트 변환 (375px 이하 작은 화면 우선) */
-@media (max-width: 600px) {
-  .tab-content { font-size: 1rem; }
-  .tab-content table {
-    display: block;
-    border-collapse: separate;
-    border-spacing: 0;
-  }
-  .tab-content table thead { display: none; }
-  .tab-content table tbody { display: block; }
-  .tab-content table tr {
-    display: block;
-    background: var(--bg-card);
-    border: 1px solid var(--border-subtle);
-    border-radius: 8px;
-    padding: 0.7rem 0.9rem;
-    margin-bottom: 0.55rem;
-  }
-  .tab-content table td {
-    display: block;
-    border: none !important;
-    padding: 0.15rem 0;
-    font-size: 0.92rem;
-    background: transparent !important;
-  }
-  .tab-content table td:first-child {
-    font-family: var(--font-display);
-    color: var(--accent-cyan);
-    font-size: 0.82rem;
-    letter-spacing: 0.03em;
-    border-bottom: 1px solid var(--border-subtle) !important;
-    padding-bottom: 0.4rem;
-    margin-bottom: 0.4rem;
-  }
-  .tab-content table td:nth-child(2) {
-    font-weight: 600;
-    color: var(--text-primary);
-  }
-  .tab-content table td:nth-child(3),
-  .tab-content table td:nth-child(4) {
-    color: var(--text-secondary);
-    font-size: 0.88rem;
-  }
-  .tab-content table tr:hover td { background: transparent !important; }
-}
+/* 4. 모바일 표 강제 카드화 규칙 제거됨 (display:block tr/td)
+   — 등급표 같은 가로 표가 망가지는 부작용 때문에 폐기.
+   대신 .info-card-body / .boss-card-body 가 가로 스크롤 컨테이너 역할 */
 
 /* ===== 챕터 sub-router (인덱스 ↔ 챕터 상세) ===== */
 .chapter-index {
@@ -2454,3 +2412,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
