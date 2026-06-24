@@ -778,6 +778,150 @@ blockquote.quote::before {
   .step-list > li::before { width: 1.7rem; height: 1.7rem; font-size: 0.8rem; left: 0.5rem; }
 }
 
+/* ===== 모바일 밀도 강화 (스크롤 단축) ===== */
+@media (max-width: 768px) {
+  body { font-size: 15px; line-height: 1.55; }
+  .site-main { padding: 1rem 0.85rem 2.5rem; }
+  .tab-content h2 { font-size: 1.15rem; margin: 1.2rem 0 0.6rem; }
+  .tab-content h3 { font-size: 0.98rem; margin: 1rem 0 0.45rem; }
+  .tab-content h4 { font-size: 0.92rem; margin: 0.7rem 0 0.35rem; }
+  .tab-content p { margin: 0.5rem 0; }
+  .tab-content ul, .tab-content ol { margin: 0.45rem 0; padding-left: 1.2rem; }
+  .tab-content li { margin: 0.25rem 0; }
+  .tab-content table {
+    font-size: 0.82rem;
+    margin: 0.6rem 0;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+    white-space: nowrap;
+  }
+  .tab-content th, .tab-content td { padding: 0.35rem 0.5rem; }
+  .tab-content th { white-space: nowrap; }
+  .tab-content td { white-space: normal; }
+  /* 핵심 등급표: 직업명 첫 칸은 sticky 유지 */
+  .tab-content table th:first-child,
+  .tab-content table td:first-child {
+    position: sticky; left: 0;
+    background: var(--bg-card);
+    z-index: 2;
+    border-right: 1px solid var(--border-strong);
+  }
+  .info-card { margin: 0.9rem 0 1.1rem; padding: 0.8rem 0.9rem; border-radius: 11px; }
+  .info-card-header { margin-bottom: 0.4rem; }
+  .info-card-title { font-size: 0.92rem; padding-left: 0.5rem; }
+  .info-card-body { font-size: 0.92rem; }
+  .info-card-body > *:first-child { margin-top: 0; }
+  .info-card-body > *:last-child { margin-bottom: 0; }
+  .boss-card { margin: 0.9rem 0 1.1rem; padding: 0.8rem 0.9rem; }
+  .boss-card-header { margin-bottom: 0.4rem; }
+  .boss-name { font-size: 0.95rem; }
+  .boss-card-body { font-size: 0.9rem; }
+  .tip, .warn, .secret, .boss {
+    padding: 0.7rem 0.85rem; margin: 0.8rem 0;
+    font-size: 0.9rem; border-radius: 10px;
+  }
+  blockquote { padding: 0.55rem 0.9rem; margin: 0.7rem 0; font-size: 0.9rem; }
+  .chapter-card { padding: 0.85rem 1rem; }
+  .chapter-card-num { font-size: 0.72rem; }
+  .chapter-card-title { font-size: 1rem; margin: 0.2rem 0; }
+  .chapter-card-desc { font-size: 0.82rem; }
+  .chapter-hero { padding: 1.2rem 1rem 0.9rem; margin-bottom: 0.8rem; }
+  .chapter-hero-num { font-size: 0.72rem; }
+  .chapter-hero-title { font-size: 1.3rem; }
+  .chapter-hero-desc { font-size: 0.88rem; }
+}
+
+/* ===== 직업 스탯 카드 그리드 ===== */
+.job-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.55rem;
+  margin: 0.7rem 0 1.1rem;
+}
+.job-stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 0.6rem 0.75rem;
+  position: relative;
+}
+.job-stat-card .job-name {
+  font-weight: 700;
+  font-size: 0.92rem;
+  margin-bottom: 0.4rem;
+  color: var(--text-primary);
+}
+.job-stat-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.25rem;
+}
+.job-stat-row .stat {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.12rem;
+}
+.stat-label {
+  font-size: 0.66rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.stat-grade {
+  font-weight: 700;
+  font-size: 0.92rem;
+  line-height: 1;
+}
+.stat-grade.g-sp { color: #ffd166; text-shadow: 0 0 6px rgba(255,209,102,0.4); }
+.stat-grade.g-s  { color: #ffb800; }
+.stat-grade.g-a  { color: #06d6ff; }
+.stat-grade.g-b  { color: #22c55e; }
+.stat-grade.g-c  { color: #a0a0b8; }
+.stat-grade.g-d  { color: #6a6a82; }
+.stat-grade.g-e  { color: #4a4a5e; }
+/* 카드 강조: S+/S/A 보유 시 */
+.job-stat-card.highlight {
+  border-color: rgba(255, 184, 0, 0.35);
+  background: linear-gradient(135deg, rgba(255,184,0,0.05), var(--bg-card) 50%);
+}
+.job-stat-card.highlight .job-name { color: #ffd47a; }
+
+@media (max-width: 600px) {
+  .job-stats { grid-template-columns: 1fr 1fr; gap: 0.4rem; }
+  .job-stat-card { padding: 0.45rem 0.55rem; }
+  .job-stat-card .job-name { font-size: 0.82rem; margin-bottom: 0.3rem; }
+  .stat-label { font-size: 0.6rem; }
+  .stat-grade { font-size: 0.84rem; }
+}
+@media (max-width: 380px) {
+  .job-stats { grid-template-columns: 1fr; }
+}
+
+/* ===== 등급 배지 (S+/S/A/B/C/D/E 시각화) ===== */
+.grade-legend {
+  display: flex; flex-wrap: wrap; gap: 0.4rem;
+  margin: 0.6rem 0;
+}
+.grade-legend > span {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  padding: 0.18rem 0.5rem;
+  font-size: 0.78rem;
+  border-radius: 999px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+}
+.grade-legend .g-sp { color: #ffd166; border-color: rgba(255,209,102,0.5); }
+.grade-legend .g-s  { color: #ffb800; border-color: rgba(255,184,0,0.4); }
+.grade-legend .g-a  { color: #06d6ff; border-color: rgba(6,214,255,0.4); }
+.grade-legend .g-b  { color: #22c55e; border-color: rgba(34,197,94,0.4); }
+.grade-legend .g-c  { color: #a0a0b8; }
+.grade-legend .g-d  { color: #6a6a82; }
+.grade-legend .g-e  { color: #4a4a5e; }
+
 
 /* ===== YouTube 임베드 (lite-youtube facade) ===== */
 .yt-facade {

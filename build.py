@@ -1042,8 +1042,26 @@ blockquote.quote::before {
   .tab-content p { margin: 0.5rem 0; }
   .tab-content ul, .tab-content ol { margin: 0.45rem 0; padding-left: 1.2rem; }
   .tab-content li { margin: 0.25rem 0; }
-  .tab-content table { font-size: 0.82rem; margin: 0.6rem 0; }
+  .tab-content table {
+    font-size: 0.82rem;
+    margin: 0.6rem 0;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+    white-space: nowrap;
+  }
   .tab-content th, .tab-content td { padding: 0.35rem 0.5rem; }
+  .tab-content th { white-space: nowrap; }
+  .tab-content td { white-space: normal; }
+  /* 핵심 등급표: 직업명 첫 칸은 sticky 유지 */
+  .tab-content table th:first-child,
+  .tab-content table td:first-child {
+    position: sticky; left: 0;
+    background: var(--bg-card);
+    z-index: 2;
+    border-right: 1px solid var(--border-strong);
+  }
   .info-card { margin: 0.9rem 0 1.1rem; padding: 0.8rem 0.9rem; border-radius: 11px; }
   .info-card-header { margin-bottom: 0.4rem; }
   .info-card-title { font-size: 0.92rem; padding-left: 0.5rem; }
