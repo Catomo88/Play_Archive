@@ -1077,25 +1077,25 @@ sources:
 람자의 스콰이어는 **챕터 진행에 따라 자동 강화** — Ch.4에서는 *Yell*, *Cheer Up*, *Wish*(아군 HP→자기 HP), *Ultima*(마지막에 학습) 같은 광역 버프/회복/딜 스킬을 보유.
 
 **Ch.1~2 빌드**:
-- **메인**: 스콰이어 또는 나이트
-- **서브**: Item (켐피스트)
-- **R**: Auto Potion
-- **S**: Equip Armor
-- **M**: Move +1
+- <span class="slot-tag s-main">메인</span> 스콰이어 또는 나이트
+- <span class="slot-tag s-sub">서브</span> Item (켐피스트)
+- <span class="slot-tag s-r">R</span> Auto Potion
+- <span class="slot-tag s-s">S</span> Equip Armor
+- <span class="slot-tag s-m">M</span> Move +1
 
 **Ch.3~4 빌드 (성장형)**:
-- **메인**: ⭐ **Holy Sword** (아그리아스에서 학습) — 람자가 Holy Knight 직업을 거쳐 학습. 람자 전용 직업이 아닌 보조 어빌리티로 평생 활용
-- **서브**: Punch Art (몽크) — Chakra 자력 회복
-- **R**: **Blade Grasp** (사무라이) — 브레이브 ↑ 시 회피 ↑
-- **S**: **Two Hands** (사무라이) — 검 데미지 ×2
-- **M**: **Move +2** (시프)
+- <span class="slot-tag s-main">메인</span> ⭐ **Holy Sword** (아그리아스에서 학습) — 람자가 Holy Knight 직업을 거쳐 학습. 람자 전용 직업이 아닌 보조 어빌리티로 평생 활용
+- <span class="slot-tag s-sub">서브</span> Punch Art (몽크) — Chakra 자력 회복
+- <span class="slot-tag s-r">R</span> **Blade Grasp** (사무라이) — 브레이브 ↑ 시 회피 ↑
+- <span class="slot-tag s-s">S</span> **Two Hands** (사무라이) — 검 데미지 ×2
+- <span class="slot-tag s-m">M</span> **Move +2** (시프)
 
 **최종 빌드 (디프 던전 + 알티마)**:
-- **메인**: Calculate (산술사) — Level 3 Death 광역 즉결
-- **서브**: White Magic (Holy + Raise 2)
-- **R**: Blade Grasp / Counter Magic
-- **S**: Magic Attack Up + Short Charge
-- **M**: Move +2
+- <span class="slot-tag s-main">메인</span> Calculate (산술사) — Level 3 Death 광역 즉결
+- <span class="slot-tag s-sub">서브</span> White Magic (Holy + Raise 2)
+- <span class="slot-tag s-r">R</span> Blade Grasp / Counter Magic
+- <span class="slot-tag s-s">S</span> Magic Attack Up + Short Charge
+- <span class="slot-tag s-m">M</span> Move +2
 
 </div>
 
@@ -1128,11 +1128,11 @@ sources:
 - **Holy Explosion**: 후반 강력
 
 **추천 빌드**:
-- **메인**: Holy Sword (Knight 전용 — 평생 유지, 다른 직업 갈아입을 필요 ❌)
-- **서브**: Item (켐피스트 JL5의 Phoenix Down 백업)
-- **R**: ⭐ **Counter** (풍수사) — 카운터 발동
-- **S**: ⭐ **Two Hands** (사무라이) — 검 데미지 ×2
-- **M**: ⭐ **Move +2** (시프)
+- <span class="slot-tag s-main">메인</span> Holy Sword (Knight 전용 — 평생 유지, 다른 직업 갈아입을 필요 ❌)
+- <span class="slot-tag s-sub">서브</span> Item (켐피스트 JL5의 Phoenix Down 백업)
+- <span class="slot-tag s-r">R</span> ⭐ **Counter** (풍수사) — 카운터 발동
+- <span class="slot-tag s-s">S</span> ⭐ **Two Hands** (사무라이) — 검 데미지 ×2
+- <span class="slot-tag s-m">M</span> ⭐ **Move +2** (시프)
 
 **JP 도장 추천**: 합류 직후 Ch.2 약한 맵에서 모든 Holy Sword 어빌리티 학습 → Ch.3~4 진가
 
@@ -1168,11 +1168,11 @@ sources:
 - **Seal Evil**: 언데드/루카비 봉인 — 후반 강력
 
 **추천 빌드**:
-- **메인**: Snipe (Machinist 전용)
-- **서브**: Item (켐피스트) 또는 White Magic
-- **R**: ⭐ **Concentrate** (아처) — Snipe 명중률 100%
-- **S**: Equip Armor (나이트) — 생존력 ↑
-- **M**: Move +2
+- <span class="slot-tag s-main">메인</span> Snipe (Machinist 전용)
+- <span class="slot-tag s-sub">서브</span> Item (켐피스트) 또는 White Magic
+- <span class="slot-tag s-r">R</span> ⭐ **Concentrate** (아처) — Snipe 명중률 100%
+- <span class="slot-tag s-s">S</span> Equip Armor (나이트) — 생존력 ↑
+- <span class="slot-tag s-m">M</span> Move +2
 
 **JP 도장 추천**: Goug Machine City 도장. *Arm Aim* + *Leg Aim* + *Seal Evil* 학습 우선.
 
@@ -1211,11 +1211,11 @@ sources:
 - Dark Sword: **HP/MP 흡수** — 보스에 영구 흡혈
 
 **추천 빌드**:
-- **메인**: All Sword (전용)
-- **서브**: Item (켐피스트) — 비상 백업
-- **R**: ⭐ **Blade Grasp** (사무라이) — 브레이브 97 = 검 회피 97%
-- **S**: ⭐ **Two Hands** (사무라이) — 데미지 ×2
-- **M**: ⭐ **Move +2** (시프)
+- <span class="slot-tag s-main">메인</span> All Sword (전용)
+- <span class="slot-tag s-sub">서브</span> Item (켐피스트) — 비상 백업
+- <span class="slot-tag s-r">R</span> ⭐ **Blade Grasp** (사무라이) — 브레이브 97 = 검 회피 97%
+- <span class="slot-tag s-s">S</span> ⭐ **Two Hands** (사무라이) — 데미지 ×2
+- <span class="slot-tag s-m">M</span> ⭐ **Move +2** (시프)
 
 **무기**: ⭐ **카오스 블레이드** (Chaos Blade) — 트레저 헌트 회수. 풀 PA 강화.
 
@@ -1252,11 +1252,11 @@ sources:
 - **Holy Explosion**: 광역 + 신성
 
 **추천 빌드**:
-- **메인**: Mighty Sword (Divine Knight 전용)
-- **서브**: Item (켐피스트)
-- **R**: Counter / Blade Grasp
-- **S**: Two Hands
-- **M**: Move +2
+- <span class="slot-tag s-main">메인</span> Mighty Sword (Divine Knight 전용)
+- <span class="slot-tag s-sub">서브</span> Item (켐피스트)
+- <span class="slot-tag s-r">R</span> Counter / Blade Grasp
+- <span class="slot-tag s-s">S</span> Two Hands
+- <span class="slot-tag s-m">M</span> Move +2
 
 **Tip**: **루카비 보스**의 카오스 블레이드 같은 사도자 무기 + 알티마 같은 보스의 강력한 장비를 **Crush 시리즈로 회피 무시 파괴** → 안정 클리어.
 
@@ -1289,11 +1289,11 @@ sources:
 - **Galaxy Stop**: 광역 Stop
 
 **추천 빌드**:
-- **메인**: Skyseer
-- **서브**: White Magic (회복 보조)
-- **R**: ⭐ **Counter Magic** — 마법 카운터 강력
-- **S**: Magic Attack Up
-- **M**: Teleport (시마도사 학습) 또는 Move +2
+- <span class="slot-tag s-main">메인</span> Skyseer
+- <span class="slot-tag s-sub">서브</span> White Magic (회복 보조)
+- <span class="slot-tag s-r">R</span> ⭐ **Counter Magic** — 마법 카운터 강력
+- <span class="slot-tag s-s">S</span> Magic Attack Up
+- <span class="slot-tag s-m">M</span> Teleport (시마도사 학습) 또는 Move +2
 
 **Tip**: 명중률이 낮아 **고지 위에서 시전** + **상대가 일렬로 모이는 구간**을 노리기.
 
@@ -1355,14 +1355,14 @@ sources:
 - **Petrify Sword**: ⭐ **즉사급** (석화 = 영구 무력화)
 
 **추천 빌드 (베오울프)**:
-- **메인**: Magic Sword (전용)
-- **서브**: Item
-- **R**: Counter / Blade Grasp
-- **S**: Two Hands + Magic Attack Up
-- **M**: Move +2
+- <span class="slot-tag s-main">메인</span> Magic Sword (전용)
+- <span class="slot-tag s-sub">서브</span> Item
+- <span class="slot-tag s-r">R</span> Counter / Blade Grasp
+- <span class="slot-tag s-s">S</span> Two Hands + Magic Attack Up
+- <span class="slot-tag s-m">M</span> Move +2
 
 **레이스 (Holy Dragon 형태)**:
-- **메인**: 드래곤 전용 스킬 (Ice/Lightning/Fire Breath, Holy Breath)
+- <span class="slot-tag s-main">메인</span> 드래곤 전용 스킬 (Ice/Lightning/Fire Breath, Holy Breath)
 - **장비 불가** — 드래곤은 장비 변경 ❌
 - 인간 형태로 돌아오면 Dragoner 전용 직업으로 무기·방어구 사용 가능
 
@@ -1402,11 +1402,11 @@ sources:
 - **Cherry Blossom**: ⭐ 광역 최강
 
 **추천 빌드**:
-- **메인**: Limit (Soul Diver 전용)
-- **서브**: Item 또는 자유
-- **R**: Blade Grasp
-- **S**: Two Hands
-- **M**: Move +2
+- <span class="slot-tag s-main">메인</span> Limit (Soul Diver 전용)
+- <span class="slot-tag s-sub">서브</span> Item 또는 자유
+- <span class="slot-tag s-r">R</span> Blade Grasp
+- <span class="slot-tag s-s">S</span> Two Hands
+- <span class="slot-tag s-m">M</span> Move +2
 
 **무기**: ⭐ **머티리얼 블레이드** — 트레저 헌트(큐큐로스 사원 절벽) 또는 의뢰 회수. **반드시 영입 전 확보**.
 
@@ -1513,11 +1513,11 @@ sources:
 - 산술사 본인: **Calculate (액션)**
 
 **추천 빌드**:
-- **메인**: Calculate (산술사 전용)
-- **서브**: White Magic (Cure/Raise 2/Holy) — 직접 시전 백업
-- **R**: ⭐ Counter Magic
-- **S**: ⭐ **Magic Attack Up** + **Short Charge**
-- **M**: Move +2 (Find Item)
+- <span class="slot-tag s-main">메인</span> Calculate (산술사 전용)
+- <span class="slot-tag s-sub">서브</span> White Magic (Cure/Raise 2/Holy) — 직접 시전 백업
+- <span class="slot-tag s-r">R</span> ⭐ Counter Magic
+- <span class="slot-tag s-s">S</span> ⭐ **Magic Attack Up** + **Short Charge**
+- <span class="slot-tag s-m">M</span> Move +2 (Find Item)
 
 **보스전 진행**:
 1. 첫 턴: Level X (적 LV의 공통 배수) + Death → 광역 즉사 시도
@@ -1548,11 +1548,11 @@ sources:
 - **Two Swords (S)** — 닌자 학습
 
 **추천 빌드**:
-- **메인**: Throw 또는 자유 (Holy Sword 등 다른 액션)
-- **서브**: Punch Art (몽크 Chakra) 또는 Item
-- **R**: ⭐ **Concentrate** (회피 무시) 또는 **Counter**
-- **S**: ⭐ **Two Swords** — **양손 1턴 2회 타격**
-- **M**: ⭐ Move +2
+- <span class="slot-tag s-main">메인</span> Throw 또는 자유 (Holy Sword 등 다른 액션)
+- <span class="slot-tag s-sub">서브</span> Punch Art (몽크 Chakra) 또는 Item
+- <span class="slot-tag s-r">R</span> ⭐ **Concentrate** (회피 무시) 또는 **Counter**
+- <span class="slot-tag s-s">S</span> ⭐ **Two Swords** — **양손 1턴 2회 타격**
+- <span class="slot-tag s-m">M</span> ⭐ Move +2
 
 **무기**: **유 가르탄 (Yagyu Darkblade) + 마사무네** 또는 **카오스 블레이드 + 사도자 카타나**
 
@@ -1582,11 +1582,11 @@ sources:
 - **Blade Grasp (R)** — 본인의 백업
 
 **추천 빌드**:
-- **메인**: Draw Out (사무라이 전용)
-- **서브**: White Magic 또는 Item
-- **R**: ⭐ **Blade Grasp** — Brave 97 = 검/카타나/창 회피 97%
-- **S**: ⭐ **Equip Heavy Armor** (나이트) + **Two Hands** (사무라이)
-- **M**: Move +1 또는 Move +2
+- <span class="slot-tag s-main">메인</span> Draw Out (사무라이 전용)
+- <span class="slot-tag s-sub">서브</span> White Magic 또는 Item
+- <span class="slot-tag s-r">R</span> ⭐ **Blade Grasp** — Brave 97 = 검/카타나/창 회피 97%
+- <span class="slot-tag s-s">S</span> ⭐ **Equip Heavy Armor** (나이트) + **Two Hands** (사무라이)
+- <span class="slot-tag s-m">M</span> Move +1 또는 Move +2
 
 **무기**: ⭐ **카오스 블레이드** + 사도자 카타나(잔수아간자 등) 다수
 
@@ -1853,11 +1853,11 @@ Ch.1 후반에 자유롭게 재방문 가능. **모든 캐릭이 같은 직업**
 ### 진입 전 준비 (이전 마을에서)
 
 **람자 빌드**:
-- **메인**: Holy Sword (아그리아스에서 학습) 또는 Punch Art (몽크)
-- **서브**: ⭐ **Item** (켐피스트 JL5 — Phoenix Down 백업)
-- **R**: ⭐ **Auto Potion** — 피격 시 자동 회복
-- **S**: **Equip Armor** (나이트) — 중장갑
-- **M**: ⭐ **Move +2** (시프) — 추격용
+- <span class="slot-tag s-main">메인</span> Holy Sword (아그리아스에서 학습) 또는 Punch Art (몽크)
+- <span class="slot-tag s-sub">서브</span> ⭐ **Item** (켐피스트 JL5 — Phoenix Down 백업)
+- <span class="slot-tag s-r">R</span> ⭐ **Auto Potion** — 피격 시 자동 회복
+- <span class="slot-tag s-s">S</span> **Equip Armor** (나이트) — 중장갑
+- <span class="slot-tag s-m">M</span> ⭐ **Move +2** (시프) — 추격용
 
 **람자 장비**:
 - 최고급 검 (Excalibur 또는 그 시점 최강)
@@ -1991,11 +1991,11 @@ Ch.1 후반에 자유롭게 재방문 가능. **모든 캐릭이 같은 직업**
 - Dark Sword: **HP/MP 흡수**
 
 **즉시 추천 빌드**:
-- **메인**: All Sword (변경 ❌)
-- **서브**: Item
-- **R**: Blade Grasp (Brave ↑로 회피)
-- **S**: Two Hands (사무라이에서 학습 필요)
-- **M**: Move +2
+- <span class="slot-tag s-main">메인</span> All Sword (변경 ❌)
+- <span class="slot-tag s-sub">서브</span> Item
+- <span class="slot-tag s-r">R</span> Blade Grasp (Brave ↑로 회피)
+- <span class="slot-tag s-s">S</span> Two Hands (사무라이에서 학습 필요)
+- <span class="slot-tag s-m">M</span> Move +2
 
 **무기**: **카오스 블레이드** (트레저 헌트 회수)
 
@@ -2347,11 +2347,11 @@ PSP/WotL 시스템 그대로. **마을에서 캐릭터를 의뢰에 파견**해 
 람자는 챕터 진행에 따라 **스콰이어 스킬이 자동 강화** — Ch.4의 람자 스콰이어는 *Yell / Cheer Up / Wish* 같은 광역 버프 스킬을 사용.
 
 **추천 빌드**:
-- **메인**: Holy Sword (아그리아스 학습) 또는 All Sword (시드 학습)
-- **서브**: Punch Art (몽크) — 차크라 자체 회복
-- **R**: Blade Grasp (브레이브 ↑)
-- **S**: Two Hands + Attack Up
-- **M**: Move +2 + Move Find Item
+- <span class="slot-tag s-main">메인</span> Holy Sword (아그리아스 학습) 또는 All Sword (시드 학습)
+- <span class="slot-tag s-sub">서브</span> Punch Art (몽크) — 차크라 자체 회복
+- <span class="slot-tag s-r">R</span> Blade Grasp (브레이브 ↑)
+- <span class="slot-tag s-s">S</span> Two Hands + Attack Up
+- <span class="slot-tag s-m">M</span> Move +2 + Move Find Item
 
 **스킬 우선순위**: Holy Sword 시리즈 → Punch Art 차크라/리바이브 → 최종전까지 풀학습
 
